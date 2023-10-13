@@ -9,7 +9,7 @@ export const App = () => {
   return (
     <>
       <Suspense fallback={<h2>Loading...</h2>}>
-        <HashRouter>
+        
           <Header />
           <main>
             <Routes>
@@ -18,7 +18,7 @@ export const App = () => {
               <Route path="/statistics" element={<h1>Statistics</h1>} />
             </Routes>
           </main>
-        </HashRouter>
+       
       </Suspense>
     </>
   );
