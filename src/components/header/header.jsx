@@ -8,13 +8,13 @@ const Header = () => {
           <Div>
             <nav>
               <NavLink className={'button-8'} to="/">
-                Home
+                My account
               </NavLink>
               <NavLink className={'button-8'} to="/calendar">
-                Home
+                Calendar
               </NavLink>
               <NavLink className={'button-8'} to="/statistics">
-                Home
+                Statistics
               </NavLink>
             </nav>
           </Div>
