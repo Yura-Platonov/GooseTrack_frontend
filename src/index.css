@@ -2,42 +2,42 @@
   font-family: Inter;
   font-weight: 700;
   font-style: normal;
-  src: url(../fonts/Inter-Bold.otf);
+  src: url(./fonts/Inter/Inter-Bold.otf);
 }
 
 @font-face {
   font-family: Inter;
   font-weight: 700;
   font-style: italic;
-  src: url(../fonts/Inter-BoldItalic.otf);
+  src: url(./fonts/Inter/Inter-BoldItalic.otf);
 }
 
 @font-face {
   font-family: Inter;
   font-weight: 600;
   font-style: normal;
-  src: url(../fonts/Inter-SemiBold.otf);
+  src: url(./fonts/Inter/Inter-SemiBold.otf);
 }
 
 @font-face {
   font-family: Inter;
   font-weight: 600;
   font-style: italic;
-  src: url(../fonts/Inter-SemiBoldItalic.otf);
+  src: url(./fonts/Inter/Inter-SemiBoldItalic.otf);
 }
 
 @font-face {
   font-family: Inter;
   font-weight: 500;
   font-style: normal;
-  src: url(../fonts/Inter-Medium.otf);
+  src: url(./fonts/Inter/Inter-Medium.otf);
 }
 
 @font-face {
   font-family: Inter;
   font-weight: 400;
   font-style: normal;
-  src: url(../fonts/Inter-Regular.otf);
+  src: url(./fonts/Inter/Inter-Regular.otf);
 }
 
 /** VARIABLES*/
