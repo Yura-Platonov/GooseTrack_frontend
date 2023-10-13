@@ -1,8 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import { Div, Section } from './header.styled';
+import { useState } from 'react';
 import AddFeedbackBtn from '../AddFeedbackBtn/AddFeedbackBtn.jsx';
+import AddFeedbackModal from '../AddFeedbackModal/AddFeedbackModal.jsx';
 
 const Header = () => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const onOpenModal = () => {
+    setIsOpenModal(true);
+  };
+  const onCloseModal = () => {
+    setIsOpenModal(false);
+  };
+
   return (
     <header>
       <Section>
@@ -18,7 +29,8 @@ const Header = () => {
               Statistics
             </NavLink>
           </nav>
-          <AddFeedbackBtn />
+          <AddFeedbackBtn onOpenModal={onOpenModal} />
+          <AddFeedbackModal open={isOpenModal} onCloseModal={onCloseModal} />
         </Div>
       </Section>
     </header>
