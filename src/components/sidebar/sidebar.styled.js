@@ -1,13 +1,16 @@
 import { styled } from 'styled-components';
 
 export const Section = styled.section`
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-top: 24px;
+  margin-left: 20px;
+  margin-right: 20px;
+  max-width: 185px;
   /* background-color: var(--blue); */
-  .logo-box{
+  .logo-box {
     display: flex;
-    max-width: 185px;
+    align-items: center;
     max-height: 35px;
+    margin-bottom: 64px;
   }
   .goosetrack {
     font-family: var(--main-font);
@@ -21,6 +24,8 @@ export const Section = styled.section`
     box-shadow:
       0px 9.399999618530273px 57.6875px 0px rgba(0, 0, 0, 0.035),
       0px 47px 355px 0px rgba(0, 0, 0, 0.07);
+    margin-right: 25px;
+    margin-left: 6px;
   }
   .icon {
     display: inline-block;
@@ -35,61 +40,68 @@ export const Section = styled.section`
     width: 0.9599609375em;
   }
   .x-button {
+    display: flex;
+    padding: 0px;
     background-color: transparent;
     border: none;
+  }
+  .button-out {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    color: var(--white);
+    width: 131px;
+    height: 46px;
+    border-radius: 16px;
+    background: #3e85f3;
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
+  .space-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 `;
 export const Div = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-
+  flex-direction: column;
+  .nav-box {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .user-title {
+    color: var(--user-panel-text);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 24px;
+  }
   .button-8 {
-    background-color: #e1ecf4;
-    border-radius: 3px;
-    border: 1px solid #7aa7c7;
-    box-shadow: rgba(255, 255, 255, 0.7) 0 1px 0 0 inset;
-    box-sizing: border-box;
-    color: #39739d;
+    color: var(--user-panel-text);
+    display: flex;
+    padding: 10px 65px 10px 12px;
+    align-items: center;
+    gap: 8px;
     cursor: pointer;
-    display: inline-block;
-    font-family: -apple-system, system-ui, 'Segoe UI', 'Liberation Sans',
-      sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.15385;
-    margin: 0;
-    outline: none;
-    padding: 8px 0.8em;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    white-space: nowrap;
-    margin-right: 10px;
+    border-radius: 8px;
   }
 
   .button-8:hover,
   .button-8:focus {
-    background-color: #b3d3ea;
-    color: #2c5777;
-  }
-
-  .button-8:focus {
-    box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
+    box-shadow: 0 0 0 1px var(--user-panel-active);
   }
 
   .button-8:active {
-    background-color: #a0c7e4;
-    box-shadow: none;
-    color: #2c5777;
+    color: var(--blue);
   }
-
+  
   .active {
-    background-color: #cecece;
+    background-color: var(--user-panel-active);
+    color: var(--blue);
+    stroke: var(--blue);
   }
 `;
