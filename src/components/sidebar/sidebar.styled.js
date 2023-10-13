@@ -3,8 +3,42 @@ import { styled } from 'styled-components';
 export const Section = styled.section`
   margin-left: 15px;
   margin-right: 15px;
+  /* background-color: var(--blue); */
+  .logo-box{
+    display: flex;
+    max-width: 185px;
+    max-height: 35px;
+  }
+  .goosetrack {
+    font-family: var(--main-font);
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.375;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--blue);
+    box-shadow:
+      0px 9.399999618530273px 57.6875px 0px rgba(0, 0, 0, 0.035),
+      0px 47px 355px 0px rgba(0, 0, 0, 0.07);
+  }
+  .icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    color: black;
+  }
+  .icon-x-close {
+    width: 0.9599609375em;
+  }
+  .x-button {
+    background-color: transparent;
+    border: none;
+  }
 `;
-
 export const Div = styled.div`
   display: flex;
   align-items: center;
