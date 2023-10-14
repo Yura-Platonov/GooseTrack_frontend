@@ -1,16 +1,15 @@
 import { styled } from 'styled-components';
 
 export const Section = styled.section`
-  margin-top: 24px;
-  margin-left: 20px;
-  margin-right: 20px;
+  position: absolute;
   max-width: 185px;
-  /* background-color: var(--blue); */
+  background-color: var(--white);
   .logo-box {
     display: flex;
     align-items: center;
     max-height: 35px;
-    margin-bottom: 64px;
+    padding-bottom: 64px;
+    background-color: var(--white);
   }
   .goosetrack {
     font-family: var(--main-font);
@@ -56,16 +55,22 @@ export const Section = styled.section`
     border-radius: 16px;
     background: #3e85f3;
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+    margin-bottom: 20px;
+   position: fixed; 
+    bottom: 24px;
+    left: 20px;  
   }
-  .space-wrap {
+  /* .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: space-between;
-  }
+  } */
 `;
 export const Div = styled.div`
   display: flex;
   flex-direction: column;
+
+
   .nav-box {
     display: flex;
     flex-direction: column;
@@ -98,7 +103,7 @@ export const Div = styled.div`
   .button-8:active {
     color: var(--blue);
   }
-  
+
   .active {
     background-color: var(--user-panel-active);
     color: var(--blue);

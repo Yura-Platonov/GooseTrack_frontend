@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const Section = styled.section`
-  margin-top: 24px;
+  padding-top: 24px;
   margin-left: 20px;
   margin-right: 20px;
   max-width: 335px;
@@ -11,14 +11,16 @@ export const Section = styled.section`
     border: 0;
     background-color: var(--white);
   }
-  .burgerBtn{
+  .burgerBtn {
     margin-right: auto;
-  } .fedBut {
+  }
+  .fedBut {
     display: flex;
     padding: 8px 20px;
     align-items: flex-start;
     gap: 10px;
     border-radius: 10px;
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
     background: var(--blue);
     color: var(--white);
     margin-right: 18px;

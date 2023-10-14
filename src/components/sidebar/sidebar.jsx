@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Div, Section } from './sidebar.styled';
 import logo from "../../images/side-head/GOOSE1.png"
 
-const Sidebar = () => {
+const Sidebar = ({ toggleMenu }) => {
   return (
     <Section>
       <div className="logo-box">
@@ -10,7 +10,7 @@ const Sidebar = () => {
           <img width="36" height="35" src={logo} alt="goose" />
         </picture>
         <h1 className="goosetrack">GooseTrack</h1>
-        <button className="x-button" type="button">
+        <button className="x-button" type="button" onClick={toggleMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -35,7 +35,7 @@ const Sidebar = () => {
           </svg>
         </button>
       </div>
-      <div className='space-wrap'>
+      <div className="container">
         <Div>
           <h3 className="user-title">User Panel</h3>
           <nav className="nav-box">
@@ -111,24 +111,26 @@ const Sidebar = () => {
             </NavLink>
           </nav>
         </Div>
-        <button className="button-out " type="button">
-          Log out
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="19"
-            height="18"
-            viewBox="0 0 19 18"
-            fill="none"
-          >
-            <path
-              d="M12.5 12.7501L16.25 9.00006M16.25 9.00006L12.5 5.25006M16.25 9.00006H7.25M7.25 2.25006H6.35C5.08988 2.25006 4.45982 2.25006 3.97852 2.4953C3.55516 2.71101 3.21095 3.05522 2.99524 3.47858C2.75 3.95988 2.75 4.58994 2.75 5.85006V12.1501C2.75 13.4102 2.75 14.0402 2.99524 14.5215C3.21095 14.9449 3.55516 15.2891 3.97852 15.5048C4.45982 15.7501 5.08988 15.7501 6.35 15.7501H7.25"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
+        <div className="button-box">
+          <button className="button-out " type="button">
+            Log out
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="19"
+              height="18"
+              viewBox="0 0 19 18"
+              fill="none"
+            >
+              <path
+                d="M12.5 12.7501L16.25 9.00006M16.25 9.00006L12.5 5.25006M16.25 9.00006H7.25M7.25 2.25006H6.35C5.08988 2.25006 4.45982 2.25006 3.97852 2.4953C3.55516 2.71101 3.21095 3.05522 2.99524 3.47858C2.75 3.95988 2.75 4.58994 2.75 5.85006V12.1501C2.75 13.4102 2.75 14.0402 2.99524 14.5215C3.21095 14.9449 3.55516 15.2891 3.97852 15.5048C4.45982 15.7501 5.08988 15.7501 6.35 15.7501H7.25"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </Section>
   );

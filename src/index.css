@@ -112,3 +112,6 @@ a {
 :focus {
   outline: transparent;
 }
+body {
+  margin: 0;
+}

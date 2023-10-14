@@ -3,7 +3,6 @@ import { Suspense } from "react"
 import { Route, Routes } from "react-router-dom";
 
 
-const Sidebar = lazy(() => import('./sidebar/sidebar'));
 const Header = lazy(() => import('./header/header'));
 
 export const App = () => {
@@ -11,7 +10,6 @@ export const App = () => {
     <>
       <Suspense fallback={<h2>Loading...</h2>}>
         <header>
-          <Sidebar />
           <Header />
         </header>
         <main>
