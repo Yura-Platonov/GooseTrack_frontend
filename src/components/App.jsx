@@ -4,6 +4,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 
 
 const Header = lazy(() => import('./header/header'));
+const CalendarPage = lazy(()=>import('../pages/CalendarPage'));
 
 export const App = () => {
   return (
@@ -14,7 +15,7 @@ export const App = () => {
           <main>
             <Routes>
               <Route path="/" element={<h1>My account</h1>} />
-              <Route path="/calendar" element={<h1>Calendar</h1>} />
+              <Route path="/calendar" element={<CalendarPage/>} />
               <Route path="/statistics" element={<h1>Statistics</h1>} />
             </Routes>
           </main>
