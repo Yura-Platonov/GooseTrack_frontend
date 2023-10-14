@@ -47,11 +47,10 @@ export const LogoImg = styled.img`
 
 export const Title = styled.h1`
   color: var(--white);
-  text-shadow: var(--text-shadow);
-  font-family: 'CoolveticaRegular', sans-serif;
+  text-shadow: var(--logo-text-shadow);
+  font-family: var(--main-font);
   font-size: 44px;
   line-height: 1.1;
-  font-weight: 400;
 
   @media screen and (min-width: 768px) {
     font-size: 120px;
@@ -60,12 +59,11 @@ export const Title = styled.h1`
 `;
 
 export const LogoSpan = styled.span`
-  font-family: 'CoolveticaRegularItalic', sans-serif;
+  font-style: italic;
 `;
 
 export const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   gap: 15px;
@@ -80,7 +78,7 @@ export const Nav = styled.nav`
 
 export const LoginButton = styled(Link)`
   color: var(--blue);
-  font-family: 'InterSemiBold';
+  font-family: 'Inter';
   font-size: 14px;
   line-height: 1.29;
   font-weight: 600;
@@ -88,7 +86,7 @@ export const LoginButton = styled(Link)`
 
   border-radius: 16px;
   background-color: var(--white);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--shadow-btn);
   border: 1px solid transparent;
   padding: 14px 32px;
 
@@ -111,7 +109,7 @@ export const LoginButton = styled(Link)`
 export const SignupButton = styled(Link)`
   color: var(--white);
   text-shadow: var(--text-shadow);
-  font-family: 'InterSemiBold';
+  font-family: 'Inter';
   font-size: 12px;
   font-weight: 600;
   line-height: 1.17;
