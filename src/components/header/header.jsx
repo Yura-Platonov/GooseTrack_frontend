@@ -2,12 +2,23 @@ import { Section } from './header.styled';
 import nad from '../../images/side-head/Elli.png';
 import { useState } from 'react';
 import Sidebar from '../sidebar/sidebar';
+import AddFeedbackBtn from '../AddFeedbackBtn/AddFeedbackBtn.jsx';
+import AddFeedbackModal from '../AddFeedbackModal/AddFeedbackModal.jsx';
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
    const toggleMenu = () => {
      setMenuOpen(!isMenuOpen);
+  };
+
+
+  const onOpenModal = () => {
+    setIsOpenModal(true);
+  };
+  const onCloseModal = () => {
+    setIsOpenModal(false);
   };
   
   return (
@@ -45,9 +56,7 @@ const Header = () => {
             />
           </svg>
         </button>
-        <button className="btn fedBut" type="button">
-          Feedback
-        </button>
+         <AddFeedbackBtn onOpenModal={onOpenModal} />
         <div className="user-box">
           <button className="btn" type="button">
             <svg
@@ -67,6 +76,7 @@ const Header = () => {
           <img className="avi" src={nad} alt="user-AVi" />
         </div>
       </div>
+       <AddFeedbackModal open={isOpenModal} onCloseModal={onCloseModal} />
     </Section>
   );
 };
