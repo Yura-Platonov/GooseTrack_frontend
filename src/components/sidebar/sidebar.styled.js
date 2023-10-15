@@ -1,16 +1,18 @@
 import { styled } from 'styled-components';
 
 export const Section = styled.section`
-/* display: flex; */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: absolute;
-  max-width: 185px;
+  width: 185px;
   background-color: var(--white);
+  z-index: 2;
   .logo-box {
     display: flex;
     align-items: center;
-    max-height: 35px;
+    height: 35px;
     padding-bottom: 64px;
-    /* padding-top: 10px; */
     background-color: var(--white);
   }
   .goosetrack {
@@ -57,27 +59,20 @@ export const Section = styled.section`
     border-radius: 16px;
     background: #3e85f3;
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
-    position: fixed;
-    bottom: 24px;
-    left: 20px;
+    margin-top: auto;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
-    line-height: 1.28; /* 128.571% */
+    line-height: 1.28;
     letter-spacing: -0.28px;
   }
-  /* .container {
-    display: flex;
-    flex-direction: column; 
-    justify-content: space-between;
-  } */
   @media (min-width: 768px) {
-    max-width: 225px;
+    width: 225px;
     .logo-box {
       display: flex;
       align-items: center;
-      max-height: 58px;
+      height: 58px;
       padding-bottom: 50px;
       background-color: var(--white);
     }
@@ -102,6 +97,7 @@ export const Section = styled.section`
       background-color: transparent;
       border: none;
     }
+
     .button-out {
       display: flex;
       justify-content: center;
@@ -113,24 +109,24 @@ export const Section = styled.section`
       border-radius: 16px;
       background: #3e85f3;
       box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
-      position: fixed;
-      bottom: 24px;
-      left: 32px;
       font-family: Inter;
       font-size: 18px;
       font-style: normal;
       font-weight: 600;
-      line-height: 1.33; /* 128.571% */
+      line-height: 1.33;
       letter-spacing: -0.36px;
     }
   }
   @media (min-width: 1440px) {
     position: relative;
-    max-width: 241px;
+    width: 241px;
+    margin-top: 32px;
+    margin-left: 24px;
+
     .logo-box {
       display: flex;
       align-items: center;
-      max-height: 68px;
+      height: 68px;
       padding-bottom: 32px;
       background-color: var(--white);
     }
@@ -160,9 +156,6 @@ export const Section = styled.section`
       border-radius: 16px;
       background: #3e85f3;
       box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
-      position: fixed;
-      bottom: 24px;
-      left: 24px;
       font-family: Inter;
       font-size: 18px;
       font-style: normal;
@@ -264,6 +257,8 @@ export const Div = styled.div`
     }
   }
   @media (min-width: 1440px) {
+
+    
     .nav-box {
       display: flex;
       flex-direction: column;
