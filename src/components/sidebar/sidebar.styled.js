@@ -3,11 +3,17 @@ import { styled } from 'styled-components';
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  position: absolute;
+  position: fixed;
   width: 185px;
   background-color: var(--white);
   z-index: 2;
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+  }
+
   .logo-box {
     display: flex;
     align-items: center;
@@ -52,6 +58,7 @@ export const Section = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateY(-100%);
     gap: 6px;
     color: var(--white);
     width: 131px;
@@ -59,7 +66,6 @@ export const Section = styled.section`
     border-radius: 16px;
     background: #3e85f3;
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
-    margin-top: auto;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
@@ -67,6 +73,7 @@ export const Section = styled.section`
     line-height: 1.28;
     letter-spacing: -0.28px;
   }
+
   @media (min-width: 768px) {
     width: 225px;
     .logo-box {
@@ -160,7 +167,7 @@ export const Section = styled.section`
       font-size: 18px;
       font-style: normal;
       font-weight: 600;
-      line-height: 1.33; /* 128.571% */
+      line-height: 1.33;
       letter-spacing: -0.36px;
     }
   }
