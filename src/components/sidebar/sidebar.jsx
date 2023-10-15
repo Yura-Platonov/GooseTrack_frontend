@@ -1,38 +1,84 @@
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Div, Section } from './sidebar.styled';
-import logo from "../../images/side-head/GOOSE1.png"
+import logo from '../../images/side-head/GOOSE1.png';
+import logo2 from '../../images/side-head/GOOSE2.png';
+import logo3 from '../../images/side-head/GOOSE3.png';
 
 const Sidebar = ({ toggleMenu }) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <Section>
       <div className="logo-box">
         <picture>
-          <img width="36" height="35" src={logo} alt="goose" />
+          {windowWidth >= 1440 ? (
+            <img width="71" height="68" src={logo3} alt="goose3" />
+          ) : windowWidth >= 768 ? (
+            <img width="60" height="58" src={logo2} alt="goose" />
+          ) : (
+            <img width="36" height="35" src={logo} alt="goose" />
+          )}
+          {/* <img width="36" height="35" src={logo} alt="goose" /> */}
         </picture>
         <h1 className="goosetrack">GooseTrack</h1>
         <button className="x-button" type="button" onClick={toggleMenu}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="25"
-            viewBox="0 0 24 25"
-            fill="none"
-          >
-            <path
-              d="M18 6.5L6 18.5"
-              stroke="#343434"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 6.5L18 18.5"
-              stroke="#343434"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          {windowWidth >= 1440 ? null : windowWidth >= 768 ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="34"
+              viewBox="0 0 34 34"
+              fill="none"
+            >
+              <path
+                d="M25.5 8.5L8.5 25.5"
+                stroke="#343434"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8.5 8.5L25.5 25.5"
+                stroke="#343434"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="25"
+              viewBox="0 0 24 25"
+              fill="none"
+            >
+              <path
+                d="M18 6.5L6 18.5"
+                stroke="#343434"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M6 6.5L18 18.5"
+                stroke="#343434"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
         </button>
       </div>
       <div className="container">
@@ -114,21 +160,39 @@ const Sidebar = ({ toggleMenu }) => {
         <div className="button-box">
           <button className="button-out " type="button">
             Log out
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="19"
-              height="18"
-              viewBox="0 0 19 18"
-              fill="none"
-            >
-              <path
-                d="M12.5 12.7501L16.25 9.00006M16.25 9.00006L12.5 5.25006M16.25 9.00006H7.25M7.25 2.25006H6.35C5.08988 2.25006 4.45982 2.25006 3.97852 2.4953C3.55516 2.71101 3.21095 3.05522 2.99524 3.47858C2.75 3.95988 2.75 4.58994 2.75 5.85006V12.1501C2.75 13.4102 2.75 14.0402 2.99524 14.5215C3.21095 14.9449 3.55516 15.2891 3.97852 15.5048C4.45982 15.7501 5.08988 15.7501 6.35 15.7501H7.25"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            {windowWidth >= 768 ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M13.3333 14.1667L17.5 10M17.5 10L13.3333 5.83333M17.5 10H7.5M7.5 2.5H6.5C5.09987 2.5 4.3998 2.5 3.86502 2.77248C3.39462 3.01217 3.01217 3.39462 2.77248 3.86502C2.5 4.3998 2.5 5.09987 2.5 6.5V13.5C2.5 14.9001 2.5 15.6002 2.77248 16.135C3.01217 16.6054 3.39462 16.9878 3.86502 17.2275C4.3998 17.5 5.09987 17.5 6.5 17.5H7.5"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="19"
+                height="18"
+                viewBox="0 0 19 18"
+                fill="none"
+              >
+                <path
+                  d="M12.5 12.7501L16.25 9.00006M16.25 9.00006L12.5 5.25006M16.25 9.00006H7.25M7.25 2.25006H6.35C5.08988 2.25006 4.45982 2.25006 3.97852 2.4953C3.55516 2.71101 3.21095 3.05522 2.99524 3.47858C2.75 3.95988 2.75 4.58994 2.75 5.85006V12.1501C2.75 13.4102 2.75 14.0402 2.99524 14.5215C3.21095 14.9449 3.55516 15.2891 3.97852 15.5048C4.45982 15.7501 5.08988 15.7501 6.35 15.7501H7.25"
+                  stroke="white"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
           </button>
         </div>
       </div>
