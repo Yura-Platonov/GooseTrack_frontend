@@ -4,10 +4,21 @@ export const Section = styled.section`
   margin-top: 24px;
   margin-left: 20px;
   margin-right: 20px;
-  max-width: 335px;
-   /* display: flex; */
+  width: 335px;
+  /* display: flex; */
+  .currentTitle {
+    color: #111;
 
-.btn {
+    text-shadow:
+      0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
+      0px 47px 355px rgba(0, 0, 0, 0.07);
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .btn {
     padding: 0;
     border: 0;
     background-color: var(--white);
@@ -18,10 +29,9 @@ export const Section = styled.section`
   .fedBut {
   }
   .head-box {
+    width: 335px;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    align-items: flex-start;
+    margin-bottom: 64px;
   }
   .avi {
     border-radius: 32px;
@@ -48,12 +58,11 @@ export const Section = styled.section`
     margin-top: 24px;
     margin-left: 20px;
     margin-right: 20px;
-    max-width: 704px;
+    width: 704px;
 
     .head-box {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      width: 704px;
+      margin-bottom: 64px;
     }
     .avi {
       border-radius: 44px;
@@ -77,6 +86,11 @@ export const Section = styled.section`
     }
   }
   @media (min-width: 1440px) {
-    max-width: 1440px;
+    width: 1151px;
+    .head-box {
+      width: 1151px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
   }
 `;

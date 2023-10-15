@@ -24,7 +24,7 @@ export const App = () => {
     <>
       <Suspense fallback={<h2>Loading...</h2>}>
         <Section>
-          <div>{windowWidth > 1440 ? <Sidebar /> : null}</div>
+          <div>{windowWidth >= 1440 ? <Sidebar /> : null}</div>
           <div>
             <header>
               <Header />
@@ -32,9 +32,8 @@ export const App = () => {
             <main>
               <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/" element={<h1>My account</h1>} />
                 <Route path="/calendar" element={<CalendarPage />} />
-                <Route path="/statistics" element={<h1>Statistics</h1>} />
+                <Route path="/statistics" element={<MainPage />} />
               </Routes>
             </main>
           </div>
