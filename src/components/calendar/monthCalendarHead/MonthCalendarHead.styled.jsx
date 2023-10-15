@@ -22,7 +22,7 @@ export const ItemDay = styled.div`
   font-weight: 600;
   line-height: 18px;
   text-transform: uppercase;
-  color: var(--user-panel-text);
+  color: #343434;
   &:nth-of-type(6) {
     color: var(--blue);
   }

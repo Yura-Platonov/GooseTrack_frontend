@@ -1,4 +1,9 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+
+const dynamicStyle = (props) => css`
+  background-color: ${props.active};
+`;
 
 export const TypeContainer = styled.div``;
 
@@ -18,12 +23,12 @@ export const MonthBtn = styled.button`
   line-height: 18px;
   text-align: center;
   transition: var(--transition);
+  background-color: ${(props) => (props.active ? 'var(--switch-active)' : '')};
   @media screen and (min-width: 768px) {
     width: 82px;
   }
   &:hover,
-  &:focus,
-  &:active {
+  &:focus   {
     background-color: var(--switch-active);
   }
 `;
@@ -43,6 +48,7 @@ export const DayBtn = styled.button`
   line-height: 18px;
   text-align: center;
   transition: var(--transition);
+  background-color: ${(props) => (props.active ? 'var(--switch-active)' : '')};
   @media screen and (min-width: 768px) {
     width: 82px;
   }

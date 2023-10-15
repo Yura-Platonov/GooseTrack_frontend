@@ -199,12 +199,13 @@ export const PeriodBtnContainer = styled.div`
 export const PrevBtn = styled.button`
   width: 36px;
   height: 30px;
-  padding: 8px 12px;
+  padding: 4px 4px;
   border: 1px solid rgba(220, 227, 229, 0.5);
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   background-color: var(--white);
   transition: var(--transition);
+
   @media screen and (min-width: 768px) {
     width: 38px;
     height: 34px;
@@ -213,7 +214,7 @@ export const PrevBtn = styled.button`
 export const NextBtn = styled.button`
   width: 36px;
   height: 30px;
-  padding: 8px 12px;
+  padding: 4px 4px;
   border: 1px solid #dce3e580;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -224,3 +225,4 @@ export const NextBtn = styled.button`
     height: 34px;
   }
 `;
+export const Icon = styled.div``;

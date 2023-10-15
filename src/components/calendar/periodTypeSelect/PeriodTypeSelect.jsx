@@ -1,16 +1,16 @@
 import { TypeContainer, MonthBtn, DayBtn } from './PeriodTypeSelect.styled';
 
-const PeriodTypeSelect = ({ setType }) => {
+const PeriodTypeSelect = ({ typeDateDay, setType }) => {
   return (
     <TypeContainer>
-      <MonthBtn
+      <MonthBtn active = {!typeDateDay}
         onClick={() => {
           setType(false);
         }}
       >
         Month
       </MonthBtn>
-      <DayBtn
+      <DayBtn active = {typeDateDay}
         onClick={() => {
           setType(true);
         }}

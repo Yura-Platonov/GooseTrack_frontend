@@ -18,11 +18,14 @@ const CalendarToolbar = () => {
           setSelectedDate={setSelectedDate}
         />
 
-        <PeriodTypeSelect setType={setType} />
+        <PeriodTypeSelect typeDateDay={typeDay} setType={setType} />
       </Toolbar>
 
       {!typeDay ? (
-        <ChoosedMonth selectedDate={selectedDate} />
+        <ChoosedMonth
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
       ) : (
         <ChoosedDay selectedDate={selectedDate} />
       )}

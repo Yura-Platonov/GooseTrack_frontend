@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import { format, subMonths, addMonths, subDays, addDays } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import {
   CalendarGlobalStyles,
   TitleWrapper,
@@ -9,6 +10,7 @@ import {
   PeriodBtnContainer,
   PrevBtn,
   NextBtn,
+  Icon
 } from './PeriodPaginator.styled';
 
 const PeriodPaginator = ({ selectedDate, typeDateDay, setSelectedDate }) => {
@@ -47,7 +49,9 @@ const PeriodPaginator = ({ selectedDate, typeDateDay, setSelectedDate }) => {
             setSelectedDate(result);
           }}
         >
-          🢤
+          <Icon >
+            <IoIosArrowBack size={16} />
+          </Icon>
         </PrevBtn>
         <NextBtn
           onClick={() => {
@@ -58,7 +62,7 @@ const PeriodPaginator = ({ selectedDate, typeDateDay, setSelectedDate }) => {
             setSelectedDate(result);
           }}
         >
-          🢧
+          <IoIosArrowForward size={16} />
         </NextBtn>
       </PeriodBtnContainer>
     </PeriodContainer>
