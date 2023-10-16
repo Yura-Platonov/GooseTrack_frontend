@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   margin: 0 auto;
   padding: 0 20px;
-  background-color: #F7F6F9; //delete later
+  background-color: #f7f6f9; //delete later
   @media screen and (min-width: 375px) {
     width: 375px;
   }
