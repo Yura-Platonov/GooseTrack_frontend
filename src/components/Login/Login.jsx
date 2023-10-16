@@ -1,10 +1,12 @@
 import React from "react";
-import * as Yup from "yup";
-import { useFormik } from "formik";
 
-import elements from './image/elements.png'
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+import elements from "../../images/elements.png";
 
 import {
+  Error,
   StyledForm,
   Wrapper,
   InputDiv,
@@ -21,10 +23,17 @@ import {
 const Login = () => {
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
     },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Невірний email адрес")
+        .required("Обов'язкове поле"),
+      password: Yup.string()
+        .min(7, "Пароль мінімум 7 символів")
+        .required("Обов'язкове поле"),
+    }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
   });
 
@@ -44,6 +53,9 @@ const Login = () => {
             value={formik.values.email}
             onChange={formik.handleChange}
           />
+          {formik.errors.email && formik.touched.email ? (
+            <Error>{formik.errors.email}</Error>
+          ) : null}
         </InputDiv>
 
         <InputDiv>
@@ -57,6 +69,9 @@ const Login = () => {
             value={formik.values.password}
             onChange={formik.handleChange}
           />
+          {formik.errors.password && formik.touched.password ? (
+            <Error>{formik.errors.password}</Error>
+          ) : null}
         </InputDiv>
         <StyledButton>
           Log In

@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-
 export const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
@@ -10,7 +9,6 @@ export const Wrapper = styled.form`
   margin: auto;
   height: 100vh;
   background-color: #dcebf7;
-
 `;
 
 export const StyledForm = styled.form`
@@ -168,4 +166,10 @@ export const Image = styled.img`
     font-size: 18px;
   }
   background-color: transparent;
+`;
+
+export const Error = styled.div`
+  margin-top: 5px;
+  font-size: 12px;
+  color: #3e85f3;
 `;
