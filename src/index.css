@@ -44,35 +44,36 @@
 :root {
   /**COLORS*/
   --white: #ffffff;
-  --blue: #3E85F3;
-  --pink: #FFD2DD;
-  --black: #13151A;
-  --modal-backdrop: #DCEBF7;
-  --user-panel-active: #E3F3FF;
-  --user-panel-text: #343434;
+  --blue: #3e85f3;
+  --pink: #ffd2dd;
+  --black: #13151a;
+  --modal-backdrop: #dcebf7;
+  --user-panel-active: #e3f3ff;
+  --user-panel-text: #34343480;
   --switch: var(--user-panel-active);
-  --switch-active: #CAE8FF;
-  --month-status-low: #CEEEFD;
-  --month-status-medium: #FCF0D4;
+  --switch-active: #cae8ff;
+  --month-status-low: #ceeefd;
+  --month-status-medium: #fcf0d4;
   --month-status-high: var(--pink);
-  --day-status-low: #72C2F8;
-  --day-status-medium: #F3B249;
-  --day-status-high: #EA3D65;
+  --day-status-low: #72c2f8;
+  --day-status-medium: #f3b249;
+  --day-status-high: #ea3d65;
   --add-task-button: var(--user-panel-active);
-  --review-pop-up-cancel-btn: #E5EDFA;
-  --user-profile-black: #21222C;
-  --hover: #2B78EF;
+  --review-pop-up-cancel-btn: #e5edfa;
+  --user-profile-black: #21222c;
+  --hover: #2b78ef;
   /**FONTS*/
-  --main-font: "Inter", sans-serif;
+  --main-font: 'Inter', sans-serif;
   /**TRANSITIONS*/
-  --transition: background-color 500ms ease-in-out,
-      color 500ms ease-in-out,
-      box-shadow 500ms ease-in-out;
+  --transition: background-color 500ms ease-in-out, color 500ms ease-in-out,
+    box-shadow 500ms ease-in-out;
   /**SHADOWS for buttons*/
   --text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.75);
   --box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
   --box-shadow-hover: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
-
+  --logo-text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
+    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+  --shadow-btn: 4px 2px 16px rgba(136, 165, 191, 0.48);
 }
 
 /**RESET STYLES*/
@@ -111,4 +112,7 @@ a {
 
 :focus {
   outline: transparent;
+}
+body {
+  margin: 0;
 }
