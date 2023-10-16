@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Container, Overlay } from './Modal.styled.js';
 
 const Modal = ({ children, onCloseModal }) => {
-  const handlOverlayClick = (e) => {
+  const handleOverlayClick = (e) => {
     if (e.currentTarget === e.target) {
       onCloseModal();
     }
@@ -25,7 +25,7 @@ const Modal = ({ children, onCloseModal }) => {
 
   return ReactDOM.createPortal(
     <>
-      <Overlay onClick={handlOverlayClick} />
+      <Overlay onClick={handleOverlayClick} />
       <Container>{children}</Container>
     </>,
     document.getElementById('portal'),

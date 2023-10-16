@@ -1,11 +1,14 @@
 import React from 'react';
 import Modal from '../Modal/Modal.jsx';
+import FeedbackForm from '../FeedbackForm/FeedbackForm.jsx';
 
 const AddFeedbackModal = ({ open, onCloseModal }) => {
   if (!open) return null;
   return (
     <div>
-      <Modal onCloseModal={onCloseModal}>Feedbackform will be here</Modal>
+      <Modal onCloseModal={onCloseModal} open={open}>
+        <FeedbackForm onCloseModal={onCloseModal} />
+      </Modal>
     </div>
   );
 };
