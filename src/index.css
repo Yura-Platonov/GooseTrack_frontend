@@ -62,6 +62,8 @@
   --review-pop-up-cancel-btn: #e5edfa;
   --user-profile-black: #21222c;
   --hover: #2b78ef;
+  --heading-text-color: #171820;
+  --description-text-color: rgba(17, 17, 17, 0.902);
   /**FONTS*/
   --main-font: 'Inter', sans-serif;
   /**TRANSITIONS*/
