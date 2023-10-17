@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import LegendList from '../components/statistic/legendList/legendList';
+import LegendList from '../components/statistic/LegendList/LegendList';
 import PeriodPaginator from '../components/calendar/periodPaginator/PeriodPaginator';
 import { Toolbar } from '../components/calendar/toolbar/CalendarToolbar.styled';
 import { Container } from '../components/calendar/CalendarPage.styled';
