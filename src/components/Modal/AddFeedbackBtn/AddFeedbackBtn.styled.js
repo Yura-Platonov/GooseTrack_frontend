@@ -27,6 +27,9 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: 1.33;
+  text-shadow: var(--text-shadow);
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
 
   &:hover {
     color: var(--black);

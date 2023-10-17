@@ -1,4 +1,12 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeInAnimation = keyframes`
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }`;
 
 export const Overlay = styled.div`
   position: fixed;
@@ -7,10 +15,10 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: var(--modal-backdrop);
+  animation: ${fadeInAnimation} 500ms linear;
   opacity: 1;
   z-index: 1000;
   overflow: auto;
-  transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const Container = styled.div`
@@ -19,9 +27,7 @@ export const Container = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   max-height: 100%;
-  border-radius: 16px;
+  animation: ${fadeInAnimation} 1500ms linear;
+  opacity: 1;
   z-index: 1000;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  overflow-y: scroll;
 `;

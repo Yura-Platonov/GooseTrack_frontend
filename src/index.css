@@ -1,3 +1,7 @@
+* {
+  /* outline: 1px solid red !important; */
+}
+
 @font-face {
   font-family: Inter;
   font-weight: 700;
@@ -49,7 +53,7 @@
   --black: #13151a;
   --modal-backdrop: #dcebf7;
   --user-panel-active: #e3f3ff;
-  --user-panel-text: #34343480;
+  --user-panel-text: #343434;
   --switch: var(--user-panel-active);
   --switch-active: #cae8ff;
   --month-status-low: #ceeefd;
@@ -61,6 +65,7 @@
   --add-task-button: var(--user-panel-active);
   --review-pop-up-cancel-btn: #e5edfa;
   --user-profile-black: #21222c;
+  --form-textarea: #F6F6F6;
   --hover: #2b78ef;
   --heading-text-color: #171820;
   --description-text-color: rgba(17, 17, 17, 0.902);
@@ -115,6 +120,7 @@ a {
 :focus {
   outline: transparent;
 }
+
 body {
   margin: 0;
 }
