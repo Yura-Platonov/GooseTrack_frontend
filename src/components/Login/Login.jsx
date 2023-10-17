@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-import elements from "../../images/elements.png";
+import elements from '../../images/elements.png';
 
 import {
   Error,
@@ -18,24 +18,43 @@ import {
   StyleLink,
   Svg,
   Image,
-} from "./Login.style";
+} from './Login.style';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { logIn } from '../../../authOperations';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const authenticated = useSelector((state) => state.auth.authenticated);
+
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
       email: Yup.string()
-        .email("Невірний email адрес")
+        .email('Невірний email адрес')
         .required("Обов'язкове поле"),
       password: Yup.string()
-        .min(7, "Пароль мінімум 7 символів")
+        .min(7, 'Пароль мінімум 7 символів')
         .required("Обов'язкове поле"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: (values) => {
+      dispatch(
+        logIn({
+          email: values.email,
+          password: values.password,
+        }),
+      );
+      formik.resetForm();
+    },
   });
+
+  if (authenticated) {
+    return <Navigate to="/calendar" />;
+  }
 
   return (
     <Wrapper>
@@ -81,7 +100,7 @@ const Login = () => {
         </StyledButton>
       </StyledForm>
       <StyleLink
-        to="/"
+        to="/register"
         // style={{
         //   color: "#3e85f3",
         //   fontSize: "12px",
