@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.section`
+  max-width: 1440px;
   height: 812px;
   padding-inline: 20px;
-  padding-bottom: 74px;
 
   display: flex;
   justify-content: center;
@@ -15,7 +15,14 @@ export const Container = styled.section`
   background-color: var(--blue);
 
   @media screen and (min-width: 768px) {
-    min-height: 460px;
+    height: 1024px;
+
+    gap: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    height: 770px;
+
     gap: 40px;
   }
 `;
@@ -72,13 +79,12 @@ export const Nav = styled.nav`
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
     flex: 0;
-    gap: 24px;
   }
 `;
 
 export const LoginButton = styled(Link)`
   color: var(--blue);
-  font-family: 'Inter';
+  font-family: var(--main-font);
   font-size: 14px;
   line-height: 1.29;
   font-weight: 600;
@@ -88,7 +94,7 @@ export const LoginButton = styled(Link)`
   background-color: var(--white);
   box-shadow: var(--shadow-btn);
   border: 1px solid transparent;
-  padding: 14px 32px;
+  padding: 14px 22px;
 
   display: flex;
   justify-content: center;
@@ -97,8 +103,8 @@ export const LoginButton = styled(Link)`
 
   transition: var(--transition);
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     color: var(--white);
     background-color: transparent;
     border-color: var(--white);
@@ -109,7 +115,7 @@ export const LoginButton = styled(Link)`
 export const SignupButton = styled(Link)`
   color: var(--white);
   text-shadow: var(--text-shadow);
-  font-family: 'Inter';
+  font-family: var(--main-font);
   font-size: 12px;
   font-weight: 600;
   line-height: 1.17;
@@ -119,12 +125,12 @@ export const SignupButton = styled(Link)`
   background-color: transparent;
   box-shadow: none;
   border: 1px solid transparent;
-  padding: 14px 32px;
+  padding: 14px 22px;
 
   transition: var(--transition);
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     color: var(--white);
     background-color: transparent;
     border-color: var(--white);
