@@ -1,3 +1,7 @@
+* {
+  /* outline: 1px solid red !important; */
+}
+
 @font-face {
   font-family: Inter;
   font-weight: 700;
@@ -61,6 +65,7 @@
   --add-task-button: var(--user-panel-active);
   --review-pop-up-cancel-btn: #e5edfa;
   --user-profile-black: #21222c;
+  --form-textarea: #F6F6F6;
   --hover: #2b78ef;
   /**FONTS*/
   --main-font: 'Inter', sans-serif;
@@ -113,6 +118,7 @@ a {
 :focus {
   outline: transparent;
 }
+
 body {
   margin: 0;
 }
