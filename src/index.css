@@ -67,6 +67,8 @@
   --user-profile-black: #21222c;
   --form-textarea: #F6F6F6;
   --hover: #2b78ef;
+  --heading-text-color: #171820;
+  --description-text-color: rgba(17, 17, 17, 0.902);
   /**FONTS*/
   --main-font: 'Inter', sans-serif;
   /**TRANSITIONS*/
