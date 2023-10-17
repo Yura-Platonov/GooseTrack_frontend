@@ -7,7 +7,7 @@ import { Toolbar } from './CalendarToolbar.styled';
 
 const CalendarToolbar = () => {
   const [selectedDate, setSelectedDate] = useState(Date.now());
-  const [typeDay, setType] = useState(false); //компонент отримує тип періоду?
+  const [typeDay, setType] = useState(false); //компонент отримує тип періоду? 
 
   return (
     <>
@@ -27,7 +27,10 @@ const CalendarToolbar = () => {
           setSelectedDate={setSelectedDate}
         />
       ) : (
-        <ChoosedDay selectedDate={selectedDate} />
+        <ChoosedDay
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
       )}
     </>
   );
