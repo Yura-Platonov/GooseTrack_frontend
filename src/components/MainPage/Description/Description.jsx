@@ -43,7 +43,11 @@ export const Description = () => {
               <AccentH3>Calendar</AccentH3>
               View
             </TitleH3>
-            <Text>"GooseTrack's Calendar view"</Text>
+            <Text>
+              GooseTrack's Calendar view provides a comprehensive overview of
+              your schedule, displaying all your tasks, events, and appointments
+              in a visually appealing and intuitive layout.
+            </Text>
           </div>
           <ThumbDiv>
             <picture>
@@ -53,10 +57,12 @@ export const Description = () => {
               />
               <source
                 media="(max-width: 1279px)"
+                width="604px"
                 srcSet={`${calendar_tab} 1x, ${calendar_tab2x} 2x`}
               />
               <source
                 media="(min-width: 1280px)"
+                width="604px"
                 srcSet={`${calendar_desk} 1x, ${calendar_desk2x} 2x`}
               />
 
@@ -68,9 +74,14 @@ export const Description = () => {
           <div>
             <TitleH3>
               <NumberSpan>2.</NumberSpan>
-              'Sidebar'
+              Sidebar
             </TitleH3>
-            <Text>'GooseTrack offers easy access'</Text>
+            <Text>
+              GooseTrack offers easy access to your account settings, calendar,
+              and filters. The "My Account" section allows you to manage your
+              profile information and preferences, while the calendar provides a
+              quick and convenient way to view your upcoming events and tasks.
+            </Text>
           </div>
           <ThumbDiv>
             <picture>
@@ -95,10 +106,15 @@ export const Description = () => {
           <div>
             <TitleH3>
               <NumberSpan>3.</NumberSpan>
-              <AccentH3>'All in'</AccentH3>
-              'One'
+              <AccentH3>All in</AccentH3>
+              One
             </TitleH3>
-            <Text>'GooseTrack is an all-in-one'</Text>
+            <Text>
+              GooseTrack is an all-in-one productivity tool that helps you stay
+              on top of your tasks, events, and deadlines. Say goodbye to
+              scattered to-do lists and hello to streamlined productivity with
+              GooseTrack.
+            </Text>
           </div>
           <ThumbDiv>
             <picture>

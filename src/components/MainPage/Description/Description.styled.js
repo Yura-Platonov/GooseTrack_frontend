@@ -42,6 +42,12 @@ export const Li = styled.li`
     align-items: flex-end;
   }
 
+  @media screen and (min-width: 768px) {
+    &:nth-child(2n) {
+      margin-left: auto;
+    }
+  }
+
   @media screen and (min-width: 1024px) {
     max-width: 1107px;
     flex-direction: row;
@@ -49,11 +55,11 @@ export const Li = styled.li`
     align-items: center;
     gap: 16vw;
 
-    :nth-child(2n) {
+    &:nth-child(2n) {
       flex-direction: row-reverse;
       align-items: center;
     }
-    :nth-child(2n-1) {
+    &:nth-child(2n-1) {
       margin-left: auto;
     }
   }
@@ -71,7 +77,7 @@ export const TitleH3 = styled.h3`
   margin-bottom: 14px;
 
   @media screen and (min-width: 768px) {
-    max-width: 275px;
+    width: 275px;
     font-size: 40px;
     line-height: 1.1;
     margin-bottom: 24px;

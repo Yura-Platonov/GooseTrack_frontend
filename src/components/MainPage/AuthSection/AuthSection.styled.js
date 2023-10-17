@@ -20,7 +20,8 @@ export const Container = styled.section`
     gap: 40px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1024px) {
+    max-width: 1440px;
     height: 770px;
 
     gap: 40px;
