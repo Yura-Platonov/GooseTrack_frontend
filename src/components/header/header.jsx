@@ -2,8 +2,8 @@ import { Section } from './header.styled';
 import nad from '../../images/side-head/Elli.png';
 import { useEffect, useState } from 'react';
 import Sidebar from '../sidebar/sidebar';
-import AddFeedbackBtn from '../AddFeedbackBtn/AddFeedbackBtn.jsx';
-import AddFeedbackModal from '../AddFeedbackModal/AddFeedbackModal.jsx';
+import AddFeedbackBtn from '../Modal/AddFeedbackBtn/AddFeedbackBtn.jsx';
+import AddFeedbackModal from '../Modal/AddFeedbackModal/AddFeedbackModal.jsx';
 import { useLocation } from 'react-router-dom/dist';
 
 const Header = () => {

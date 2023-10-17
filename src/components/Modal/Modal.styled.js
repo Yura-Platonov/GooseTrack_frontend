@@ -27,7 +27,7 @@ export const Container = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   max-height: 100%;
-  animation: ${fadeInAnimation} 2000ms linear;
+  animation: ${fadeInAnimation} 1500ms linear;
   opacity: 1;
   z-index: 1000;
 `;

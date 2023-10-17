@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '../Modal/Modal.jsx';
+import Modal from '../Modal.jsx';
 import FeedbackForm from '../FeedbackForm/FeedbackForm.jsx';
 
 const AddFeedbackModal = ({ open, onCloseModal }) => {
