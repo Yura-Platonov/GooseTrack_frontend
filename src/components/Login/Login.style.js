@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
-export const Wrapper = styled.form`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -69,7 +69,7 @@ export const StyledInput = styled.input`
   padding-left: 14px;
   border: 1px solid #dce3e5;
   &::placeholder {
-    content: "";
+    content: '';
     color: #dce3e5;
     font-size: 16px;
     line-height: 46px;
@@ -94,7 +94,7 @@ export const StyledInputP = styled.input`
   padding-left: 14px;
   border: 1px solid #dce3e5;
   &::placeholder {
-    content: "";
+    content: '';
     position: absolute;
     top: 5px;
     bottom: 5px;
