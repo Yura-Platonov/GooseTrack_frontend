@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useEffect } from 'react';
-import { Container, Overlay } from './Modal.styled.js';
+import {
+  Container,
+  Overlay,
+  Button,
+  CloseSvg,
+  ModalContent,
+} from './Modal.styled.js';
 
 const Modal = ({ children, onCloseModal }) => {
   const handleOverlayClick = (e) => {
@@ -26,7 +32,15 @@ const Modal = ({ children, onCloseModal }) => {
   return ReactDOM.createPortal(
     <>
       <Overlay onClick={handleOverlayClick} />
-      <Container>{children}</Container>
+
+      <Container>
+        <ModalContent>
+          <Button type="button" onClick={onCloseModal}>
+            <CloseSvg />
+          </Button>
+          {children}
+        </ModalContent>
+      </Container>
     </>,
     document.getElementById('portal'),
   );
