@@ -44,8 +44,8 @@ export const ModalContent = styled.div`
   box-shadow: 0px 4px 57px 0px #1111110d;
 
   @media screen and (min-width: 768px) {
-    max-width: 468px;
-    min-height: 299px;
+    max-width: 396px;
+    min-height: 360px;
     padding: 32px;
   }
 `;
@@ -58,12 +58,14 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   background-color: var(--white);
+  border: none;
 `;
 
 export const CloseSvg = styled(IoMdClose)`
   width: 24px;
   height: 24px;
-  fill: --primary-text-color;
+
+  fill: var(--primary-text-color);
   transition: fill var(--transition);
   background-color: var(--white);
 

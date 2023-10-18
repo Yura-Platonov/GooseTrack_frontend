@@ -48,9 +48,9 @@ export const Span = styled.span`
 export const Input = styled.input`
   height: 42px;
   padding: 14px;
-  width: 100%;
+
   outline: none;
-  background-color: --form-textarea;
+  background-color: var(--form-textarea);
   border: var(--border-dark-theme);
   border-radius: 8px;
   font-family: var(--main-font);

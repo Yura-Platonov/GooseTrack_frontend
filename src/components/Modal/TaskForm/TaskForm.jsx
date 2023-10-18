@@ -98,7 +98,7 @@ export const TaskForm = ({ onClose, task, status, ...props }) => {
               </Label>
 
               <Label htmlFor="end">
-                <Span></Span>
+                <Span>End</Span>
                 <Input
                   type="time"
                   step="60"
