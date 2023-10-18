@@ -2,43 +2,44 @@ import { Section } from './header.styled';
 import nad from '../../images/side-head/Elli.png';
 import { useEffect, useState } from 'react';
 import Sidebar from '../sidebar/sidebar';
-import AddFeedbackBtn from '../AddFeedbackBtn/AddFeedbackBtn.jsx';
-import AddFeedbackModal from '../AddFeedbackModal/AddFeedbackModal.jsx';
+import AddFeedbackBtn from '../Modal/AddFeedbackBtn/AddFeedbackBtn.jsx';
+import AddFeedbackModal from '../Modal/AddFeedbackModal/AddFeedbackModal.jsx';
 import { useLocation } from 'react-router-dom/dist';
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [currentPage, setCurrentPage] = useState('Home');
 
   const location = useLocation();
 
-   const toggleMenu = () => {
-     setMenuOpen(!isMenuOpen);
+  const toggleMenu = () => {
+    setMenuOpen(!isMenuOpen);
   };
-
 
   const onOpenModal = () => {
-    setIsOpenModal(true);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
   };
   const onCloseModal = () => {
-    setIsOpenModal(false);
+    setIsModalOpen(false);
+    document.body.style.overflow = 'auto';
   };
 
-    useEffect(() => {
-      const path = location.pathname;
-      switch (path) {
-        case '/calendar':
-          setCurrentPage('Calendar');
-          break;
-        case '/statistics':
-          setCurrentPage('Statistics');
-          break;
-        default:
-          setCurrentPage('User Profile');
-      }
-    }, [location.pathname]);
+  useEffect(() => {
+    const path = location.pathname;
+    switch (path) {
+      case '/calendar':
+        setCurrentPage('Calendar');
+        break;
+      case '/statistics':
+        setCurrentPage('Statistics');
+        break;
+      default:
+        setCurrentPage('User Profile');
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,7 +50,7 @@ const Header = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  
+
   return (
     <Section>
       {isMenuOpen && windowWidth < 1440 ? (
@@ -58,7 +59,7 @@ const Header = () => {
       <div className="head-box">
         <button className="btn burgerBtn" type="button" onClick={toggleMenu}>
           {windowWidth >= 1440 ? (
-            <span className='currentTitle'>{currentPage}</span>
+            <span className="currentTitle">{currentPage}</span>
           ) : windowWidth >= 768 ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +158,7 @@ const Header = () => {
         </div>
       </div>
 
-      <AddFeedbackModal open={isOpenModal} onCloseModal={onCloseModal} />
+      <AddFeedbackModal open={isModalOpen} onCloseModal={onCloseModal} />
     </Section>
   );
 };

@@ -1,21 +1,26 @@
 import { useId } from 'react';
-import { format, startOfWeek, addDays } from 'date-fns';
+import { format, startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns';
 import { ContainerDays, ItemDay } from './MonthCalendarHead.styled';
 
 const MonthCalendarHead = ({ selectedDate }) => {
   const isMobileView = window.innerWidth < 768;
   const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
-  const weekDays = [];
+  const weekEnd = endOfWeek(selectedDate, { weekStartsOn: 1 });
+  const daysInWeek = eachDayOfInterval({ start: weekStart, end: weekEnd });
 
-  for (let day = 0; day < 7; day++) {
-    weekDays.push(
-      <ItemDay key={useId()}>
-        {format(addDays(weekStart, day), isMobileView ? 'eeeee' : 'eee')}
-      </ItemDay>,
-    );
-  }
-
-  return <ContainerDays>{weekDays}</ContainerDays>;
+  return (
+    <>
+      <ContainerDays>
+        {daysInWeek.map((day, id = useId()) => {
+          return (
+            <ItemDay key={id}>
+              <p>{format(day, isMobileView ? 'eeeee' : 'eee')}</p>{' '}
+            </ItemDay>
+          );
+        })}
+      </ContainerDays>
+    </>
+  );
 };
 
 export default MonthCalendarHead;
