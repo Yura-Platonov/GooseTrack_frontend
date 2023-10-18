@@ -14,6 +14,7 @@ import {
 } from './TaskForm.styled';
 import { BiPlus } from 'react-icons/bi';
 import { VscEdit } from 'react-icons/vsc';
+import { validationTaskSchema } from '../../../helpers/validationTaskSchema';
 
 import PropTypes from 'prop-types';
 
@@ -48,6 +49,7 @@ export const TaskForm = ({ onClose, task, status, ...props }) => {
         initialValues={initialValues}
         validateOnBlur={true}
         validateOnChange={true}
+        validationSchema={validationTaskSchema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(false);
         }}
@@ -74,9 +76,7 @@ export const TaskForm = ({ onClose, task, status, ...props }) => {
                 value={values.title}
                 placeholder="Enter text"
               />
-              <Errors>
-                {errors.title && touched.title && t(errors.title)}
-              </Errors>
+              <Errors>{errors.title && touched.title && errors.title}</Errors>
             </Label>
 
             <Wrapper>
@@ -109,7 +109,7 @@ export const TaskForm = ({ onClose, task, status, ...props }) => {
                   value={values.end}
                   placeholder="Select time"
                 />
-                <Errors>{errors.end && touched.end && t(errors.end)}</Errors>
+                <Errors>{errors.end && touched.end && errors.end}</Errors>
               </Label>
             </Wrapper>
 
