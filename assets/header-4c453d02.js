@@ -1,4 +1,4 @@
-import{s as I,j as p,c as _r,r as f,a as Fr,g as Mr,u as $r}from"./index-00f3f1f4.js";import Lr from"./sidebar-9ef1485f.js";import"./hoist-non-react-statics.cjs-3f8ebaa8.js";import{G as Rr}from"./iconBase-8465132f.js";const Ur=I.section`
+import{s as I,j as p,c as _r,r as f,a as Fr,g as Mr,u as $r}from"./index-3bc80ce9.js";import Lr from"./sidebar-e9086f1a.js";import"./hoist-non-react-statics.cjs-3f8ebaa8.js";import{G as Rr}from"./iconBase-9e3ff6b2.js";const Ur=I.section`
   margin-top: 24px;
   margin-left: 20px;
   margin-right: 20px;
