@@ -1,0 +1,38 @@
+import { AiOutlinePlus } from 'react-icons/ai';
+import styled from '@emotion/styled';
+
+export const AddBtnContainer = styled.button`
+  display: flex;
+  width: 100%;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px dashed var(--blue);
+  border-radius: 8px;
+  color: #111111;
+  fill: #111111;
+  transition: var(--transition);
+  background-color: var(--user-panel-active);
+  &:hover {
+    background-color: var(--switch-active);
+  }
+  @media screen and (min-width: 768px) {
+    height: 52px;
+  }
+`;
+
+export const IconAdd = styled(AiOutlinePlus)`
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  fill: inherit;
+`;
+
+export const NameBtn = styled.p`
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+`;

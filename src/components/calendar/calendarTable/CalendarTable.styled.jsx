@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const dynamicStyle = (props) => css`
-  color: ${props.color};
+  //color: ${props.color};
   background-color: ${props.currentDay};
 `;
 
@@ -39,7 +39,7 @@ export const ItemLink = styled.a`
   &:nth-of-type(42) {
     border-bottom-right-radius: 8px;
   }
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     padding: 4px 4px;
   }
 `;
@@ -47,8 +47,8 @@ export const ItemLink = styled.a`
 export const ItemDate = styled.p`
   ${dynamicStyle};
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: 8px;
+  height: 14px;
   padding: 4px 6px;
   margin: 6px 2px 8px;
   font-family: Inter;
@@ -61,8 +61,9 @@ export const ItemDate = styled.p`
   align-items: center;
   justify-content: center;
   @media screen and (min-width: 768px) {
-    width: 26px;
-    height: 26px;
+    width: 11px;
+    height: 18px;
+    padding: 4px 8px;
     margin: 10px 10px 6px;
     font-size: 16px;
     line-height: 18px;
