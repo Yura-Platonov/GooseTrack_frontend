@@ -1,9 +1,10 @@
-import { lazy, useEffect, useState, Suspense} from 'react';
+import { lazy, useEffect, useState, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Section } from './App.styled';
 
 const MainPage = lazy(() => import('./MainPage/MainPage'));
 const Header = lazy(() => import('./header/header'));
+const StatisticPage = lazy(() => import('../pages/StatisticPage'));
 const Sidebar = lazy(() => import('./sidebar/sidebar'));
 const CalendarPage = lazy(() => import('../pages/CalendarPage'));
 
@@ -33,7 +34,7 @@ export const App = () => {
               <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/calendar" element={<CalendarPage />} />
-                <Route path="/statistics" element={<MainPage />} />
+                <Route path="/statistics" element={<StatisticPage />} />
               </Routes>
             </main>
           </div>
