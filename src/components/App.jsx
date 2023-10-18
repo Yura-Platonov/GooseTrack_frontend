@@ -7,6 +7,9 @@ const Header = lazy(() => import('./header/header'));
 const StatisticPage = lazy(() => import('../pages/StatisticPage'));
 const Sidebar = lazy(() => import('./sidebar/sidebar'));
 const CalendarPage = lazy(() => import('../pages/CalendarPage'));
+const Login = lazy(() => import('./Login/Login'));
+const SignUp = lazy(() => import('./SignUp/SignUp'));
+
 
 export const App = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -35,6 +38,8 @@ export const App = () => {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/calendar" element={<CalendarPage />} />
                 <Route path="/statistics" element={<StatisticPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<SignUp />} />
               </Routes>
             </main>
           </div>
