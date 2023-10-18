@@ -92,9 +92,7 @@ export const TaskForm = ({ onClose, task, status, ...props }) => {
                   value={values.start}
                   placeholder="Select time"
                 />
-                <Errors>
-                  {errors.start && touched.start && t(errors.start)}
-                </Errors>
+                <Errors>{errors.start && touched.start && errors.start}</Errors>
               </Label>
 
               <Label htmlFor="end">
