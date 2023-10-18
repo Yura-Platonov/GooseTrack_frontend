@@ -20,9 +20,11 @@ const Header = () => {
 
   const onOpenModal = () => {
     setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
   };
   const onCloseModal = () => {
     setIsModalOpen(false);
+    document.body.style.overflow = 'auto';
   };
 
   useEffect(() => {

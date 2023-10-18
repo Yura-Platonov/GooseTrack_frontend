@@ -6,7 +6,7 @@ const AddFeedbackModal = ({ open, onCloseModal }) => {
   if (!open) return null;
   return (
     <div>
-      <Modal onCloseModal={onCloseModal} open={open}>
+      <Modal onCloseModal={onCloseModal}>
         <FeedbackForm onCloseModal={onCloseModal} />
       </Modal>
     </div>

@@ -1,22 +1,44 @@
 import { useId } from 'react';
-import { format, startOfWeek, addDays } from 'date-fns';
-import { ContainerDays, ItemDay } from './DayCalendarHead.styled';
+import {
+  format,
+  startOfWeek,
+  endOfWeek,
+  eachDayOfInterval,
+  isSameDay,
+} from 'date-fns';
+import {
+  ContainerDays,
+  ItemDay,
+  ItemDayName,
+  ItemDayNum,
+} from './DayCalendarHead.styled';
 
-const DayCalendarHead = ({ selectedDate }) => {
+const DayCalendarHead = ({ selectedDate, setSelectedDate }) => {
   const isMobileView = window.innerWidth < 768;
   const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
-  const weekDays = [];
+  const weekEnd = endOfWeek(selectedDate, { weekStartsOn: 1 });
+  const daysInWeek = eachDayOfInterval({ start: weekStart, end: weekEnd });
 
-  for (let day = 0; day < 7; day++) {
-    weekDays.push(
-      <ItemDay key={useId()}>
-        <p>{format(addDays(weekStart, day), isMobileView ? 'eeeee' : 'eee')}</p>
-        <p>{format(addDays(weekStart, day), 'e')}</p>
-      </ItemDay>,
-    );
-  }
-
-  return <ContainerDays>{weekDays}</ContainerDays>;
+  return (
+    <>
+      <ContainerDays>
+        {daysInWeek.map((day, id = useId()) => {
+          return (
+            <ItemDay key={id} onClick={() => setSelectedDate(day)}>
+              <ItemDayName>
+                {format(day, isMobileView ? 'eeeee' : 'eee')}
+              </ItemDayName>
+              <ItemDayNum
+                currentDay={isSameDay(day, selectedDate) ? true : false}
+              >
+                {format(day, 'd')}
+              </ItemDayNum>
+            </ItemDay>
+          );
+        })}
+      </ContainerDays>
+    </>
+  );
 };
 
 export default DayCalendarHead;

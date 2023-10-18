@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { FaStar } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -14,6 +15,7 @@ import {
   ButtonContainer,
   SubmitButton,
   CancelButton,
+  ValidationMessage,
   faStarStyle,
 } from './FeedbackForm.styled.js';
 
@@ -25,7 +27,17 @@ const FeedbackForm = ({ onCloseModal }) => {
     },
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
+      onCloseModal();
     },
+
+    validationSchema: Yup.object().shape({
+      rating: Yup.string().required(
+        'Kindly give us a rating by clicking on the star icon!',
+      ),
+      feedBack: Yup.string()
+        .max(300, 'Too Long!')
+        .required('Your feedback is highly appreciated!'),
+    }),
   });
   return (
     <Container>
@@ -63,6 +75,7 @@ const FeedbackForm = ({ onCloseModal }) => {
                   name="rating"
                   type="radio"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   value={ratingValue}
                 />
                 <FaStar
@@ -73,6 +86,13 @@ const FeedbackForm = ({ onCloseModal }) => {
                     ratingValue <= formik.values.rating ? '#FFAC33' : '#CEC9C1'
                   }
                 />
+                {i === 4 && (
+                  <ValidationMessage>
+                    {formik.errors.rating &&
+                      formik.touched.rating &&
+                      formik.errors.rating}
+                  </ValidationMessage>
+                )}
               </label>
             );
           })}
@@ -83,7 +103,13 @@ const FeedbackForm = ({ onCloseModal }) => {
           name="feedBack"
           placeholder="Enter text"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         ></Textarea>
+        <ValidationMessage>
+          {formik.errors.feedBack &&
+            formik.touched.feedBack &&
+            formik.errors.feedBack}
+        </ValidationMessage>
         <ButtonContainer>
           <SubmitButton type="submit">Save</SubmitButton>
           <CancelButton type="button" onClick={onCloseModal}>
