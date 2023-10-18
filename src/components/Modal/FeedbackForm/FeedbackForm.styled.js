@@ -29,7 +29,9 @@ export const RatingTitle = styled.div`
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
+  letter-spacing: 0.06em;
   padding-bottom: 8px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 `;
 
 export const CloseButton = styled.button`
@@ -66,31 +68,29 @@ export const ReviewLabel = styled.label`
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
+  letter-spacing: 0.06em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 `;
 
 export const Textarea = styled.textarea`
-  width: 100%;
-  min-height: 130px;
-  padding: 0;
+  min-height: 110px;
+  padding: 20px;
   background-color: var(--form-textarea);
   font-family: Inter;
   font-size: 14px;
   font-weight: 600;
+  letter-spacing: 0.06em;
   color: #343434;
   border: none;
   border-radius: 8px;
   resize: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 
   &::placeholder {
-    padding: 12px 14px;
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
     color: #343434;
-
-    @media screen and (min-width: 768px) {
-      padding: 14px 18px;
-    }
   }
 `;
 
@@ -157,6 +157,17 @@ export const CancelButton = styled.button`
     width: 198px;
     padding: 15px 0;
   }
+`;
+
+export const ValidationMessage = styled.div`
+  padding-top: 8px;
+  color: red;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 `;
 
 export const faStarStyle = {
