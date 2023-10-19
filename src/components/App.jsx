@@ -7,8 +7,6 @@ const Header = lazy(() => import('./header/header'));
 const StatisticPage = lazy(() => import('../pages/StatisticPage'));
 const Sidebar = lazy(() => import('./sidebar/sidebar'));
 const CalendarPage = lazy(() => import('../pages/CalendarPage'));
-const SignUp = lazy(() => import('./SignUp/SignUp'));
-const Login = lazy(() => import('./Login/Login'));
 
 export const App = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
