@@ -31,11 +31,11 @@ export const PlusContainer = styled.div`
   left: 52%;
 
   @media (min-width: 768px) {
-    top: 65%;
+    top: 67%;
   }
 
   @media (min-width: 1440px) {
-    top: 67%;
+    top: 70%;
   }
 `;
 
@@ -99,7 +99,7 @@ export const Image = styled.img`
 
   @media (min-width: 768px) {
     margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     width: 124px;
     height: 124px;
   }
@@ -145,6 +145,16 @@ export const User = styled.h2`
   }
 `;
 
+export const Fields = styled.div`
+  @media (min-width: 1440px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+`;
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -156,11 +166,11 @@ export const StyledForm = styled.form`
   }
 
   @media (min-width: 1440px) {
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    gap: 50px;
+    //gap: 50px;
   }
 `;
 
@@ -199,12 +209,11 @@ export const StyledInput = styled.input`
   width: 299px;
   border-radius: 8px;
   border: 1px solid rgba(17, 17, 17, 0.1);
-  font-family: Inter;
   font-weight: bold;
   &::placeholder {
     color: black;
     font-weight: bold;
-    text-indent: 14px;
+    text-align: left;
   }
 
   @media (min-width: 768px) {
@@ -223,7 +232,6 @@ export const DateInput = styled(DatePicker)`
   width: 299px;
   border-radius: 8px;
   border: 1px solid rgba(17, 17, 17, 0.1);
-  font-family: Inter;
   font-weight: bold;
   &::placeholder {
     color: black;
@@ -252,7 +260,6 @@ export const Button = styled.button`
   padding: 10px 20px;
   background: #3e85f3;
   border: none;
-  font-family: Inter;
   color: white;
 
   @media (min-width: 768px) {
@@ -263,8 +270,7 @@ export const Button = styled.button`
 `;
 
 export const Error = styled.div`
-  margin-top: 5px;
+  margin-top: 0px;
   font-size: 12px;
-  font-family: Inter;
   color: #3e85f3;
 `;
