@@ -1,4 +1,4 @@
-import{s as It,j as Q,a as ce,c as ni,r as L,R as _,b as jv}from"./index-14ee80d0.js";import{P as X,C as Cv,T as Iv,a as kv}from"./CalendarPage.styled-4488bd75.js";import{a as ae}from"./index-151820b8.js";import"./index.esm-589db7d2.js";import"./iconBase-5c059716.js";const Dv=It.ul`
+import{s as It,j as Q,a as ce,c as ni,r as L,R as _,b as jv}from"./index-dafe381b.js";import{C as Cv,T as Iv,P as kv}from"./CalendarToolbar.styled-44eb0a09.js";import{a as ae}from"./index-554fe49c.js";import{P as X}from"./index-75d7768b.js";const Dv=It.ul`
   display: flex;
 
   list-style: none;
@@ -118,4 +118,4 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-`;function iB(){return Q.jsxs("div",{children:[Q.jsx(nB,{children:"Tasks"}),Q.jsx(rB,{})]})}const lB=()=>{const[e,t]=L.useState(Date.now()),[r,n]=L.useState(!1);return L.useEffect(()=>{n(!0)},[]),Q.jsxs(Cv,{children:[Q.jsxs(Iv,{children:[Q.jsx(kv,{selectedDate:e,typeDateDay:r,setSelectedDate:t}),Q.jsx(Lv,{})]}),Q.jsx(iB,{})]})};export{lB as default};
+`;function iB(){return Q.jsxs("div",{children:[Q.jsx(nB,{children:"Tasks"}),Q.jsx(rB,{})]})}const sB=()=>{const[e,t]=L.useState(Date.now()),[r,n]=L.useState(!1);return L.useEffect(()=>{n(!0)},[]),Q.jsxs(Cv,{children:[Q.jsxs(Iv,{children:[Q.jsx(kv,{selectedDate:e,typeDateDay:r,setSelectedDate:t}),Q.jsx(Lv,{})]}),Q.jsx(iB,{})]})};export{sB as default};
