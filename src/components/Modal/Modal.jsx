@@ -9,7 +9,7 @@ import {
   ModalContent,
 } from './Modal.styled.js';
 
-const Modal = ({ children, onCloseModal }) => {
+export const Modal = ({ children, onCloseModal }) => {
   const handleOverlayClick = (e) => {
     if (e.currentTarget === e.target) {
       onCloseModal();

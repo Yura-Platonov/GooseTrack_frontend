@@ -73,7 +73,7 @@ export const TaskPriority = styled.p`
   color: var(white);
 `;
 
-export const Toolbar = styled(TaskToolbar)`
+export const Toolbar = styled.div`
   margin-left: auto;
 `;
 

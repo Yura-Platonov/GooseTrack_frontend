@@ -4,8 +4,9 @@ import { ColumnContainer } from './TasksColumn.styled';
 import { useState } from 'react';
 import { TaskModal } from '../../Modal/TaskModal/TaskModal';
 import { default as Modal } from '../../Modal/Modal';
+import { ColumnsTasksList } from '../tasksColumnsList/TasksColumnsList';
 
-const TasksColumn = ({ title, collection }) => {
+const TasksColumn = ({ status, title, collection }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
@@ -20,7 +21,7 @@ const TasksColumn = ({ title, collection }) => {
     <>
       <ColumnContainer>
         <ColumnHeadBar title={title} handleShowModal={handleShowModal} />
-
+        <ColumnsTasksList status={status} />
         <AddTaskBtn onClick={handleShowModal} />
       </ColumnContainer>
       {showModal && (
