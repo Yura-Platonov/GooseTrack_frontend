@@ -15,11 +15,19 @@ import {
 import { BiPlus } from 'react-icons/bi';
 import { VscEdit } from 'react-icons/vsc';
 import { validationTaskSchema } from '../../../helpers/validationTaskSchema';
+import { addTask, editTask } from '../../../redux/task/operations';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
 export const TaskForm = ({ onClose, task, status, ...props }) => {
+  const dispatch = useDispatch();
+
   const editMode = props?.editMode || false;
+  const category = status || 'To do';
+
+  const { currentDate } = useParams();
 
   const initialValues = {
     title: task?.title || '',
@@ -43,6 +51,21 @@ export const TaskForm = ({ onClose, task, status, ...props }) => {
     },
   ];
 
+  const handleAdd = (values) => {
+    if (!editMode) {
+      dispatch(addTask({ ...values, category, date: currentDate }));
+      onClose();
+    } else {
+      dispatch(
+        updateTask({
+          id: task._id,
+          task: { date: task.date, ...values, category },
+        }),
+      );
+      onClose();
+    }
+  };
+
   return (
     <>
       <Formik
@@ -52,6 +75,7 @@ export const TaskForm = ({ onClose, task, status, ...props }) => {
         validationSchema={validationTaskSchema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(false);
+          handleAdd(values);
         }}
       >
         {({
