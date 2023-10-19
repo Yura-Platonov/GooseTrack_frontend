@@ -58,7 +58,7 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <Image src={elements} alt="goose" />
+      <Image alt="goose" />
       <StyledForm onSubmit={formik.handleSubmit}>
         <Title className="title">Log In</Title>
 
