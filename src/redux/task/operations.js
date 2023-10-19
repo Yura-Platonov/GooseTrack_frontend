@@ -3,15 +3,11 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://goosetrack-backend-y622.onrender.com';
 
-const $api = axios.create({
-  baseURL: 'https://goosetrack-backend-y622.onrender.com',
-});
-
 export const addTask = createAsyncThunk(
-  'tasks/addTask',
+  'task/addTask',
   async (task, { rejectedWithValue }) => {
     try {
-      const response = await $api.post('/api/tasks', task);
+      const response = await axios.post('/api/task', task);
       return response.data;
     } catch (error) {
       return rejectedWithValue(error.message);
@@ -20,10 +16,10 @@ export const addTask = createAsyncThunk(
 );
 
 export const deleteTask = createAsyncThunk(
-  'tasks/deleteTask',
+  'task/deleteTask',
   async (id, { rejectedWithValue }) => {
     try {
-      const response = await $api.delete(`/api/tasks/${id}`);
+      const response = await axios.delete(`/api/task/${id}`);
       return response.data;
     } catch (error) {
       rejectedWithValue(error.message);
@@ -32,10 +28,10 @@ export const deleteTask = createAsyncThunk(
 );
 
 export const editTask = createAsyncThunk(
-  'tasks/editTask',
+  'task/editTask',
   async ({ id, task }, { rejectedWithValue }) => {
     try {
-      const response = await $api.patch(`/api/tasks/${id}`, task);
+      const response = await axios.patch(`/api/task/${id}`, task);
       return response.data;
     } catch (error) {
       rejectedWithValue(error.message);
