@@ -47,9 +47,9 @@ export const GooseImage = styled.img`
 `;
 
 export const ErrorParagraph = styled.p`
-  /* @media (max-width: 767px) {
+  @media (max-width: 767px) {
     padding: 0 20px;
-  } */
+  }
   font-size: 14px;
   line-height: 1.28;
   color: rgba(17, 17, 17, 0.7);
