@@ -25,22 +25,34 @@ import image from '../../images/avatar@2x.jpg';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 //import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const UserProfile = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const userData = useSelector((state) => state.auth.user);
 
   const formik = useFormik({
     initialValues: {
-      name: 'Nadiia Doe',
-      email: 'nadiia@gmail.com',
-      birthdate: '25/08/1995',
-      phone: '38 (097) 256 34 77',
-      skype: 'Add a skype number',
+      avatar: '',
+      name: '',
+      email: '',
+      birthdate: '',
+      phone: '',
+      skype: '',
     },
     validationSchema: Yup.object({
+      avatar: Yup.mixed()
+        .test('isFile', 'Невірний тип файлу', (value) => {
+          if (!value) {
+            return true;
+          }
+          return value instanceof File;
+        })
+        .required('Оберіть файл'),
       name: Yup.string()
         .min(2, 'Мінімум 2 символи')
+        .max(16, 'Максимум 16 символів')
         .required("Обов'язкове поле"),
       email: Yup.string()
         .email('Невірний email адрес')
@@ -49,7 +61,7 @@ const UserProfile = () => {
       phone: Yup.number()
         .min(7, 'Не менш ніж 7 символів')
         .required("Обов'язкове поле"),
-      skype: Yup.string().optional(),
+      skype: Yup.string().max(16).optional(),
     }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
   });
@@ -58,7 +70,6 @@ const UserProfile = () => {
     <Container>
       <Wrapper>
         <About>
-          <Image src={image} alt="nadiia doe" />
           <PlusContainer>
             <Icon />
           </PlusContainer>
@@ -67,6 +78,17 @@ const UserProfile = () => {
         </About>
         <StyledForm onSubmit={formik.handleSubmit}>
           <div>
+            <Section>
+              <label htmlFor="">
+                <Image src={image} alt="nadiia doe" />
+              </label>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                accept=".jpg, .jpeg, .png, .gif"
+              />
+            </Section>
             <Section>
               <StyledLabel htmlFor="name">User Name</StyledLabel>
               <StyledInput
