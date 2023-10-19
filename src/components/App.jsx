@@ -65,7 +65,7 @@ const CalendarPage = lazy(() => import('../pages/CalendarPage'));
 const StatisticsPage = lazy(() => import('../pages/StatisticPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
-// const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage.jsx'));
+const PageNotFound = lazy(() => import('../pages/PageNotFound/PageNotFound'));
 
 export function App() {
   const dispatch = useDispatch();
@@ -90,7 +90,7 @@ export function App() {
             </Route>
           </Route>
 
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Suspense>
     </Container>
