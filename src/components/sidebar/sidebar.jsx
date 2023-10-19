@@ -1,40 +1,59 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Div, Section } from './sidebar.styled';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/auth/operations.js';
+import { useAdaptiveScreen } from '../../hooks/useAdaptiveScreen.js';
 import logo from '../../images/side-head/GOOSE1.png';
 import logo2 from '../../images/side-head/GOOSE2.png';
 import logo3 from '../../images/side-head/GOOSE3.png';
 
-const Sidebar = ({ toggleMenu }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+const Sidebar = ({ onSidebarShow }) => {
+  const { isDesktop, windowWidth } = useAdaptiveScreen();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+    const closeMenuByEsc = e => {
+      if (e.code === 'Escape') {
+        onSidebarShow();
+      }
     };
-    window.addEventListener('resize', handleResize);
+
+    document.addEventListener('keydown', closeMenuByEsc);
+
     return () => {
-      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('keydown', closeMenuByEsc);
     };
-  }, []);
+  }, [onSidebarShow]);
+
+  const handleOverlayClick = e => {
+    if (e.target === e.currentTarget) {
+      onSidebarShow();
+    }
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    !isDesktop && onSidebarShow();
+  };
+
   return (
-    <Section>
+    <Section onClick={handleOverlayClick}>
       <div className='container'>
         <div className='content'>
           <div className="logo-box">
             <picture>
-              {windowWidth >= 1440 ? (
+              {isDesktop ? (
                 <img width="71" height="68" src={logo3} alt="goose3" />
               ) : windowWidth >= 768 ? (
                 <img width="60" height="58" src={logo2} alt="goose" />
               ) : (
                 <img width="36" height="35" src={logo} alt="goose" />
               )}
-              {/* <img width="36" height="35" src={logo} alt="goose" /> */}
             </picture>
             <h1 className="goosetrack">GooseTrack</h1>
-            <button className="x-button" type="button" onClick={toggleMenu}>
-              {windowWidth >= 1440 ? null : windowWidth >= 768 ? (
+            <button className="x-button" type="button" onClick={() => onSidebarShow()}>
+              {isDesktop ? null : windowWidth >= 768 ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="34"
@@ -168,7 +187,7 @@ const Sidebar = ({ toggleMenu }) => {
           </Div>
         </div>
         <div >
-          <button className="button-out " type="button">
+          <button className="button-out " type="button"  onClick={handleLogout}>
             Log out
             {windowWidth >= 768 ? (
               <svg

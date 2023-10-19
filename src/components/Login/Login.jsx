@@ -3,7 +3,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import elements from "../../images/elements.png";
+// import elemnts from "../image/elements.png";
 
 import {
   Error,
@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <Image src={elements} alt="goose" />
+      <Image alt="goose" />
       <StyledForm onSubmit={formik.handleSubmit}>
         <Title className="title">Log In</Title>
 
