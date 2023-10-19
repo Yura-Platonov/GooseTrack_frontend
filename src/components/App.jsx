@@ -28,22 +28,22 @@ export const App = () => {
     <>
       <Suspense fallback={<h2>Loading...</h2>}>
         <Section>
-          <div>{windowWidth >= 1440 ? <Sidebar /> : null}</div>
+          {/* <div>{windowWidth >= 1440 ? <Sidebar /> : null}</div>
           <div>
             <header>
               <Header />
-            </header>
-            <main>
-              <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/calendar" element={<CalendarPage />} />
-                <Route path="/statistics" element={<StatisticPage />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<SignUp />} />
-                <Route path="*" element={<PageNotFound />} />
-              </Routes>
-            </main>
-          </div>
+            </header> */}
+          <main>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/calendar" element={<CalendarPage />} />
+              <Route path="/statistics" element={<StatisticPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<SignUp />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </main>
+          {/* </div> */}
         </Section>
       </Suspense>
     </>

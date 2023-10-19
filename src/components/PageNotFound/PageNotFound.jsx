@@ -5,15 +5,16 @@ import {
   ErrorParagraph,
   ErrorTitleWrap,
   GooseImage,
+  TitleNumber,
 } from './PageNotFound.styled';
 
 function PageNotFound() {
   return (
     <ErrorPageContainer>
       <ErrorTitleWrap>
-        <h1>4</h1>
+        <TitleNumber>4</TitleNumber>
         <GooseImage src={GooseRocketSvg} alt="Goose on a Rocket" />
-        <h1>4</h1>
+        <TitleNumber>4</TitleNumber>
       </ErrorTitleWrap>
       <ErrorParagraph>
         We&apos;re sorry, the page you requested could not be found. Please go
