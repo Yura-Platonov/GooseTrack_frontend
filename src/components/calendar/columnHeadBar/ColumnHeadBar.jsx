@@ -4,7 +4,6 @@ import {
   AddTaskBtn,
   IconAdd,
 } from './ColumnHeadBar.styled';
-import PropTypes from 'prop-types';
 
 const ColumnHeadBar = ({ title, handleShowModal }) => {
   return (
@@ -17,8 +16,4 @@ const ColumnHeadBar = ({ title, handleShowModal }) => {
   );
 };
 
-ColumnHeadBar.propTypes = {
-  title: PropTypes.string.isRequired,
-  handleShowModal: PropTypes.func.isRequired,
-};
 export default ColumnHeadBar;

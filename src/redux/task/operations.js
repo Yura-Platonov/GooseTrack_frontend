@@ -3,6 +3,30 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://goosetrack-backend-y622.onrender.com';
 
+export const getTasksByMonth = createAsyncThunk(
+  'task/getTasksByMonth',
+  async ({ year, month }, { rejectedWithValue }) => {
+    try {
+      const { data } = await axios.get(`/api/task/month/${year}-${month}`);
+      return data;
+    } catch (error) {
+      return rejectedWithValue(error.message);
+    }
+  },
+);
+
+export const getTasksByDay = createAsyncThunk(
+  'task/getTasksByDay',
+  async ({ year, month, day }, { rejectedWithValue }) => {
+    try {
+      const { data } = await axios.get(`/api/task/day/${year}-${month}-${day}`);
+      return data;
+    } catch (error) {
+      return rejectedWithValue(error.message);
+    }
+  },
+);
+
 export const addTask = createAsyncThunk(
   'task/addTask',
   async (task, { rejectedWithValue }) => {
@@ -35,6 +59,21 @@ export const editTask = createAsyncThunk(
       return response.data;
     } catch (error) {
       rejectedWithValue(error.message);
+    }
+  },
+);
+
+export const changeCategory = createAsyncThunk(
+  'task/changeCategory',
+  async ({ id, categoryData }, thunkAPI) => {
+    try {
+      const response = await axios.patch(
+        `/api/task/category/${id}`,
+        categoryData,
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
