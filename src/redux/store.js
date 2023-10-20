@@ -12,20 +12,21 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { authSlice } from './auth/authSlice';
+import { reviewsSlice } from './feedback/feedbackSlice';
 
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'user'],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authSlice.reducer),
-    
+    reviews: reviewsSlice.reducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
