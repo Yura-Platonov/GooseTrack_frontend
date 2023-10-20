@@ -2,22 +2,25 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-axios.defaults.baseURL = 'https://goosetrack-backend-y622.onrender.com';
 
 
-const setToken = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+export const instance = axios.create({
+  baseURL: 'https://goosetrack-backend-y622.onrender.com',
+});
+
+export const setToken = (token) => {
+  instance.defaults.headers['Authorization'] = `Bearer ${token}`;
 };
 
-const clearToken = () => {
-  axios.defaults.headers.common.Authorization = '';
+export const clearToken = () => {
+  instance.defaults.headers['Authorization'] = '';
 };
 
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post('api/auth/register', credentials);
+      const response = await instance.post('api/auth/register', credentials);
       setToken(response.data.token);
       Notify.success(`Welcome!!!`);
       return response.data;
@@ -32,7 +35,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post('api/auth/login', credentials);
+      const response = await instance.post('api/auth/login', credentials);
       setToken(response.data.token);
       Notify.success(`Welcome back!!!`);
       return response.data;
@@ -48,7 +51,7 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.post('api/auth/logout');
+      await instance.post('api/auth/logout');
       clearToken();
     } catch (error) {
       return rejectWithValue(error.message);
@@ -65,7 +68,7 @@ export const refresh = createAsyncThunk(
     }
     try {
       setToken(token);
-      const { data } = await axios.get('api/auth/current');
+      const { data } = await instance.get('api/auth/current');
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -77,7 +80,7 @@ export const updateUser = createAsyncThunk(
   'auth/update',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('api/auth/update', credentials);
+      const { data } = await instance.patch('api/auth/update', credentials);
       Notify.success(`Your profile has been updated`);
       return data;
     } catch (error) {
