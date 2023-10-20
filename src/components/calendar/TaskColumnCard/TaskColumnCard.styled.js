@@ -1,4 +1,5 @@
-// import { TaskToolbar } from 'components/CalendarPage/TaskToolbar/TaskToolbar';
+import { TASK_PRIORITY } from '../../../constants/Priority';
+import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 import styled from 'styled-components';
 import { AiOutlineUser } from 'react-icons/ai';
 import Truncate from 'react-text-truncate';
@@ -63,7 +64,17 @@ export const TaskAvatarWrapper = styled.div`
 
 export const TaskPriority = styled.p`
   padding: 4px 12px;
-  background: red;
+  background: var(
+    ${(props) => {
+      if (props.priority === TASK_PRIORITY.medium) {
+        return '--day-status-medium';
+      }
+      if (props.priority === TASK_PRIORITY.high) {
+        return '--day-status-high';
+      }
+      return '--day-status-low';
+    }}
+  );
   border-radius: 4px;
   font-style: normal;
   font-weight: 600;
@@ -73,7 +84,7 @@ export const TaskPriority = styled.p`
   color: var(white);
 `;
 
-export const Toolbar = styled.div`
+export const Toolbar = styled(TaskToolbar)`
   margin-left: auto;
 `;
 
