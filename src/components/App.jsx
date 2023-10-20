@@ -10,7 +10,6 @@
 // const Login = lazy(() => import('./Login/Login'));
 // const SignUp = lazy(() => import('./SignUp/SignUp'));
 
-
 // export const App = () => {
 //   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -63,12 +62,10 @@ import { MainLayout } from './MainLayout/MainLayout';
 
 const MainPage = lazy(() => import('./MainPage/MainPage'));
 const CalendarPage = lazy(() => import('../pages/CalendarPage'));
-const StatisticsPage = lazy(() =>
-  import('../pages/StatisticPage')
-);
+const StatisticsPage = lazy(() => import('../pages/StatisticPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
-// const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage.jsx'));
+const PageNotFound = lazy(() => import('../pages/PageNotFound/PageNotFound'));
 
 export function App() {
   const dispatch = useDispatch();
@@ -79,7 +76,7 @@ export function App() {
 
   return (
     <Container>
-      <Suspense fallback={<Spinner/>}>
+      <Suspense fallback={<Spinner />}>
         <Routes>
           <Route element={<PublicRoute />}>
             <Route path="/" element={<MainPage />} />
@@ -88,13 +85,12 @@ export function App() {
           </Route>
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<MainLayout />}>
-              <Route path="calendar" element={<CalendarPage />}>
-            </Route>
+              <Route path="calendar" element={<CalendarPage />}></Route>
               <Route path="statistics" element={<StatisticsPage />} />
             </Route>
           </Route>
 
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Suspense>
     </Container>
