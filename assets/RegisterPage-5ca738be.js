@@ -1,4 +1,4 @@
-import{s as i,o as w,p as v,E as f,q as j,t as l,v as y,r as k,j as e,F as E,x as S}from"./index-dd658b85.js";import{S as z,a as R,b as T,A as N}from"./AuthNavigate-51ce997a.js";import"./index-b4a630ae.js";const P=i(w)`
+import{s as i,x as w,y as v,E as f,b as j,d as l,u as y,r as k,j as e,F as E,A as S}from"./index-aeb4e2e9.js";import{S as z,a as R,b as T,A as N}from"./AuthNavigate-2c0666a8.js";import"./index-83acaf64.js";const P=i(w)`
   display: flex;
   flex-direction: column;
   padding: 40px 24px;
@@ -180,7 +180,7 @@ import{s as i,o as w,p as v,E as f,q as j,t as l,v as y,r as k,j as e,F as E,x a
   right: 12px;
   top: 18px;
   cursor: pointer;
-`,q=j().shape({name:l().required("Name is required").matches(/^\S[\S\s]{0,28}\S$/,"Name must be between 3 and 30 characters").test("name-validation","Name must be at least 3 characters long",t=>t&&t.replace(/\s/g,"").length>=3),email:l().email("This is an ERROR email").matches(/^[a-zA-Z0-9@.]+$/,"Email must contain only Latin characters").required("Email is required"),password:l().required("Password is required").min(6,"Password must be at least 6 characters long").matches(/^\S*$/,"Password must not contain spaces")}),O=()=>{const t=y(),[o,g]=k.useState(!1),u=n=>{n.preventDefault();const{name:{value:s},email:{value:d},password:{value:r}}=n.currentTarget;t(S({name:s,email:d,password:r})),n.currentTarget.reset()},b=()=>{g(!o)};return e.jsx(E,{initialValues:{name:"",email:"",password:""},validationSchema:q,children:({isSubmitting:n,values:s,errors:d,touched:r})=>{const a=p=>r[p]&&d[p]?"is-invalid":r[p]?"is-valid":"";return e.jsxs(P,{onSubmit:u,children:[e.jsx($,{children:"Sign Up"}),e.jsxs(m,{className:a("name"),children:["Name",e.jsx(h,{children:e.jsx(c,{className:a("name"),type:"text",name:"name",placeholder:"Enter your name"})}),a("name")==="is-valid"&&e.jsx("p",{children:"This is a CORRECT name"}),e.jsx(x,{name:"name",component:"div"})]}),e.jsxs(m,{className:a("email"),children:["Email",e.jsx(h,{children:e.jsx(c,{className:a("email"),type:"email",name:"email",placeholder:"Enter email",title:"Email must be in the format username@domain.com",value:s.email})}),a("email")==="is-valid"&&e.jsx("p",{children:"This is a CORRECT email"}),e.jsx(x,{name:"email",component:"div"})]}),e.jsxs(m,{className:a("password"),children:["Password",e.jsxs(C,{children:[e.jsx(c,{type:o?"text":"password",className:a("password"),name:"password",placeholder:"Enter password",value:s.password}),e.jsx(F,{type:"button",onClick:b,children:o?e.jsx(z,{}):e.jsx(R,{})})]}),a("password")==="is-valid"&&e.jsx("p",{children:"This is a CORRECT password"}),e.jsx(x,{name:"password",component:"div"})]}),e.jsxs(I,{type:"submit",disabled:n,children:[n?"Submitting":"Sign Up",e.jsx(T,{style:{width:"18px",height:"18px",color:"#000000"}})]})]})}})},U="/GooseTrack_frontend/assets/desktop_signUp-25b1175e.png",_="/GooseTrack_frontend/assets/desktop_signUp@2x-28416989.png",A=i.div`
+`,q=j().shape({name:l().required("Name is required").matches(/^\S[\S\s]{0,28}\S$/,"Name must be between 3 and 30 characters").test("name-validation","Name must be at least 3 characters long",t=>t&&t.replace(/\s/g,"").length>=3),email:l().email("This is an ERROR email").matches(/^[a-zA-Z0-9@.]+$/,"Email must contain only Latin characters").required("Email is required"),password:l().required("Password is required").min(6,"Password must be at least 6 characters long").matches(/^\S*$/,"Password must not contain spaces")}),A=()=>{const t=y(),[o,g]=k.useState(!1),u=n=>{n.preventDefault();const{name:{value:s},email:{value:d},password:{value:r}}=n.currentTarget;t(S({name:s,email:d,password:r})),n.currentTarget.reset()},b=()=>{g(!o)};return e.jsx(E,{initialValues:{name:"",email:"",password:""},validationSchema:q,children:({isSubmitting:n,values:s,errors:d,touched:r})=>{const a=p=>r[p]&&d[p]?"is-invalid":r[p]?"is-valid":"";return e.jsxs(P,{onSubmit:u,children:[e.jsx($,{children:"Sign Up"}),e.jsxs(m,{className:a("name"),children:["Name",e.jsx(h,{children:e.jsx(c,{className:a("name"),type:"text",name:"name",placeholder:"Enter your name"})}),a("name")==="is-valid"&&e.jsx("p",{children:"This is a CORRECT name"}),e.jsx(x,{name:"name",component:"div"})]}),e.jsxs(m,{className:a("email"),children:["Email",e.jsx(h,{children:e.jsx(c,{className:a("email"),type:"email",name:"email",placeholder:"Enter email",title:"Email must be in the format username@domain.com",value:s.email})}),a("email")==="is-valid"&&e.jsx("p",{children:"This is a CORRECT email"}),e.jsx(x,{name:"email",component:"div"})]}),e.jsxs(m,{className:a("password"),children:["Password",e.jsxs(C,{children:[e.jsx(c,{type:o?"text":"password",className:a("password"),name:"password",placeholder:"Enter password",value:s.password}),e.jsx(F,{type:"button",onClick:b,children:o?e.jsx(z,{}):e.jsx(R,{})})]}),a("password")==="is-valid"&&e.jsx("p",{children:"This is a CORRECT password"}),e.jsx(x,{name:"password",component:"div"})]}),e.jsxs(I,{type:"submit",disabled:n,children:[n?"Submitting":"Sign Up",e.jsx(T,{style:{width:"18px",height:"18px",color:"#000000"}})]})]})}})},O="/GooseTrack_frontend/assets/desktop_signUp-25b1175e.png",U="/GooseTrack_frontend/assets/desktop_signUp@2x-28416989.png",_=i.div`
   position: relative;
   min-height: 100vh;
 
@@ -213,15 +213,15 @@ import{s as i,o as w,p as v,E as f,q as j,t as l,v as y,r as k,j as e,F as E,x a
   left: 49px;
   bottom: 0;
 
-  background-image: url(${U});
+  background-image: url(${O});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
   @media screen and (min-device-pixel-ratio: 2) {
-    background-image: url(${_});
+    background-image: url(${U});
   }
   @media screen and (max-width: 1439px) {
     display: none;
   }
-`;function V(){return e.jsxs(A,{children:[e.jsx(L,{children:e.jsx(O,{})}),e.jsx(N,{link:"/login",text:"Log In"}),e.jsx(B,{})]})}export{V as default};
+`;function V(){return e.jsxs(_,{children:[e.jsx(L,{children:e.jsx(A,{})}),e.jsx(N,{link:"/login",text:"Log In"}),e.jsx(B,{})]})}export{V as default};
