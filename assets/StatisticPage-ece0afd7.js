@@ -1,4 +1,4 @@
-import{s as It,j as Q,a as ce,c as ni,r as L,R as _,k as jv}from"./index-b1251ea9.js";import{C as Cv,T as Iv,P as kv}from"./CalendarToolbar.styled-a2446213.js";import{a as ae}from"./index-62544337.js";import{P as X}from"./index-41e6390f.js";const Dv=It.ul`
+import{s as It,j as Q,a as ce,c as ni,r as L,R as _,P as X,e as jv}from"./index-1f47d2ab.js";import{C as Cv,T as Iv,P as kv}from"./CalendarToolbar.styled-1c8f7348.js";import{a as ae}from"./index-1f32e839.js";const Dv=It.ul`
   display: flex;
 
   list-style: none;
@@ -118,4 +118,4 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-`;function iB(){return Q.jsxs("div",{children:[Q.jsx(nB,{children:"Tasks"}),Q.jsx(rB,{})]})}const sB=()=>{const[e,t]=L.useState(Date.now()),[r,n]=L.useState(!1);return L.useEffect(()=>{n(!0)},[]),Q.jsxs(Cv,{children:[Q.jsxs(Iv,{children:[Q.jsx(kv,{selectedDate:e,typeDateDay:r,setSelectedDate:t}),Q.jsx(Lv,{})]}),Q.jsx(iB,{})]})};export{sB as default};
+`;function iB(){return Q.jsxs("div",{children:[Q.jsx(nB,{children:"Tasks"}),Q.jsx(rB,{})]})}const cB=()=>{const[e,t]=L.useState(Date.now()),[r,n]=L.useState(!1);return L.useEffect(()=>{n(!0)},[]),Q.jsxs(Cv,{children:[Q.jsxs(Iv,{children:[Q.jsx(kv,{selectedDate:e,typeDateDay:r,setSelectedDate:t}),Q.jsx(Lv,{})]}),Q.jsx(iB,{})]})};export{cB as default};
