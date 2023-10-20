@@ -6,7 +6,7 @@ export const ColumnContainer = styled.li`
   min-width: calc(100% - 36px);
   width: 100%;
   padding: 18px 18px 20px;
-  border: 1px solid #dce3e5cc;
+  border: 1px solid var(--border-modal);
   border-radius: 8px;
   background-color: var(--white);
   overflow-y: auto;
