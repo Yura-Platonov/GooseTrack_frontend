@@ -11,7 +11,7 @@ export const ContainerDays = styled.div`
   width: calc(100% - 36px);
   padding: 14px 18px;
   margin-bottom: 14px;
-  border: 1px solid #dce3e580;
+  border: 1px solid var(--background-table);
   border-radius: 8px;
   background-color: var(--white);
   @media screen and (min-width: 768px) {
@@ -33,7 +33,7 @@ export const ItemDay = styled.a`
   height: 44px;
   text-align: center;
   font-family: Inter;
-  color: #343434;
+  color: var(--user-panel-text);
   cursor: pointer;
   &:nth-of-type(6) {
     color: var(--blue);
@@ -75,7 +75,7 @@ export const ItemDayNum = styled.p`
   font-size: 12px;
   line-height: 14px;
   border-radius: 6px;
-  color: #343434;
+  color: var(--user-panel-text);
   color: ${(props) => (props.currentDay ? 'var(--white)' : '')};
   background-color: ${(props) => (props.currentDay ? 'var(--blue)' : '')};
   align-items: center;
@@ -85,6 +85,6 @@ export const ItemDayNum = styled.p`
     height: 18px;
     padding: 4px 8px;
     font-size: 16px;
-  line-height: 18px;
+    line-height: 18px;
   }
 `;

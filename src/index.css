@@ -75,6 +75,10 @@
   --task-btn-cancel-bg-color: #efefef;
   --border-dark-theme: 1px solid rgba(255, 255, 255, 0.15);
   --border-modal: 1px solid #dce3e5cc;
+  --background-table: #dce3e580;
+  --change-date-btn: #dce3e5;
+  --out-month-day: #34343450;
+  --month-btn-border-right: #3e85f333;
   /**FONTS*/
   --main-font: 'Inter', sans-serif;
   /**TRANSITIONS*/

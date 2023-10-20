@@ -16,7 +16,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     width: 327px;
     height: 354px;
     padding: 9px 18px;
-    background-color: var(--blue) !important;
+    background-color: #3e85f3 !important;
     font-family: Inter !important;
     border-radius: 16px !important;
     @media screen and (min-width: 768px){
@@ -30,7 +30,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
   }
   .react-datepicker__header {
     position: relative;
-    background-color: var(--blue) !important;
+    background-color: #3e85f3 !important;
   }
   .react-datepicker__day-names {
     display: flex;
@@ -54,7 +54,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     font-weight: 600 !important;
     line-height: 24px;
     text-align: center;
-    color: var(--white) !important;
+    color: #ffffff !important;
   }
   .react-datepicker__day-name {
     margin: 0 !important;
@@ -65,11 +65,11 @@ export const CalendarGlobalStyles = createGlobalStyle`
     font-weight: 600;
     line-height: 18px !important;
     text-align: center !important;
-    color: var(--white) !important;
+    color: #ffffff !important;
   }
   .react-datepicker__navigation {
     margin-top: 24px;
-    color: var(--white);
+    color: #ffffff;
   }
   .react-datepicker__navigation--previous {
     left: 7px !important;
@@ -82,13 +82,13 @@ export const CalendarGlobalStyles = createGlobalStyle`
     height: 18px !important;
   }
   .react-datepicker__navigation-icon::before:hover:focus {
-    border-color: var(--white);
+    border-color: #ffffff;
   }
   .react-datepicker__week {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    color: var(--white) !important;
+    color: #ffffff !important;
   }
   .react-datepicker__day {
     display: flex !important;
@@ -101,7 +101,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     width: 32px !important;
     height: 32px !important;
     border-radius: 50% !important;
-    color: var(--white) !important;
+    color: #ffffff !important;
     font-family: Inter !important;
     font-size: 14px !important;
     font-style: normal !important;
@@ -118,22 +118,22 @@ export const CalendarGlobalStyles = createGlobalStyle`
     margin: 0 !important;
   }
   .react-datepicker__day--selected {
-    background-color: var(--white);
-    color:var(--blue);
+    background-color: #ffffff;
+    color: #3e85f3;
     font-size: 14px;
   }
   .react-datepicker__day--selected:hover {
     border-radius: 50% !important;
-  background-color: var(--white) !important;
+  background-color: #ffffff !important;
   }
   .react-datepicker__day:hover {
     border-radius: 50% !important;
-    background-color: var(--white) !important;
+    background-color: #ffffff !important;
     color:var(--blue) !important;
   }
   .react-datepicker__day--keyboard-selected {
     border-radius: 50% !important;
-    background-color: var(--white) !important;
+    background-color: #ffffff !important;
     color:var(--blue) !important;
   }
   .react-datepicker__day--weekend {
@@ -159,8 +159,8 @@ export const TitleWrapper = styled.button`
   display: flex;
   width: 160px;
   height: 30px;
-  color: var(--white);
-  background: var(--blue);
+  color: #ffffff;
+  background: #3e85f3;
   border-radius: 8px;
   border-color: transparent;
   font-family: Inter;
@@ -201,14 +201,14 @@ export const PrevBtn = styled.button`
   width: 36px;
   height: 30px;
   padding: 4px 4px;
-  border: 1px solid #dce3e580;
+  border: 1px solid var(--background-table);
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   background-color: var(--white);
   transition: var(--transition);
-  fill: #dce3e5;
+  fill: var(--change-date-btn);
   &:hover {
-    fill: #343434;
+    fill: var(--user-panel-text);
   }
   @media screen and (min-width: 768px) {
     width: 38px;
@@ -219,14 +219,14 @@ export const NextBtn = styled.button`
   width: 36px;
   height: 30px;
   padding: 4px 4px;
-  border: 1px solid #dce3e580;
+  border: 1px solid var(--background-table);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   background-color: var(--white);
   transition: var(--transition);
-  fill: #dce3e5;
+  fill: var(--change-date-btn);
   &:hover {
-    fill: #343434;
+    fill: var(--user-panel-text);
   }
   @media screen and (min-width: 768px) {
     width: 38px;

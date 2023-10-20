@@ -10,8 +10,8 @@ export const AddBtnContainer = styled.button`
   padding: 0;
   border: 1px dashed var(--blue);
   border-radius: 8px;
-  color: #111111;
-  fill: #111111;
+  color: var(--primary-text-color);
+  fill: var(--primary-text-color);
   transition: var(--transition);
   background-color: var(--user-panel-active);
   &:hover {

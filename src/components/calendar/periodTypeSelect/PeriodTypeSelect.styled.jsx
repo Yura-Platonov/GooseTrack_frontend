@@ -12,7 +12,7 @@ export const MonthBtn = styled.button`
   height: 34px;
   padding: 8px 16px;
   border: 1px solid transparent;
-  border-right: 1px solid rgba(62, 133, 243, 0.2);
+  border-right: 1px solid var(--month-btn-border-right);
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   background-color: var(--user-panel-active);
@@ -28,7 +28,7 @@ export const MonthBtn = styled.button`
     width: 82px;
   }
   &:hover,
-  &:focus   {
+  &:focus {
     background-color: var(--switch-active);
   }
 `;

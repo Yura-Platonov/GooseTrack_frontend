@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import { Link } from 'react-router-dom';
 
 const dynamicStyle = (props) => css`
-  //color: ${props.color};
   background-color: ${props.currentDay};
 `;
 
@@ -13,15 +13,15 @@ export const ContainerGrid = styled.div`
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 1px;
-  border: 1px solid #dce3e580;
+  border: 1px solid var(--background-table);
   border-radius: 8px;
-  background-color: #dce3e580;
+  background-color: var(--background-table);
   @media screen and (min-width: 768px) {
     height: 720px;
   }
 `;
 
-export const ItemLink = styled.a`
+export const ItemLink = styled(Link)`
   display: flex;
   justify-content: end;
   padding: 2px 2px;
@@ -55,7 +55,8 @@ export const ItemDate = styled.p`
   font-size: 12px;
   font-weight: 700;
   border-radius: 6px;
-  color: ${(props) => (props.currentMonth ? '#343434' : '#34343450')};
+  color: ${(props) =>
+    props.currentMonth ? 'var(--user-panel-text)' : 'var(--out-month-day)'};
   color: ${(props) => (props.currentDay ? 'var(--white)' : '')};
   background-color: ${(props) => (props.currentDay ? 'var(--blue)' : '')};
   align-items: center;
