@@ -111,7 +111,7 @@ const Sidebar = ({ toggleMenu }) => {
             <nav className="nav-box">
               <ul>
                 <li>
-                  <NavLink className={'button-8'} to="/">
+                  <NavLink className={'button-8'} to="/account">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
