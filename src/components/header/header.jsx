@@ -27,6 +27,14 @@ const Header = () => {
   // };
 
   useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isMenuOpen]);
+
+  useEffect(() => {
     const path = location.pathname;
     switch (path) {
       case '/calendar':

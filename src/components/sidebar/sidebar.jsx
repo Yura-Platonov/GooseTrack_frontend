@@ -8,14 +8,14 @@ import logo from '../../images/side-head/GOOSE1.png';
 import logo2 from '../../images/side-head/GOOSE2.png';
 import logo3 from '../../images/side-head/GOOSE3.png';
 
-const Sidebar = ({ onSidebarShow }) => {
+const Sidebar = ({ toggleMenu }) => {
   const { isDesktop, windowWidth } = useAdaptiveScreen();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const closeMenuByEsc = e => {
+    const closeMenuByEsc = (e) => {
       if (e.code === 'Escape') {
-        onSidebarShow();
+        toggleMenu();
       }
     };
 
@@ -24,23 +24,23 @@ const Sidebar = ({ onSidebarShow }) => {
     return () => {
       document.removeEventListener('keydown', closeMenuByEsc);
     };
-  }, [onSidebarShow]);
+  }, [toggleMenu]);
 
-  const handleOverlayClick = e => {
+  const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
-      onSidebarShow();
+      toggleMenu();
     }
   };
 
   const handleLogout = () => {
     dispatch(logout());
-    !isDesktop && onSidebarShow();
+    !isDesktop && toggleMenu();
   };
 
   return (
     <Section onClick={handleOverlayClick}>
-      <div className='container'>
-        <div className='content'>
+      
+        
           <div className="logo-box">
             <picture>
               {isDesktop ? (
@@ -52,7 +52,11 @@ const Sidebar = ({ onSidebarShow }) => {
               )}
             </picture>
             <h1 className="goosetrack">GooseTrack</h1>
-            <button className="x-button" type="button" onClick={() => onSidebarShow()}>
+            <button
+              className="x-button"
+              type="button"
+              onClick={() => toggleMenu()}
+            >
               {isDesktop ? null : windowWidth >= 768 ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -185,9 +189,9 @@ const Sidebar = ({ onSidebarShow }) => {
               </ul>
             </nav>
           </Div>
-        </div>
-        <div >
-          <button className="button-out " type="button"  onClick={handleLogout}>
+       
+        
+          <button className="button-out " type="button" onClick={handleLogout}>
             Log out
             {windowWidth >= 768 ? (
               <svg
@@ -223,8 +227,8 @@ const Sidebar = ({ onSidebarShow }) => {
               </svg>
             )}
           </button>
-        </div>
-      </div>
+        
+      
     </Section>
   );
 };
