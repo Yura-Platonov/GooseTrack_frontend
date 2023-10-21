@@ -37,18 +37,17 @@ export const ContainerWrapper = styled.div`
   }
 `;
 
-// export const WrapperBorderReview = styled.div``;
-
 export const WrapperReviewCommon = styled.div`
-  width: 335px;
-
+  height: 100%;
   position: relative;
   border: 1px solid rgba(17, 17, 17, 0.7);
   border-radius: 8px;
   padding: 24px;
-  @media (min-width: 768px) {
-    width: 516px;
-    height: 100%;
+  max-width: 100%;
+  display: flex;
+
+  @media (min-width: 1440px) {
+    margin-right: 6px;
   }
 `;
 

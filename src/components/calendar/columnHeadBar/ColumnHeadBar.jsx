@@ -5,12 +5,12 @@ import {
   IconAdd,
 } from './ColumnHeadBar.styled';
 
-const ColumnHeadBar = ({ title, idGroup }) => {
+const ColumnHeadBar = ({ title, handleShowModal }) => {
   return (
     <TitleContainer>
       <Title>{title}</Title>
       <AddTaskBtn>
-        <IconAdd />
+        <IconAdd onClick={handleShowModal} />
       </AddTaskBtn>
     </TitleContainer>
   );

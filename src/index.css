@@ -62,6 +62,7 @@
   --day-status-low: #72c2f8;
   --day-status-medium: #f3b249;
   --day-status-high: #ea3d65;
+
   --add-task-button: var(--user-panel-active);
   --review-pop-up-cancel-btn: #e5edfa;
   --user-profile-black: #21222c;
@@ -74,6 +75,10 @@
   --task-btn-cancel-bg-color: #efefef;
   --border-dark-theme: 1px solid rgba(255, 255, 255, 0.15);
   --border-modal: 1px solid #dce3e5cc;
+  --background-table: #dce3e580;
+  --change-date-btn: #dce3e5;
+  --out-month-day: #34343450;
+  --month-btn-border-right: #3e85f333;
   /**FONTS*/
   --main-font: 'Inter', sans-serif;
   /**TRANSITIONS*/
@@ -86,7 +91,6 @@
   --logo-text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
   --shadow-btn: 4px 2px 16px rgba(136, 165, 191, 0.48);
- 
 }
 
 /**RESET STYLES*/
@@ -129,4 +133,5 @@ a {
 
 body {
   margin: 0;
+  padding: 0;
 }

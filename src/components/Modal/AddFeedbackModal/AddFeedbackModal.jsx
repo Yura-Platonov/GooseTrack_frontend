@@ -1,14 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectIsOpen } from '../../../redux/modal/selectors.js';
 import Modal from '../Modal.jsx';
 import FeedbackForm from '../FeedbackForm/FeedbackForm.jsx';
 
-const AddFeedbackModal = ({ open, onCloseModal }) => {
-  if (!open) return null;
+const AddFeedbackModal = () => {
+  const isOpen = useSelector(selectIsOpen);
+
   return (
     <div>
-      <Modal onCloseModal={onCloseModal}>
-        <FeedbackForm onCloseModal={onCloseModal} />
-      </Modal>
+      {isOpen && (
+        <Modal>
+          <FeedbackForm />
+        </Modal>
+      )}
     </div>
   );
 };

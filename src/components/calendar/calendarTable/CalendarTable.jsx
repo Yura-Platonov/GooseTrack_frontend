@@ -13,7 +13,7 @@ import {
 } from 'date-fns';
 import { ContainerGrid, ItemLink, ItemDate } from './CalendarTable.styled';
 
-const CalendarTable = ({ selectedDate, setSelectedDate }) => {
+const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
   const startMonth = startOfMonth(selectedDate);
   const endMonth = endOfMonth(selectedDate);
   const startDay = startOfWeek(startMonth, { weekStartsOn: 1 });
@@ -31,7 +31,14 @@ const CalendarTable = ({ selectedDate, setSelectedDate }) => {
     <ContainerGrid>
       {daysInMonth.map((day, id = useId()) => {
         return (
-          <ItemLink key={id} onClick={() => setSelectedDate(day)}>
+          <ItemLink
+            to="day/:currentDate"
+            key={id}
+            onClick={() => {
+              setSelectedDate(day);
+              setType(true);
+            }}
+          >
             <ItemDate
               currentMonth={isSameMonth(day, selectedDate) ? true : false}
               currentDay={isSameDay(day, selectedDate) ? true : false}

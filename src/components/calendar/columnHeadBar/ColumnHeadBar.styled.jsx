@@ -14,10 +14,10 @@ export const Title = styled.h2`
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  color: #111111;
+  color: var(--primary-text-color);
 `;
 export const AddTaskBtn = styled.a`
-  fill: #111111;
+  fill: var(--primary-text-color);
   &:hover {
     fill: var(--blue);
   }

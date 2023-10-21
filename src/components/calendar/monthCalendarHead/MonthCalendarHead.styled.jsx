@@ -5,7 +5,7 @@ export const ContainerDays = styled.div`
   width: 100%;
   height: 50px;
   margin-bottom: 14px;
-  border: 1px solid #dce3e580;
+  border: 1px solid var(--background-table);
   border-radius: 8px;
   background-color: var(--white);
   @media screen and (min-width: 768px) {
@@ -22,7 +22,7 @@ export const ItemDay = styled.div`
   font-weight: 600;
   line-height: 18px;
   text-transform: uppercase;
-  color: #343434;
+  color: var(--user-panel-text);
   &:nth-of-type(6) {
     color: var(--blue);
   }

@@ -209,7 +209,7 @@ export const RadioButtonInput = styled.input`
       left: -20px;
     }
 
-    /* color: green; */
+    /* color: ; */
     ${({ priority }) => {
       switch (priority) {
         case 'Low':

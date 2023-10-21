@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
- box-sizing: border-box;
+ /* box-sizing: border-box;
   margin: 0 auto;
 
   padding: 0 20px;
@@ -18,5 +18,5 @@ export const Container = styled.div`
     width: 1151px;
     padding: 0 32px 32px 32px;
     margin: 0;
-  }
+  } */
 `;
