@@ -21,7 +21,7 @@ import {
 } from './RegisterForm.styled';
 
 const userSchema = Yup.object().shape({
-  name: Yup.string()
+  username: Yup.string()
     .required('Name is required')
     .matches(/^\S[\S\s]{0,28}\S$/, 'Name must be between 3 and 30 characters')
     .test(
@@ -48,12 +48,12 @@ export const RegisterForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const {
-      username: { value: name },
+      username: { value: username },
       email: { value: email },
       password: { value: password },
     } = e.currentTarget;
 
-    dispatch(register({ name, email, password }));
+    dispatch(register({ username, email, password }));
     e.currentTarget.reset();
   };
 
@@ -63,7 +63,7 @@ export const RegisterForm = () => {
 
   return (
     <Formik
-      initialValues={{ name: '', email: '', password: '' }}
+      initialValues={{ username: '', email: '', password: '' }}
       validationSchema={userSchema}
     >
       {({ isSubmitting, values, errors, touched }) => {
@@ -77,17 +77,17 @@ export const RegisterForm = () => {
         return (
           <Form onSubmit={handleSubmit}>
             <Title>Sign Up</Title>
-            <Label className={isValid('name')}>
+            <Label className={isValid('username')}>
               Name
               <Input>
                 <Field
-                  className={isValid('name')}
+                  className={isValid('username')}
                   type="text"
-                  name="name"
+                  name="username"
                   placeholder="Enter your name"
                 />
               </Input>
-              {isValid('name') === 'is-valid' && <p>This is a CORRECT name</p>}
+              {isValid('username') === 'is-valid' && <p>This is a CORRECT name</p>}
               <ErrorMessage name="name" component="div" />
             </Label>
             <Label className={isValid('email')}>
