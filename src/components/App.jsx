@@ -66,6 +66,7 @@ const StatisticsPage = lazy(() => import('../pages/StatisticPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound/PageNotFound'));
+const UserProfile = lazy(() => import('./userProfile/userProfile'));
 
 export function App() {
   const dispatch = useDispatch();
@@ -85,6 +86,7 @@ export function App() {
           </Route>
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<MainLayout />}>
+              <Route path="/user" element={<UserProfile />} />
               <Route path="calendar" element={<CalendarPage />}></Route>
               <Route path="statistics" element={<StatisticsPage />} />
             </Route>
