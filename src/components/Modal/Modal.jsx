@@ -1,25 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useDispatch } from 'react-redux';
+import { closeModal } from '../../redux/modal/modalSlice.js';
 import { useEffect } from 'react';
-import {
-  Container,
-  Overlay,
-  Button,
-  CloseSvg,
-  ModalContent,
-} from './Modal.styled.js';
+import { Container, Overlay } from './Modal.styled.js';
 
-export const Modal = ({ children, onCloseModal }) => {
+export const Modal = ({ children }) => {
+  const dispatch = useDispatch();
+
   const handleOverlayClick = (e) => {
     if (e.currentTarget === e.target) {
-      onCloseModal();
+      dispatch(closeModal());
     }
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === 'Escape') {
-        onCloseModal();
+        dispatch(closeModal());
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -27,20 +25,12 @@ export const Modal = ({ children, onCloseModal }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onCloseModal]);
+  }, [closeModal]);
 
   return ReactDOM.createPortal(
     <>
       <Overlay onClick={handleOverlayClick} />
-
-      <Container>
-        <ModalContent>
-          <Button type="button" onClick={onCloseModal}>
-            <CloseSvg />
-          </Button>
-          {children}
-        </ModalContent>
-      </Container>
+      <Container>{children}</Container>
     </>,
     document.getElementById('portal'),
   );

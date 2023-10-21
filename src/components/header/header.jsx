@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom/dist';
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [currentPage, setCurrentPage] = useState('Home');
 
@@ -18,14 +17,14 @@ const Header = () => {
     setMenuOpen(!isMenuOpen);
   };
 
-  const onOpenModal = () => {
-    setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-  const onCloseModal = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = 'auto';
-  };
+  // const onOpenModal = () => {
+  //   setIsModalOpen(true);
+  //   document.body.style.overflow = 'hidden';
+  // };
+  // const onCloseModal = () => {
+  //   setIsModalOpen(false);
+  //   document.body.style.overflow = 'auto';
+  // };
 
   useEffect(() => {
     const path = location.pathname;
@@ -122,7 +121,7 @@ const Header = () => {
             </svg>
           )}
         </button>
-        <AddFeedbackBtn onOpenModal={onOpenModal} />
+        <AddFeedbackBtn />
         <div className="user-box">
           <button className="btn" type="button">
             {windowWidth >= 768 ? (
@@ -157,8 +156,7 @@ const Header = () => {
           <img className="avi" src={nad} alt="user-AVi" />
         </div>
       </div>
-
-      <AddFeedbackModal open={isModalOpen} onCloseModal={onCloseModal} />
+      <AddFeedbackModal />
     </Section>
   );
 };

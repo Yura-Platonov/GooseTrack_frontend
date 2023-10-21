@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { closeModal } from '../../../redux/modal/modalSlice.js';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FaStar } from 'react-icons/fa';
@@ -19,15 +21,16 @@ import {
   faStarStyle,
 } from './FeedbackForm.styled.js';
 
-const FeedbackForm = ({ onCloseModal }) => {
+const FeedbackForm = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       rating: null,
       feedBack: '',
     },
     onSubmit: (values) => {
+      dispatch(closeModal());
       console.log(JSON.stringify(values, null, 2));
-      onCloseModal();
     },
 
     validationSchema: Yup.object().shape({
@@ -41,7 +44,12 @@ const FeedbackForm = ({ onCloseModal }) => {
   });
   return (
     <Container>
-      <CloseButton type="button" onClick={onCloseModal}>
+      <CloseButton
+        type="button"
+        onClick={() => {
+          dispatch(closeModal());
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           aria-label="Modal closed"
@@ -112,7 +120,12 @@ const FeedbackForm = ({ onCloseModal }) => {
         </ValidationMessage>
         <ButtonContainer>
           <SubmitButton type="submit">Save</SubmitButton>
-          <CancelButton type="button" onClick={onCloseModal}>
+          <CancelButton
+            type="button"
+            onClick={() => {
+              dispatch(closeModal());
+            }}
+          >
             Cancel
           </CancelButton>
         </ButtonContainer>
