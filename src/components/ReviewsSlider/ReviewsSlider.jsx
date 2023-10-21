@@ -19,17 +19,22 @@ export const ReviewsSlider = () => {
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 2,
-    slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 5000,
     cssEase: 'linear',
     responsive: [
       {
-        breakpoint: 1440,
+        breakpoint: 1439,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1441,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
     ],
@@ -42,7 +47,7 @@ export const ReviewsSlider = () => {
         <ContainerWrapper>
           <Slider {...settings}>
             {reviews.map((review) => (
-              <div key={review.id}>
+              <div key={review.id + review.name}>
                 <WrapperReviewCommon>
                   <WrapperName>
                     <AvatarReview src={avatar} alt={review.name} />
@@ -50,9 +55,9 @@ export const ReviewsSlider = () => {
                     <div>
                       <ReviewName>{review.name}</ReviewName>
                       <div>Rating</div>
+                      <ReviewComment> {review.comment}</ReviewComment>
                     </div>
                   </WrapperName>
-                  <ReviewComment> {review.comment}</ReviewComment>
                 </WrapperReviewCommon>
               </div>
             ))}
