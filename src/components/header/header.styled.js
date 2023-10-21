@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
 export const Section = styled.section`
-  margin-top: 24px;
+  /* margin-top: 24px;
   margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 20px; */
   width: 335px;
   /* display: flex; */
   .currentTitle {
@@ -55,9 +55,9 @@ export const Section = styled.section`
     line-height: 1.28;
   }
   @media (min-width: 768px) {
-    margin-top: 24px;
+    /* margin-top: 24px;
     margin-left: 20px;
-    margin-right: 20px;
+    margin-right: 20px; */
     width: 704px;
 
     .head-box {
