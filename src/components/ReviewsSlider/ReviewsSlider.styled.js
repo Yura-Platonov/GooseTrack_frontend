@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 export const Section = styled.section`
   margin-top: 64px;
+  margin-bottom: 118px;
 
   @media (min-width: 1440px) {
     margin-top: 100px;
@@ -45,10 +46,8 @@ export const WrapperReviewCommon = styled.div`
   padding: 24px;
   max-width: 100%;
   display: flex;
-
-  @media (min-width: 1440px) {
-    margin-right: 6px;
-  }
+  margin-right: 12px;
+  margin-left: 12px;
 `;
 
 export const WrapperName = styled.div`
@@ -78,4 +77,46 @@ export const ReviewComment = styled.p`
   line-height: 1.3;
   margin-top: 24px;
   color: rgba(17, 17, 17, 0.7);
+`;
+
+export const LeftArrowBtn = styled.button`
+  border: none;
+
+  background-color: transparent;
+  position: absolute;
+
+  top: 85%;
+  right: 27%;
+  @media (min-width: 768px) {
+    top: 105%;
+    left: 42%;
+  }
+  @media (min-width: 1440px) {
+    top: 110%;
+    right: 35%;
+  }
+`;
+
+export const RightArrowBtn = styled.button`
+  border: none;
+
+  background-color: transparent;
+  position: absolute;
+
+  top: 85%;
+  left: 27%;
+  @media (min-width: 768px) {
+    top: 105%;
+    left: 36%;
+  }
+
+  @media (min-width: 1440px) {
+    top: 110%;
+    left: 44%;
+  }
+`;
+
+export const Svg = styled.svg`
+  fill: transparent;
+  stroke: #000000;
 `;
