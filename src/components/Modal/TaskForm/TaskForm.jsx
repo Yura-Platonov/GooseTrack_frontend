@@ -15,7 +15,7 @@ import {
 import { BiPlus } from 'react-icons/bi';
 import { VscEdit } from 'react-icons/vsc';
 import { validationTaskSchema } from '../../../helpers/validationTaskSchema';
-import { addTask, editTask } from '../../../redux/task/operations';
+import { addTask, deleteTask, editTask, getTasksByMonth } from '../../../redux/task/operations';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -50,7 +50,32 @@ export const TaskForm = ({ onClose, task, status, ...props }) => {
       name: 'High',
     },
   ];
+// dispatch(deleteTask('65330c0f8f2a4831c04e5599'));
 
+  // dispatch(
+  //   editTask({
+  //     id: '65330c0f8f2a4831c04e5599',
+  //     task: {
+  //       title: 'tewstun',
+  //       start: '13:30',
+  //       end: '13:35',
+  //       priority: 'medium',
+  //       date: '2023-10-15',
+  //       category: 'to-do',
+  //     },
+  //   }),
+  // );
+
+  // dispatch(getTasksByMonth({year: 2023, month:10}));   
+
+//   dispatch(addTask({
+//     title: "adsasd",
+//     start: "13:30",
+//     end: "13:35",
+//     priority: "medium",
+//     date: "2023-10-15",
+//     category:"to-do"
+// }));
   const handleAdd = (values) => {
     if (!editMode) {
       dispatch(addTask({ ...values, category, date: currentDate }));

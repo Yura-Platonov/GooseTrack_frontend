@@ -1,6 +1,6 @@
 export const selectMonthTasks = ({ tasks }) => tasks.monthTasks;
 
-export const selectDayTasks = ({ tasks }) => tasks.dayTasks;
+// export const selectDayTasks = ({ tasks }) => tasks.dayTasks;
 
 export const selectErrorTasks = ({ tasks }) => tasks.error;
 

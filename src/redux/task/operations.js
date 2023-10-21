@@ -1,79 +1,85 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { instance } from '../auth/operations';
 
-axios.defaults.baseURL = 'https://goosetrack-backend-y622.onrender.com';
+
 
 export const getTasksByMonth = createAsyncThunk(
   'task/getTasksByMonth',
-  async ({ year, month }, { rejectedWithValue }) => {
+  async ({ year, month }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/task/month/${year}-${month}`);
+      const { data } = await instance.get(
+        `/api/task?year=${year}&month=${month}`,
+      );
       return data;
     } catch (error) {
-      return rejectedWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
 
-export const getTasksByDay = createAsyncThunk(
-  'task/getTasksByDay',
-  async ({ year, month, day }, { rejectedWithValue }) => {
-    try {
-      const { data } = await axios.get(`/api/task/day/${year}-${month}-${day}`);
-      return data;
-    } catch (error) {
-      return rejectedWithValue(error.message);
-    }
-  },
-);
 
 export const addTask = createAsyncThunk(
   'task/addTask',
-  async (task, { rejectedWithValue }) => {
+  async (task, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/api/task', task);
+      const response = await instance.post('/api/task', task);
       return response.data;
     } catch (error) {
-      return rejectedWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
 
 export const deleteTask = createAsyncThunk(
   'task/deleteTask',
-  async (id, { rejectedWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`/api/task/${id}`);
+      const response = await instance.delete(`/api/task/${id}`);
       return response.data;
     } catch (error) {
-      rejectedWithValue(error.message);
+      rejectWithValue(error.message);
     }
   },
 );
 
 export const editTask = createAsyncThunk(
   'task/editTask',
-  async ({ id, task }, { rejectedWithValue }) => {
+  async ({ id, task }, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`/api/task/${id}`, task);
+      const response = await instance.patch(`/api/task/${id}`, task);
       return response.data;
     } catch (error) {
-      rejectedWithValue(error.message);
+      rejectWithValue(error.message);
     }
   },
 );
 
-export const changeCategory = createAsyncThunk(
-  'task/changeCategory',
-  async ({ id, categoryData }, thunkAPI) => {
-    try {
-      const response = await axios.patch(
-        `/api/task/category/${id}`,
-        categoryData,
-      );
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  },
-);
+// export const changeCategory = createAsyncThunk(
+//   'task/changeCategory',
+//   async ({ id, categoryData }, thunkAPI) => {
+//     try {
+//       const response = await instance.patch(
+//         `/api/task/category/${id}`,
+//         categoryData,
+//       );
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   },
+// );
+
+
+// export const getTasksByDay = createAsyncThunk(
+//   'task/getTasksByDay',
+//   async ({ year, month, day }, { rejectedWithValue }) => {
+//     try {
+//       const { data } = await instance.get(
+//         `/api/task/day/${year}-${month}-${day}`,
+//       );
+//       return data;
+//     } catch (error) {
+//       return rejectedWithValue(error.message);
+//     }
+//   },
+// );

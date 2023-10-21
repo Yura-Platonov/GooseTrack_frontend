@@ -13,7 +13,7 @@ const initialState = {
   error: null,
 };
 
-export const reviewsSlice = createSlice({
+const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
   extraReducers: (builder) => {
@@ -85,3 +85,5 @@ export const reviewsSlice = createSlice({
       });
   },
 });
+
+export const feedbackReducer = reviewsSlice.reducer;

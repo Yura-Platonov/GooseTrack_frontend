@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { MenuContent, ArrowSvg, List, Button } from './Menu.styled';
 import { useDispatch } from 'react-redux';
-import { changeCategory } from '../../../redux/task/operations';
+// import { changeCategory } from '../../../redux/task/operations';
 import { TASK_STATUS } from '../../../constants/Status';
 import PropTypes from 'prop-types';
+import { editTask } from '../../../redux/task/operations';
 
 export const Menu = ({ task, toggleMenu }) => {
   useEffect(() => {
@@ -35,9 +36,13 @@ export const Menu = ({ task, toggleMenu }) => {
               type="button"
               onClick={() =>
                 dispatch(
-                  changeCategory({
+                  // changeCategory({
+                  //   id: task._id,
+                  //   categoryData: { category: status.name },
+                  // }),
+                  editTask({
                     id: task._id,
-                    categoryData: { category: status.name },
+                    dataTask: { category: status.name },
                   }),
                 )
               }
