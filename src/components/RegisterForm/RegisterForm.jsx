@@ -48,7 +48,7 @@ export const RegisterForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const {
-      name: { value: name },
+      username: { value: name },
       email: { value: email },
       password: { value: password },
     } = e.currentTarget;
