@@ -22,6 +22,8 @@ import {
 
 function LeftArrow(props) {
   const { onClick } = props;
+  console.log('Left click');
+
   return (
     <LeftArrowBtn onClick={onClick}>
       <Svg width="61" height="50">
@@ -33,6 +35,7 @@ function LeftArrow(props) {
 
 function RightArrow(props) {
   const { onClick } = props;
+  console.log('Right click');
   return (
     <RightArrowBtn onClick={onClick}>
       <Svg width="61" height="50">
@@ -54,6 +57,13 @@ export const ReviewsSlider = () => {
     autoplaySpeed: 5000,
     cssEase: 'linear',
     responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
       {
         breakpoint: 1439,
         settings: {

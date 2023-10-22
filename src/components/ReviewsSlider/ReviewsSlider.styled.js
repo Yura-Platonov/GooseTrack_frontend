@@ -40,7 +40,7 @@ export const ContainerWrapper = styled.div`
 
 export const WrapperReviewCommon = styled.div`
   height: 100%;
-  position: relative;
+  /* position: relative; */
   border: 1px solid rgba(17, 17, 17, 0.7);
   border-radius: 8px;
   padding: 24px;
@@ -84,6 +84,7 @@ export const LeftArrowBtn = styled.button`
 
   background-color: transparent;
   position: absolute;
+  z-index: 9999;
 
   top: 85%;
   right: 27%;
@@ -101,7 +102,9 @@ export const RightArrowBtn = styled.button`
   border: none;
 
   background-color: transparent;
+
   position: absolute;
+  z-index: 9999;
 
   top: 85%;
   left: 27%;
