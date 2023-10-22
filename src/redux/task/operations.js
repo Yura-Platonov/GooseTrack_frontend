@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from '../auth/operations';
-
-
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const getTasksByMonth = createAsyncThunk(
   'task/getTasksByMonth',
@@ -12,11 +11,11 @@ export const getTasksByMonth = createAsyncThunk(
       );
       return data;
     } catch (error) {
+      Notify.failure(`There are no tasks for the selected period`);
       return rejectWithValue(error.message);
     }
   },
 );
-
 
 export const addTask = createAsyncThunk(
   'task/addTask',
@@ -68,7 +67,6 @@ export const editTask = createAsyncThunk(
 //     }
 //   },
 // );
-
 
 // export const getTasksByDay = createAsyncThunk(
 //   'task/getTasksByDay',

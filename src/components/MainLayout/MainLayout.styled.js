@@ -1,21 +1,28 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   flex: 1;
-  width: 100%;
-  min-height: 100vh;
+  //width: 100%;
+  //min-height: 100vh;
   padding: 24px 20px 20px;
 
   transition: 250ms ease-in-out;
-  background-color: #F7F6F9;
+  background-color: #f7f6f9;
+
+  @media screen and (min-width: 375px) {
+    width: 375px;
+  }
 
   @media screen and (min-width: 768px) {
+    width: 768px;
     padding: 40px 32px 32px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1440px) {
+    width: 1151px;
     height: 700px;
 
     overflow-y: auto;
@@ -27,12 +34,12 @@ export const Box = styled.div`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #E7E5E5;
+    background-color: #e7e5e5;
     border-radius: 12px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #F2F2F2;
+    background-color: #f2f2f2;
     border-radius: 12px;
   }
 
