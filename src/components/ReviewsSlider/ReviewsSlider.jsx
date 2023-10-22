@@ -22,7 +22,6 @@ import {
 
 function LeftArrow(props) {
   const { onClick } = props;
-  console.log('Left click');
 
   return (
     <LeftArrowBtn onClick={onClick}>
@@ -35,7 +34,7 @@ function LeftArrow(props) {
 
 function RightArrow(props) {
   const { onClick } = props;
-  console.log('Right click');
+
   return (
     <RightArrowBtn onClick={onClick}>
       <Svg width="61" height="50">

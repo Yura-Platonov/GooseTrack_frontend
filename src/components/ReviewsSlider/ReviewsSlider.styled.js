@@ -28,6 +28,8 @@ export const Title = styled.h2`
 export const ContainerWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 150px;
+  position: relative;
   width: 335px;
 
   @media (min-width: 768px) {
@@ -39,13 +41,11 @@ export const ContainerWrapper = styled.div`
 `;
 
 export const WrapperReviewCommon = styled.div`
-  height: 100%;
-  /* position: relative; */
+  display: flex;
   border: 1px solid rgba(17, 17, 17, 0.7);
   border-radius: 8px;
   padding: 24px;
   max-width: 100%;
-  display: flex;
   margin-right: 12px;
   margin-left: 12px;
 `;
@@ -86,7 +86,7 @@ export const LeftArrowBtn = styled.button`
   position: absolute;
   z-index: 9999;
 
-  top: 85%;
+  top: 120%;
   right: 27%;
   @media (min-width: 768px) {
     top: 105%;
@@ -106,7 +106,7 @@ export const RightArrowBtn = styled.button`
   position: absolute;
   z-index: 9999;
 
-  top: 85%;
+  top: 120%;
   left: 27%;
   @media (min-width: 768px) {
     top: 105%;
