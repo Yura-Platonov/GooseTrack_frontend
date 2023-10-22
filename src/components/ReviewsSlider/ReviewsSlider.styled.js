@@ -81,41 +81,39 @@ export const ReviewComment = styled.p`
 
 export const LeftArrowBtn = styled.button`
   border: none;
+  display: flex;
+  padding: 10px 15px;
 
   background-color: transparent;
   position: absolute;
   z-index: 9999;
 
   top: 120%;
-  right: 27%;
+  right: 25%;
   @media (min-width: 768px) {
-    top: 105%;
-    left: 42%;
+    right: 35%;
   }
   @media (min-width: 1440px) {
-    top: 110%;
-    right: 35%;
+    right: 42%;
   }
 `;
 
 export const RightArrowBtn = styled.button`
   border: none;
-
+  display: flex;
   background-color: transparent;
-
+  padding: 10px 15px;
   position: absolute;
   z-index: 9999;
 
   top: 120%;
-  left: 27%;
+  left: 25%;
   @media (min-width: 768px) {
-    top: 105%;
-    left: 36%;
+    left: 35%;
   }
 
   @media (min-width: 1440px) {
-    top: 110%;
-    left: 44%;
+    left: 42%;
   }
 `;
 

@@ -25,7 +25,7 @@ function LeftArrow(props) {
 
   return (
     <LeftArrowBtn onClick={onClick}>
-      <Svg width="61" height="50">
+      <Svg width="50" height="8">
         <use href={`${rightArrow}#right-arrow`} />
       </Svg>
     </LeftArrowBtn>
@@ -37,7 +37,7 @@ function RightArrow(props) {
 
   return (
     <RightArrowBtn onClick={onClick}>
-      <Svg width="61" height="50">
+      <Svg width="50" height="8">
         <use href={`${leftArrow}#left-arrow`} />
       </Svg>
     </RightArrowBtn>
