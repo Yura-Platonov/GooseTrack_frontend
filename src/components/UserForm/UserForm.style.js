@@ -5,14 +5,15 @@ import DatePicker from 'react-datepicker';
 
 export const Container = styled.div`
   background-color: #f7f6f9;
-  height: 100vh;
-  padding-top: 95px;
+  //height: 100vh;
+  margin-top: -95px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 40px;
 
   @media (min-width: 768px) {
-    padding-top: 64px;
+    //padding-top: 64px;
+
     padding-left: 32px;
     padding-right: 32px;
     padding-bottom: 38px;
@@ -159,6 +160,11 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+<<<<<<< Updated upstream
+  padding-left: 14px;
+  padding-right: 14px;
+=======
+>>>>>>> Stashed changes
 
   @media (min-width: 768px) {
     /* margin-left: 175px;

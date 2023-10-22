@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import {
   Error,
   About,
@@ -16,31 +19,27 @@ import {
   Wrapper,
   DateInput,
   TickIcon,
-} from './UserProfile.style';
-
-import DatePicker from 'react-datepicker';
+} from './UserForm.styled.jsx';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import image from '../../images/avatar@2x.jpg';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useState } from 'react';
-//import { useSelector } from "react-redux";
-//import { BsFillPlusCircleFill } from "react-icons/bs";
+import image from '../../images/side-head/Elli.png';
+import { useSelector } from 'react-redux';
+// import { useSelector } from "react-redux";
+// import { BsFillPlusCircleFill } from "react-icons/bs";
 
-const UserProfile = () => {
+const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
-  //const userData = useSelector((state) => state.auth.user);
+  const userData = useSelector((state) => state.auth.user);
 
   const formik = useFormik({
     initialValues: {
-      avatar: '',
-      name: '',
-      email: '',
-      birthdate: '',
-      phone: '',
-      skype: '',
+      avatar: userData.avatar ? userData.avatar : '',
+      name: userData.name ? userData.name : '',
+      email: userData.email ? userData.email : '',
+      birthdate: userData.birthdate ? userData.birthdate : '',
+      phone: userData.phone ? userData.phone : '',
+      skype: userData.skype ? userData.skype : '',
     },
     validationSchema: Yup.object({
       avatar: Yup.mixed()
@@ -54,12 +53,14 @@ const UserProfile = () => {
       name: Yup.string()
         .min(2, 'Min 2 symbols')
         .max(16, 'Max 16 symbols')
-        .required('Required field'),
+        .required('Name is a requierd field'),
       email: Yup.string()
         .email('Wrong email address')
-        .required('Required field'),
-      birthdate: Yup.date('Choose a date').required('Required field'),
-      phone: Yup.number().min(7, 'Min 7 symbols').required('Required field'),
+        .required('Email is a requierd field'),
+      birthdate: Yup.date('Choose a date').required('Date is a requierd field'),
+      phone: Yup.number()
+        .min(7, 'Min 7 symbols')
+        .required('Phone is a requierd field'),
       skype: Yup.string().max(16).optional(),
     }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
@@ -113,14 +114,14 @@ const UserProfile = () => {
               <Section>
                 <StyledLabel htmlFor="birthdate">Birthday</StyledLabel>
                 {/* <StyledInput
-                    type="date"
-                    name="birthdate"
-                    id="birthdate"
-                    placeholder="25/08/1995"
-                    value={formik.values.birthdate}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  /> */}
+                        type="date"
+                        name="birthdate"
+                        id="birthdate"
+                        placeholder="25/08/1995"
+                        value={formik.values.birthdate}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      /> */}
 
                 <DateInput
                   showIcon
@@ -189,4 +190,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserForm;
