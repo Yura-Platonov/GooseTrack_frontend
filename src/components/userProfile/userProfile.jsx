@@ -44,24 +44,22 @@ const UserProfile = () => {
     },
     validationSchema: Yup.object({
       avatar: Yup.mixed()
-        .test('isFile', 'Невірний тип файлу', (value) => {
+        .test('isFile', 'Wrong file type', (value) => {
           if (!value) {
             return true;
           }
           return value instanceof File;
         })
-        .required('Оберіть файл'),
+        .required('Choose a file'),
       name: Yup.string()
-        .min(2, 'Мінімум 2 символи')
-        .max(16, 'Максимум 16 символів')
-        .required("Обов'язкове поле"),
+        .min(2, 'Min 2 symbols')
+        .max(16, 'Max 16 symbols')
+        .required('Required field'),
       email: Yup.string()
-        .email('Невірний email адрес')
-        .required("Обов'язкове поле"),
-      birthdate: Yup.date('Оберіть дату').required("Обов'язкове поле"),
-      phone: Yup.number()
-        .min(7, 'Не менш ніж 7 символів')
-        .required("Обов'язкове поле"),
+        .email('Wrong email address')
+        .required('Required field'),
+      birthdate: Yup.date('Choose a date').required('Required field'),
+      phone: Yup.number().min(7, 'Min 7 symbols').required('Required field'),
       skype: Yup.string().max(16).optional(),
     }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
@@ -90,6 +88,9 @@ const UserProfile = () => {
                 accept=".jpg, .jpeg, .png, .gif"
                 style={{ display: 'none' }}
               />
+              {formik.errors.file && formik.touched.file ? (
+                <Error>{formik.errors.file}</Error>
+              ) : null}
             </Section>
           </>
           <Fields>
