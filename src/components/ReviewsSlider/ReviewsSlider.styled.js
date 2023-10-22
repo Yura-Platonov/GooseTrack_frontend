@@ -28,6 +28,8 @@ export const Title = styled.h2`
 export const ContainerWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 150px;
+  position: relative;
   width: 335px;
 
   @media (min-width: 768px) {
@@ -39,13 +41,11 @@ export const ContainerWrapper = styled.div`
 `;
 
 export const WrapperReviewCommon = styled.div`
-  height: 100%;
-  position: relative;
+  display: flex;
   border: 1px solid rgba(17, 17, 17, 0.7);
   border-radius: 8px;
   padding: 24px;
   max-width: 100%;
-  display: flex;
   margin-right: 12px;
   margin-left: 12px;
 `;
@@ -81,38 +81,39 @@ export const ReviewComment = styled.p`
 
 export const LeftArrowBtn = styled.button`
   border: none;
+  display: flex;
+  padding: 10px 15px;
 
   background-color: transparent;
   position: absolute;
+  z-index: 9999;
 
-  top: 85%;
-  right: 27%;
+  top: 120%;
+  right: 25%;
   @media (min-width: 768px) {
-    top: 105%;
-    left: 42%;
+    right: 35%;
   }
   @media (min-width: 1440px) {
-    top: 110%;
-    right: 35%;
+    right: 42%;
   }
 `;
 
 export const RightArrowBtn = styled.button`
   border: none;
-
+  display: flex;
   background-color: transparent;
+  padding: 10px 15px;
   position: absolute;
+  z-index: 9999;
 
-  top: 85%;
-  left: 27%;
+  top: 120%;
+  left: 25%;
   @media (min-width: 768px) {
-    top: 105%;
-    left: 36%;
+    left: 35%;
   }
 
   @media (min-width: 1440px) {
-    top: 110%;
-    left: 44%;
+    left: 42%;
   }
 `;
 

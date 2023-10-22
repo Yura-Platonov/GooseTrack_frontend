@@ -22,9 +22,10 @@ import {
 
 function LeftArrow(props) {
   const { onClick } = props;
+
   return (
     <LeftArrowBtn onClick={onClick}>
-      <Svg width="61" height="50">
+      <Svg width="50" height="8">
         <use href={`${rightArrow}#right-arrow`} />
       </Svg>
     </LeftArrowBtn>
@@ -33,9 +34,10 @@ function LeftArrow(props) {
 
 function RightArrow(props) {
   const { onClick } = props;
+
   return (
     <RightArrowBtn onClick={onClick}>
-      <Svg width="61" height="50">
+      <Svg width="50" height="8">
         <use href={`${leftArrow}#left-arrow`} />
       </Svg>
     </RightArrowBtn>
@@ -54,6 +56,13 @@ export const ReviewsSlider = () => {
     autoplaySpeed: 5000,
     cssEase: 'linear',
     responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
       {
         breakpoint: 1439,
         settings: {
