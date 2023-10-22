@@ -25,12 +25,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import image from '../../images/side-head/Elli.png';
 import { useSelector } from 'react-redux';
-// import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../redux/auth/operations.js';
+import Notiflix from 'notiflix';
 // import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const userData = useSelector((state) => state.auth.user);
+
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -63,7 +67,15 @@ const UserForm = () => {
         .required('Phone is a requierd field'),
       skype: Yup.string().max(16).optional(),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: (values) => {
+      dispatch(updateUser(values)).then((res) => {
+        if (updateUser.fulfilled.match(res)) {
+          Notiflix.Notify.success('User data was successfully updated');
+        } else if (updateUser.rejected.match(res)) {
+          Notiflix.Notify.failure('Something went wrong...');
+        }
+      });
+    },
   });
 
   return (
