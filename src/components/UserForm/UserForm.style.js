@@ -160,11 +160,8 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-<<<<<<< Updated upstream
   padding-left: 14px;
   padding-right: 14px;
-=======
->>>>>>> Stashed changes
 
   @media (min-width: 768px) {
     /* margin-left: 175px;
