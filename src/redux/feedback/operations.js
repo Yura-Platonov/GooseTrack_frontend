@@ -1,19 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from '../auth/operations';
-
+import { instance } from '../auth/operations.js';
 
 export const getAllReviewsThunk = createAsyncThunk(
   'reviews/getAllReviewThunk',
-    async (_, { rejectWithValue }) => {
-        try {
-            const { data } = await instance.get('api/reviews/');
-        return data;
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get('api/reviews/');
+      return data;
     } catch (error) {
-        return rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
-
 
 export const getOwnReviewThunk = createAsyncThunk(
   'reviews/getOwnReviewThunk',
@@ -38,7 +36,6 @@ export const addOwnReviewThunk = createAsyncThunk(
     }
   },
 );
-
 
 export const editOwnReviewThunk = createAsyncThunk(
   'reviews/editOwnReviewThunk',

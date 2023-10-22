@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FaStar } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
+import useAddOwnReview from '../../../hooks/useAddOwnReview.js';
 import {
   RatingContainer,
   RatingTitle,
@@ -23,12 +24,15 @@ import {
 
 const FeedbackForm = () => {
   const dispatch = useDispatch();
+  const { handleSubmit } = useAddOwnReview();
+
   const formik = useFormik({
     initialValues: {
       rating: null,
       feedBack: '',
     },
     onSubmit: (values) => {
+      handleSubmit(values.feedBack, values.rating);
       dispatch(closeModal());
       console.log(JSON.stringify(values, null, 2));
     },
