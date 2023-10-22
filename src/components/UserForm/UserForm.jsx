@@ -19,7 +19,7 @@ import {
   Wrapper,
   DateInput,
   TickIcon,
-} from './UserForm.styled.jsx';
+} from './UserForm.style.jsx';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
