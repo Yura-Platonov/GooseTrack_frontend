@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import {
   Error,
   About,
@@ -16,55 +19,66 @@ import {
   Wrapper,
   DateInput,
   TickIcon,
-} from './UserProfile.style';
-
-import DatePicker from 'react-datepicker';
+} from './UserForm.styled.jsx';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import image from '../../images/avatar@2x.jpg';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useState } from 'react';
-//import { useSelector } from "react-redux";
-//import { BsFillPlusCircleFill } from "react-icons/bs";
+import image from '../../images/side-head/Elli.png';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../redux/auth/operations.js';
+import Notiflix from 'notiflix';
+// import { BsFillPlusCircleFill } from "react-icons/bs";
 
-const UserProfile = () => {
+const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
-  //const userData = useSelector((state) => state.auth.user);
+  const userData = useSelector((state) => state.auth.user);
+
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
-      avatar: '',
-      name: '',
-      email: '',
-      birthdate: '',
-      phone: '',
-      skype: '',
+      avatar: userData ? userData.avatar : '',
+      name: userData ? userData.name : '',
+      email: userData ? userData.email : '',
+      birthdate: userData ? userData.birthdate : '',
+      phone: userData ? userData.phone : '',
+      skype: userData ? userData.skype : '',
     },
     validationSchema: Yup.object({
       avatar: Yup.mixed()
-        .test('isFile', 'Невірний тип файлу', (value) => {
+        .test('isFile', 'Wrong file type', (value) => {
           if (!value) {
             return true;
           }
           return value instanceof File;
         })
-        .required('Оберіть файл'),
+        .required('Choose a file'),
       name: Yup.string()
-        .min(2, 'Мінімум 2 символи')
-        .max(16, 'Максимум 16 символів')
-        .required("Обов'язкове поле"),
+        .min(2, 'Min 2 symbols')
+        .max(16, 'Max 16 symbols')
+        .required('Name is a required field'),
       email: Yup.string()
-        .email('Невірний email адрес')
-        .required("Обов'язкове поле"),
-      birthdate: Yup.date('Оберіть дату').required("Обов'язкове поле"),
+        .email('Wrong email address')
+        .required('Email is a required field'),
+      birthdate: Yup.date('Choose a date').required(
+        'Birthdate is a required field',
+      ),
       phone: Yup.number()
-        .min(7, 'Не менш ніж 7 символів')
-        .required("Обов'язкове поле"),
+        .min(7, 'Min 7 symbols')
+        .required('Phone is a required field'),
       skype: Yup.string().max(16).optional(),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: (values) =>
+      dispatch(updateUser(values)).then((res) => {
+        if (updateUser.fulfilled.match(res)) {
+          Notiflix.Notify.success('User data successfully changed and updated');
+        } else if (updateUser.rejected.match(res)) {
+          Notiflix.Notify.failure(
+            'Something went wrong, please try again later...',
+          );
+        }
+      }),
   });
 
   return (
@@ -90,6 +104,9 @@ const UserProfile = () => {
                 accept=".jpg, .jpeg, .png, .gif"
                 style={{ display: 'none' }}
               />
+              {formik.errors.file && formik.touched.file ? (
+                <Error>{formik.errors.file}</Error>
+              ) : null}
             </Section>
           </>
           <Fields>
@@ -112,14 +129,14 @@ const UserProfile = () => {
               <Section>
                 <StyledLabel htmlFor="birthdate">Birthday</StyledLabel>
                 {/* <StyledInput
-                    type="date"
-                    name="birthdate"
-                    id="birthdate"
-                    placeholder="25/08/1995"
-                    value={formik.values.birthdate}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  /> */}
+                        type="date"
+                        name="birthdate"
+                        id="birthdate"
+                        placeholder="25/08/1995"
+                        value={formik.values.birthdate}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      /> */}
 
                 <DateInput
                   showIcon
@@ -188,4 +205,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserForm;

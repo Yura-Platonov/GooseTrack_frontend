@@ -2,17 +2,14 @@ import { styled } from 'styled-components';
 
 export const Section = styled.section`
   display: flex;
+  /* flex: 1; */
   flex-direction: column;
   position: fixed;
   width: 185px;
   background-color: var(--white);
   z-index: 2;
-  .container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-  }
+  height: 100%;
+  background-color: #fff;
 
   .logo-box {
     display: flex;
@@ -55,6 +52,9 @@ export const Section = styled.section`
     border: none;
   }
   .button-out {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,6 +106,9 @@ export const Section = styled.section`
     }
 
     .button-out {
+      position: absolute;
+      bottom: 0;
+      left: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -126,9 +129,12 @@ export const Section = styled.section`
   }
   @media (min-width: 1440px) {
     position: relative;
+    overflow: hidden;
     width: 241px;
     margin-top: 32px;
     margin-left: 24px;
+    max-height: 100vh;
+    min-height: calc(100vh - 60px);
 
     .logo-box {
       display: flex;
@@ -153,6 +159,9 @@ export const Section = styled.section`
       margin-left: 10px;
     }
     .button-out {
+      position: absolute;
+      bottom: 0;
+      left: 0;
       display: flex;
       justify-content: center;
       align-items: center;

@@ -4,27 +4,48 @@ import { Container } from '../components/calendar/CalendarPage.styled';
 import CalendarToolbar from '../components/calendar/toolbar/CalendarToolbar';
 import ChoosedMonth from '../components/calendar/choosedMonth/ChoosedMonth';
 import ChoosedDay from '../components/calendar/choosedDay/ChoosedDay';
+import { format } from 'date-fns';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectMonthTasks } from '../redux/task/selectors';
+import { getTasksByMonth } from '../redux/task/operations';
 
 const CalendarPage = () => {
-  const today = new Date();
-  const [selectedDate, setSelectedDate] = useState(today);
+  const today = new Date(); //Сьогоднішня дата
+  const [selectedDate, setSelectedDate] = useState(today); //Обрана дата
+  let selectedMonth = selectedDate.getMonth() + 1; //Місяць обраної дати
+  let selectedYear = selectedDate.getFullYear(); //Рік обраної дати
   const [typeDay, setType] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const tasks = useSelector(selectMonthTasks);
   const { currentDate } = useParams();
 
+  //console.log(selectedDate);
+  //console.log(selectedMonth);
+  // const date = new Date(Number(currentDate));
+
+  console.log(tasks);
+
   useEffect(() => {
-    //if (today !== currentDate) setSelectedDate(currentDate);
     if (!typeDay) {
-      navigate(
-        `/calendar/month/${selectedDate.getTime().toString().slice(0, -5)}`,
-      );
+      navigate(`/calendar/month/${selectedDate.getTime()}`);
     } else if (typeDay) {
-      navigate(
-        `/calendar/day/${selectedDate.getTime().toString().slice(0, -5)}`,
-      );
+      navigate(`/calendar/day/${selectedDate.getTime()}`);
     }
-  }, [selectedDate, typeDay, navigate]);
+
+    //Запит на таски, поки що так
+    if (tasks.length === 0 || today.getMonth() + 1 !== selectedMonth) {
+      dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
+    } else if (tasks.length !== 0 && today.getMonth() + 1 === selectedMonth) {
+      dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
+    } else if (
+      tasks.length !== 0 &&
+      new Date(tasks.tasks[0].date).getMonth() + 1 === selectedMonth
+    ) {
+      return;
+    }
+  }, [selectedDate]);
 
   return (
     <Container>

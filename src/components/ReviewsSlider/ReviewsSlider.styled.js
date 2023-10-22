@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 export const Section = styled.section`
   margin-top: 64px;
+  margin-bottom: 118px;
 
   @media (min-width: 1440px) {
     margin-top: 100px;
@@ -27,6 +28,8 @@ export const Title = styled.h2`
 export const ContainerWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 150px;
+  position: relative;
   width: 335px;
 
   @media (min-width: 768px) {
@@ -38,17 +41,13 @@ export const ContainerWrapper = styled.div`
 `;
 
 export const WrapperReviewCommon = styled.div`
-  height: 100%;
-  position: relative;
+  display: flex;
   border: 1px solid rgba(17, 17, 17, 0.7);
   border-radius: 8px;
   padding: 24px;
   max-width: 100%;
-  display: flex;
-
-  @media (min-width: 1440px) {
-    margin-right: 6px;
-  }
+  margin-right: 12px;
+  margin-left: 12px;
 `;
 
 export const WrapperName = styled.div`
@@ -78,4 +77,47 @@ export const ReviewComment = styled.p`
   line-height: 1.3;
   margin-top: 24px;
   color: rgba(17, 17, 17, 0.7);
+`;
+
+export const LeftArrowBtn = styled.button`
+  border: none;
+  display: flex;
+  padding: 10px 15px;
+
+  background-color: transparent;
+  position: absolute;
+  z-index: 9999;
+
+  top: 120%;
+  right: 25%;
+  @media (min-width: 768px) {
+    right: 35%;
+  }
+  @media (min-width: 1440px) {
+    right: 42%;
+  }
+`;
+
+export const RightArrowBtn = styled.button`
+  border: none;
+  display: flex;
+  background-color: transparent;
+  padding: 10px 15px;
+  position: absolute;
+  z-index: 9999;
+
+  top: 120%;
+  left: 25%;
+  @media (min-width: 768px) {
+    left: 35%;
+  }
+
+  @media (min-width: 1440px) {
+    left: 42%;
+  }
+`;
+
+export const Svg = styled.svg`
+  fill: transparent;
+  stroke: #000000;
 `;
