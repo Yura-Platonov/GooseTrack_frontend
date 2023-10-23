@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import PropTypes from 'prop-types';
 import {
   format,
   startOfWeek,
@@ -42,3 +43,8 @@ const DayCalendarHead = ({ selectedDate, setSelectedDate }) => {
 };
 
 export default DayCalendarHead;
+
+DayCalendarHead.propTypes = {
+  selectedDate: PropTypes.instanceOf(Date),
+  setSelectedDate: PropTypes.func.isRequired,
+};

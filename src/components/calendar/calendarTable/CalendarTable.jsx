@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   startOfMonth,
   endOfMonth,
@@ -12,7 +12,13 @@ import {
   addDays,
   isSameDay,
 } from 'date-fns';
+import PropTypes from 'prop-types';
+
 import { selectMonthTasks } from '../../../redux/task/selectors';
+import { selectIsOpen } from '../../../redux/modal/selectors';
+import { openModal } from '../../../redux/modal/modalSlice';
+import { TaskModal } from '../../Modal/TaskModal/TaskModal';
+import { default as Modal } from '../../Modal/Modal';
 import {
   ContainerGrid,
   ItemWrapper,
@@ -24,6 +30,8 @@ import {
 
 const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
   const tasks = useSelector(selectMonthTasks);
+  const isOpen = useSelector(selectIsOpen);
+  const dispatch = useDispatch();
 
   const startMonth = startOfMonth(selectedDate);
   const endMonth = endOfMonth(selectedDate);
@@ -72,6 +80,9 @@ const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
                         key={_id}
                         high={priority === 'high' ? 1 : 0}
                         medium={priority === 'medium' ? 1 : 0}
+                        onClick={() => {
+                          dispatch(openModal());
+                        }}
                       >
                         {title}
                       </ItemTask>
@@ -81,8 +92,19 @@ const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
           </ItemWrapper>
         );
       })}
+      {isOpen && (
+        <Modal>
+          <TaskModal />
+        </Modal>
+      )}
     </ContainerGrid>
   );
 };
 
 export default CalendarTable;
+
+CalendarTable.propTypes = {
+  selectedDate: PropTypes.instanceOf(Date),
+  setSelectedDate: PropTypes.func.isRequired,
+  setType: PropTypes.func.isRequired,
+};

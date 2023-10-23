@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   TitleContainer,
   Title,
@@ -17,3 +18,8 @@ const ColumnHeadBar = ({ title, handleShowModal }) => {
 };
 
 export default ColumnHeadBar;
+
+ColumnHeadBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  //handleShowModal: PropTypes.func.isRequired,
+};
