@@ -26,9 +26,15 @@ import { closeModal } from '../../../redux/modal/modalSlice.js';
 import { useParams } from 'react-router-dom';
 import { parse } from 'date-fns';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
 export const TaskForm = ({ task, status, ...props }) => {
   const dispatch = useDispatch();
+
+  const [enterText, setEnterText] = useState('');
+  const [start, setStart] = useState('10:00');
+  const [end, setEnd] = useState('10:00');
+  const [priorities, setPriorities] = useState('Low');
 
   const editMode = props?.editMode || false;
   const category = status || 'to-do';
@@ -44,10 +50,11 @@ export const TaskForm = ({ task, status, ...props }) => {
   const formattedDate = `${year}-${month} -${day}`;
 
   const initialValues = {
-    title: task?.title || '',
-    start: task?.start || '',
-    end: task?.end || '',
-    priority: task?.priority || 'low',
+    title: enterText,
+    start: start.slice(0, 5),
+    end: end.slice(0, 5),
+    priority: priorities.toLowerCase(),
+    category,
   };
 
   const PRIORITIES = [
@@ -92,7 +99,7 @@ export const TaskForm = ({ task, status, ...props }) => {
   // }));
   const handleAdd = (values) => {
     if (!editMode) {
-      dispatch(addTask({ ...values, category, date: formattedDate }));
+      dispatch(addTask({ ...values, date: formattedDate }));
       dispatch(closeModal());
     } else {
       dispatch(
@@ -194,13 +201,7 @@ export const TaskForm = ({ task, status, ...props }) => {
 
             <Wrapper>
               {!editMode ? (
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  onClick={() => {
-                    dispatch(handleAdd());
-                  }}
-                >
+                <Button type="submit">
                   <BiPlus />
                   Add
                 </Button>
