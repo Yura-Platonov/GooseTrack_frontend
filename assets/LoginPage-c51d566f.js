@@ -1,4 +1,4 @@
-import{s as e,F as b,p as w,E as v,q as f,t as p,b as j,r as y,j as i,v as k,w as E}from"./index-e2a716a5.js";import{S,a as z,b as P,A as T}from"./AuthNavigate-e1ed9a63.js";const I=e(b)`
+import{s as e,F as b,q as w,E as v,t as f,v as p,b as j,r as y,j as i,w as k,x as E}from"./index-a86ea249.js";import{S,a as z,b as P,A as T}from"./AuthNavigate-8411f2da.js";const I=e(b)`
   display: flex;
   flex-direction: column;
   padding: 40px 24px;
@@ -75,7 +75,7 @@ import{s as e,F as b,p as w,E as v,q as f,t as p,b as j,r as y,j as i,v as k,w a
     top: 50%;
     transform: translateY(-50%);
   }
-`,c=e(w)`
+`,x=e(w)`
   box-sizing: border-box;
   width: 100%;
   padding: 14px;
@@ -166,7 +166,7 @@ import{s as e,F as b,p as w,E as v,q as f,t as p,b as j,r as y,j as i,v as k,w a
     transform: translateY(-2px);
     box-shadow: var(--shadow-btn);
   }
-`,x=e(v)`
+`,c=e(v)`
   margin-left: 18px;
   margin-top: 8px;
 
@@ -177,7 +177,7 @@ import{s as e,F as b,p as w,E as v,q as f,t as p,b as j,r as y,j as i,v as k,w a
   right: 12px;
   top: 18px;
   cursor: pointer;
-`,q=f().shape({email:p().email("This is an ERROR email").matches(/^[a-zA-Z0-9@.]+$/,"Email must contain only Latin characters").required("Email is required"),password:p().required("Password is required").min(6,"Password must be at least 6 characters long").matches(/^\S*$/,"Password must not contain spaces")}),N=()=>{const m=j(),[n,h]=y.useState(!1),g=a=>{a.preventDefault();const{email:{value:o},password:{value:r}}=a.currentTarget;m(E({email:o,password:r})),a.currentTarget.reset()},u=()=>{h(!n)};return i.jsx(k,{initialValues:{email:"",password:""},validationSchema:q,children:({isSubmitting:a,values:o,errors:r,touched:d})=>{const t=s=>d[s]&&r[s]?"is-invalid":d[s]?"is-valid":"";return i.jsxs(I,{onSubmit:g,children:[i.jsx($,{children:"Log In"}),i.jsxs(l,{className:t("email"),children:["Email",i.jsx(R,{children:i.jsx(c,{className:t("email"),type:"email",name:"email",placeholder:"Enter email",value:o.email})}),t("email")==="is-valid"&&i.jsx("p",{children:"This is a CORRECT email"}),i.jsx(x,{name:"email",component:"div"})]}),i.jsxs(l,{className:t("password"),children:["Password",i.jsxs(F,{children:[i.jsx(c,{type:n?"text":"password",className:t("password"),name:"password",placeholder:"Enter password",value:o.password}),i.jsx(L,{type:"button",onClick:u,children:n?i.jsx(S,{}):i.jsx(z,{})})]}),t("password")==="is-valid"&&i.jsx("p",{children:"This is a CORRECT password"}),i.jsx(x,{name:"password",component:"div"})]}),i.jsxs(C,{type:"submit",disabled:a,children:[a?"Submitting":"Log in",i.jsx(P,{style:{width:"18px",height:"18px"}})]})]})}})},_="/GooseTrack_frontend/assets/desktop_login-81950932.png",A="/GooseTrack_frontend/assets/desktop_login@2x-15355ed2.png",O=e.div`
+`,q=f().shape({email:p().email("This is an ERROR email").matches(/^[a-zA-Z0-9@.]+$/,"Email must contain only Latin characters").required("Email is required"),password:p().required("Password is required").min(6,"Password must be at least 6 characters long").matches(/^\S*$/,"Password must not contain spaces")}),N=()=>{const m=j(),[n,h]=y.useState(!1),g=a=>{a.preventDefault();const{email:{value:o},password:{value:r}}=a.currentTarget;m(E({email:o,password:r})),a.currentTarget.reset()},u=()=>{h(!n)};return i.jsx(k,{initialValues:{email:"",password:""},validationSchema:q,children:({isSubmitting:a,values:o,errors:r,touched:d})=>{const t=s=>d[s]&&r[s]?"is-invalid":d[s]?"is-valid":"";return i.jsxs(I,{onSubmit:g,children:[i.jsx($,{children:"Log In"}),i.jsxs(l,{className:t("email"),children:["Email",i.jsx(R,{children:i.jsx(x,{className:t("email"),type:"email",name:"email",placeholder:"Enter email",value:o.email})}),t("email")==="is-valid"&&i.jsx("p",{children:"This is a CORRECT email"}),i.jsx(c,{name:"email",component:"div"})]}),i.jsxs(l,{className:t("password"),children:["Password",i.jsxs(F,{children:[i.jsx(x,{type:n?"text":"password",className:t("password"),name:"password",placeholder:"Enter password",value:o.password}),i.jsx(L,{type:"button",onClick:u,children:n?i.jsx(S,{}):i.jsx(z,{})})]}),t("password")==="is-valid"&&i.jsx("p",{children:"This is a CORRECT password"}),i.jsx(c,{name:"password",component:"div"})]}),i.jsxs(C,{type:"submit",disabled:a,children:[a?"Submitting":"Log in",i.jsx(P,{style:{width:"18px",height:"18px"}})]})]})}})},_="/GooseTrack_frontend/assets/desktop_login-81950932.png",A="/GooseTrack_frontend/assets/desktop_login@2x-15355ed2.png",O=e.div`
   position: relative;
   min-height: 100vh;
 
