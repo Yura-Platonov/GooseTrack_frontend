@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import { useSelector } from 'react-redux';
 import {
   startOfMonth,
   endOfMonth,
@@ -11,9 +12,19 @@ import {
   addDays,
   isSameDay,
 } from 'date-fns';
-import { ContainerGrid, ItemLink, ItemDate } from './CalendarTable.styled';
+import { selectMonthTasks } from '../../../redux/task/selectors';
+import {
+  ContainerGrid,
+  ItemWrapper,
+  ItemLink,
+  ItemDate,
+  TasksWrapper,
+  ItemTask,
+} from './CalendarTable.styled';
 
 const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
+  const tasks = useSelector(selectMonthTasks);
+
   const startMonth = startOfMonth(selectedDate);
   const endMonth = endOfMonth(selectedDate);
   const startDay = startOfWeek(startMonth, { weekStartsOn: 1 });
@@ -31,21 +42,43 @@ const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
     <ContainerGrid>
       {daysInMonth.map((day, id = useId()) => {
         return (
-          <ItemLink
-            to="day/:currentDate"
-            key={id}
-            onClick={() => {
-              setSelectedDate(day);
-              setType(true);
-            }}
-          >
-            <ItemDate
-              currentMonth={isSameMonth(day, selectedDate) ? true : false}
-              currentDay={isSameDay(day, selectedDate) ? true : false}
+          <ItemWrapper key={id}>
+            <ItemLink
+              to="day/:currentDate"
+              key={id}
+              onClick={() => {
+                setSelectedDate(day);
+                setType(true);
+              }}
             >
-              {format(day, 'd')}
-            </ItemDate>
-          </ItemLink>
+              <ItemDate
+                currentMonth={isSameMonth(day, selectedDate) ? true : false}
+                currentDay={isSameDay(day, selectedDate) ? true : false}
+              >
+                {format(day, 'd')}
+              </ItemDate>
+            </ItemLink>
+
+            <TasksWrapper>
+              {tasks.length !== 0 &&
+                tasks.tasks.map(({ _id, date, title, priority }) => {
+                  if (
+                    new Date(date).getFullYear() === day.getFullYear() &&
+                    new Date(date).getMonth() === day.getMonth() &&
+                    new Date(date).getDate() === day.getDate()
+                  )
+                    return (
+                      <ItemTask
+                        key={_id}
+                        high={priority === 'high' ? 1 : 0}
+                        medium={priority === 'medium' ? 1 : 0}
+                      >
+                        {title}
+                      </ItemTask>
+                    );
+                })}
+            </TasksWrapper>
+          </ItemWrapper>
         );
       })}
     </ContainerGrid>
