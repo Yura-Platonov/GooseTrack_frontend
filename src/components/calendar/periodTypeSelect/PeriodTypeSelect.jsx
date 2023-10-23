@@ -1,16 +1,19 @@
+import PropTypes from 'prop-types';
 import { TypeContainer, MonthBtn, DayBtn } from './PeriodTypeSelect.styled';
 
-const PeriodTypeSelect = ({ typeDateDay, setType }) => {
+const PeriodTypeSelect = ({ typeDay, setType }) => {
   return (
     <TypeContainer>
-      <MonthBtn active = {!typeDateDay}
+      <MonthBtn
+        active={!typeDay}
         onClick={() => {
           setType(false);
         }}
       >
         Month
       </MonthBtn>
-      <DayBtn active = {typeDateDay}
+      <DayBtn
+        active={typeDay}
         onClick={() => {
           setType(true);
         }}
@@ -22,3 +25,8 @@ const PeriodTypeSelect = ({ typeDateDay, setType }) => {
 };
 
 export default PeriodTypeSelect;
+
+PeriodTypeSelect.propTypes = {
+  typeDay: PropTypes.bool.isRequired,
+  setType: PropTypes.func.isRequired,
+};
