@@ -1,11 +1,11 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import avatar from '../../images/ReviewSlider/avatarReview.jpg';
+// import avatar from '../../images/ReviewSlider/avatarReview.jpg';
 import leftArrow from '../../images/ReviewSlider/sprite-arrow.svg';
 import rightArrow from '../../images/ReviewSlider/sprite-arrow.svg';
 
-import reviews from '../../components/ReviewsSlider/reviews.json';
+// import reviews from '../../components/ReviewsSlider/reviews.json';
 import {
   AvatarReview,
   ContainerWrapper,
@@ -17,12 +17,17 @@ import {
   Svg,
   Title,
   WrapperName,
+  WrapperRatingName,
   WrapperReviewCommon,
 } from './ReviewsSlider.styled';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllReviewsThunk } from '../../redux/feedback/operationsF';
+import { Rating, Star } from '@smastrom/react-rating';
+
+import '@smastrom/react-rating/style.css';
+import { useState } from 'react';
 
 function LeftArrow(props) {
   const { onClick } = props;
@@ -84,8 +89,16 @@ export const ReviewsSlider = () => {
     ],
   };
 
+  const myStyles = {
+    itemShapes: Star,
+    activeFillColor: '#ffb700',
+    inactiveFillColor: '#fbf1a9',
+  };
+
   const dispatch = useDispatch();
   const reviewData = useSelector((state) => state.reviews.reviews);
+  // console.log(reviewData);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     dispatch(getAllReviewsThunk());
@@ -101,13 +114,18 @@ export const ReviewsSlider = () => {
               <div key={review.id + review.name}>
                 <WrapperReviewCommon>
                   <WrapperName>
-                    <AvatarReview src={avatar} alt={review.name} />
+                    <AvatarReview src={review.avatar} alt={review.name} />
 
-                    <div>
+                    <WrapperRatingName>
                       <ReviewName>{review.name}</ReviewName>
-                      <div>Rating</div>
+                      <Rating
+                        value={review.stars}
+                        onChange={(newRating) => setRating(newRating)}
+                        itemStyles={myStyles}
+                        style={{ maxWidth: 110 }}
+                      />
                       <ReviewComment> {review.comment}</ReviewComment>
-                    </div>
+                    </WrapperRatingName>
                   </WrapperName>
                 </WrapperReviewCommon>
               </div>
