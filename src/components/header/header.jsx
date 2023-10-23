@@ -59,17 +59,20 @@ const Header = () => {
         <Sidebar toggleMenu={toggleMenu} />
       ) : null}
       <div className="head-box">
-        <button className="btn burgerBtn" type="button" onClick={toggleMenu}>
-          {windowWidth >= 1440 ? (
-            <span className="currentTitle">{currentPage}</span>
-          ) : windowWidth >= 768 ? (
-            barSvg1
-          ) : (
-            barSvg2
-          )}
-        </button>
-        <AddFeedbackBtn />
+        {windowWidth >= 1440 ? (
+          <span className="currentTitle">{currentPage}</span>
+        ) : (
+          <button className="btn burgerBtn" type="button" onClick={toggleMenu}>
+            {windowWidth >= 1440
+              ? null
+              : windowWidth >= 768
+              ? barSvg1
+              : barSvg2}
+          </button>
+        )}
+
         <div className="user-box">
+          <AddFeedbackBtn />
           <button className="btn" type="button">
             {windowWidth >= 768 ? themeSvg1 : themeSvg2}
           </button>
