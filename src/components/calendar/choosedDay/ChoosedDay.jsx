@@ -1,9 +1,9 @@
+import DayCalendarHead from '../dayCalendarHead/DayCalendarHead';
+import { ColumnsContainer } from './ChoosedDay.styled';
+import TasksColumn from '../tasksColumn/TasksColumn';
+
 import { useId } from 'react';
 import PropTypes from 'prop-types';
-
-import DayCalendarHead from '../dayCalendarHead/DayCalendarHead';
-import TasksColumn from '../tasksColumn/TasksColumn';
-import { ColumnsContainer } from './ChoosedDay.styled';
 
 const ChoosedDay = ({ selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
