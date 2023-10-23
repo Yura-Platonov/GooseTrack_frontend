@@ -7,21 +7,21 @@ import AddTaskBtn from '../addTaskBtn/AddTaskBtn';
 import { ColumnContainer } from './TasksColumn.styled';
 import { TaskModal } from '../../Modal/TaskModal/TaskModal';
 import { default as Modal } from '../../Modal/Modal';
-import { ColumnsTasksList } from '../tasksColumnsList/TasksColumnsList';
+import { ColumnsTasksList } from '../tasksColumnsList/TasksColumnsList.jsx';
 
-const TasksColumn = ({ getTypeOfColumn, title, tasks = [], getTask }) => {
+const TasksColumn = ({ tasks, title, selectedDate }) => {
   const isOpen = useSelector(selectIsOpen);
 
   return (
     <>
       <ColumnContainer>
-        <ColumnHeadBar
-          title={title}
-          getTypeOfColumn={getTypeOfColumn}
+        <ColumnHeadBar selectedDate={selectedDate} title={title} />
+        <ColumnsTasksList
+          selectedDate={selectedDate}
           tasks={tasks}
+          title={title}
         />
-        <ColumnsTasksList tasks={tasks} getTask={getTask} />
-        <AddTaskBtn getTypeOfColumn={getTypeOfColumn} title={title} />
+        <AddTaskBtn selectedDate={selectedDate} title={title} />
       </ColumnContainer>
       {isOpen && (
         <Modal>

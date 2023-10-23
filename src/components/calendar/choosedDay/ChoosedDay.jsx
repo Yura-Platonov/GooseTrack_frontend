@@ -5,7 +5,7 @@ import TasksColumn from '../tasksColumn/TasksColumn';
 import { useId } from 'react';
 import PropTypes from 'prop-types';
 
-const ChoosedDay = ({ selectedDate, setSelectedDate }) => {
+const ChoosedDay = ({ tasks = [], getTask, selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
 
   return (
@@ -20,7 +20,8 @@ const ChoosedDay = ({ selectedDate, setSelectedDate }) => {
             <TasksColumn
               key={useId()}
               title={columnTitle}
-              collection={''}
+              tasks={tasks}
+              getTask={getTask}
             ></TasksColumn>
           );
         })}
