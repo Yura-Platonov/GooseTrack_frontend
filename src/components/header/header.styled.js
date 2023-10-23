@@ -87,7 +87,7 @@ export const Section = styled.section`
     }
   }
   @media (min-width: 1440px) {
-    width: 1151px;
+    width: 1087px;
     .head-box {
       /* width: 1151px; */
       align-items: center;
