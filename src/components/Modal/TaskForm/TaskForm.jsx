@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import {
   RadioButtonInput,
   Wrapper,
-  Button,
+  Btn,
   ButtonCancel,
   Span,
   Label,
@@ -34,7 +34,7 @@ export const TaskForm = ({ task, status, ...props }) => {
   const [enterText, setEnterText] = useState('');
   const [start, setStart] = useState('10:00');
   const [end, setEnd] = useState('10:00');
-  const [priorities, setPriorities] = useState('Low');
+  const [priorities, setPriorities] = useState('low');
 
   const editMode = props?.editMode || false;
   const category = status || 'to-do';
@@ -201,15 +201,20 @@ export const TaskForm = ({ task, status, ...props }) => {
 
             <Wrapper>
               {!editMode ? (
-                <Button type="submit">
+                <Btn
+                  type="button"
+                  onClick={() => {
+                    dispatch(addTask(values));
+                  }}
+                >
                   <BiPlus />
                   Add
-                </Button>
+                </Btn>
               ) : (
-                <Button type="submit" disabled={isSubmitting}>
+                <Btn type="button" disabled={isSubmitting}>
                   <VscEdit />
                   Edit
-                </Button>
+                </Btn>
               )}
               <ButtonCancel
                 type="button"

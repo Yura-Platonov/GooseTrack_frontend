@@ -85,7 +85,7 @@ export const Errors = styled.span`
   }
 `;
 
-export const Button = styled.button`
+export const Btn = styled.button`
   width: 100%;
   height: 42px;
   display: flex;
