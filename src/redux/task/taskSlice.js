@@ -11,7 +11,6 @@ import { logout } from '../auth/operations';
 
 const initialState = {
   monthTasks: [],
-  // dayTasks: [],
   isLoading: false,
   error: null,
 };
@@ -23,18 +22,13 @@ const tasksSlice = createSlice({
     builder
       .addCase(getTasksByMonth.fulfilled, (state, { payload }) => {
         state.monthTasks = payload;
+        console.log(payload);
       })
-      // .addCase(getTasksByDay.fulfilled, (state, { payload }) => {
-      //   state.dayTasks = payload;
-      // })
       .addCase(addTask.fulfilled, (state, { payload }) => {
-        // state.dayTasks.push(payload);
-        state.monthTasks.push(payload); // state.mounthTasks = payload - повертається обєкт таска
+        state.monthTasks.tasks.push(payload); 
+        
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        // state.dayTasks = state.dayTasks.filter(
-        //   (task) => task._id !== payload.id,
-        // );
         state.monthTasks = state.monthTasks.filter(
           (task) => task._id !== payload.id,
         );
@@ -44,28 +38,16 @@ const tasksSlice = createSlice({
           task._id === payload._id ? payload : task,
         );
       })
-      // .addCase(editTask.fulfilled, (state, { payload }) => {
-      //   state.dayTasks = state.dayTasks.map((task) =>
-      //     task._id === payload._id ? payload : task,
-      //   );
-      // })
       .addCase(logout.fulfilled, (state) => {
         state.monthTasks = [];
         state.dayTasks = [];
       })
-      // .addCase(changeCategory.fulfilled, (state, { payload }) => {
-      //   state.dayTasks = state.dayTasks.map((task) =>
-      //     task._id === payload._id ? payload : task,
-      //   );
-      // })
       .addMatcher(
         isAnyOf(
           addTask.pending,
           deleteTask.pending,
           editTask.pending,
           getTasksByMonth.pending,
-          // getTasksByDay.pending,
-          // changeCategory.pending,
         ),
         (state) => {
           state.isLoading = false;
@@ -78,8 +60,6 @@ const tasksSlice = createSlice({
           deleteTask.rejected,
           editTask.rejected,
           getTasksByMonth.rejected,
-          // getTasksByDay.rejected,
-          // changeCategory.rejected,
         ),
         (state, { payload }) => {
           state.isLoading = false;
