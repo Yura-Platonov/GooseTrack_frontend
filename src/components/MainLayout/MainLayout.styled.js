@@ -13,16 +13,16 @@ export const Box = styled.div`
   background-color: #f7f6f9;
 
   @media screen and (min-width: 375px) {
-    width: 375px;
+    width: 335px;
   }
 
   @media screen and (min-width: 768px) {
-    width: 768px;
+    width: 704px;
     padding: 40px 32px 32px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1151px;
+    width: 1087px;
     height: 700px;
 
     overflow-y: auto;
@@ -55,7 +55,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   min-height: 100vh;
-  width: 100%;
+  width:100%;
 `;
 
 export const HeaderWrapper = styled.div`
