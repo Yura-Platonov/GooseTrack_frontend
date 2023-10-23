@@ -32,7 +32,7 @@ export const TaskForm = ({ task, status, ...props }) => {
   const dispatch = useDispatch();
 
   const [enterText, setEnterText] = useState('');
-  const [start, setStart] = useState('10:00');
+  const [start, setStart] = useState('09:30');
   const [end, setEnd] = useState('10:00');
   const [priorities, setPriorities] = useState('low');
 
@@ -47,28 +47,29 @@ export const TaskForm = ({ task, status, ...props }) => {
   const day = today.getDate().toString().padStart(2, '0');
 
   // Формуємо рядок в форматі "YYYY-MM-DD"
-  const formattedDate = `${year}-${month} -${day}`;
+  const formattedDate = `${year}-${month}-${day}`;
 
   const initialValues = {
     title: enterText,
     start: start.slice(0, 5),
     end: end.slice(0, 5),
     priority: priorities.toLowerCase(),
+    date: formattedDate,
     category,
   };
 
   const PRIORITIES = [
     {
       value: 'Low',
-      name: 'Low',
+      name: 'low',
     },
     {
       value: 'Medium',
-      name: 'Medium',
+      name: 'medium',
     },
     {
       value: 'High',
-      name: 'High',
+      name: 'high',
     },
   ];
   // dispatch(deleteTask('65330c0f8f2a4831c04e5599'));
@@ -99,15 +100,15 @@ export const TaskForm = ({ task, status, ...props }) => {
   // }));
   const handleAdd = (values) => {
     if (!editMode) {
-      dispatch(addTask({ ...values, date: formattedDate }));
+      dispatch(addTask(...values));
       dispatch(closeModal());
-    } else {
-      dispatch(
-        editTask({
-          id: task._id,
-          task: { date: task.date, ...values, category },
-        }),
-      );
+      // } else {
+      //   dispatch(
+      //     editTask({
+      //       id: task._id,
+      //       task: { date: task.date, ...values, category },
+      //     }),
+      //   );
       dispatch(closeModal());
     }
   };
