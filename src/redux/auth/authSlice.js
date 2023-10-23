@@ -5,6 +5,7 @@ import {
   logout,
   refresh,
   updateUser,
+  toggleTheme,
   } from './operations';
 
 const initialState = {
@@ -90,6 +91,18 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
+      .addCase(toggleTheme.fulfilled, (state, { payload }) => {
+        state.user.themeInterface = payload.themeInterface;
+        state.isLoading = false;
+      })
+      .addCase(toggleTheme.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(toggleTheme.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      });
    },
   reducers: {
     logout: state => {
@@ -97,4 +110,4 @@ export const authSlice = createSlice({
       state.token = '';
     },
   },
-});
+  });
