@@ -33,8 +33,15 @@ export const TaskForm = ({ task, status, ...props }) => {
   const editMode = props?.editMode || false;
   const category = status || 'to-do';
 
-  const { currentDate } = useParams();
-  const date = parse(currentDate, 'yyyy-MM-dd', Date.now());
+  const today = new Date();
+
+  // Отримуємо рік, місяць і день
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0'); // +1, тому що місяці в JavaScript починаються з 0
+  const day = today.getDate().toString().padStart(2, '0');
+
+  // Формуємо рядок в форматі "YYYY-MM-DD"
+  const formattedDate = `${year}-${month} -${day}`;
 
   const initialValues = {
     title: task?.title || '',
@@ -85,7 +92,7 @@ export const TaskForm = ({ task, status, ...props }) => {
   // }));
   const handleAdd = (values) => {
     if (!editMode) {
-      dispatch(addTask({ ...values, category, date: date }));
+      dispatch(addTask({ ...values, category, date: formattedDate }));
       dispatch(closeModal());
     } else {
       dispatch(
