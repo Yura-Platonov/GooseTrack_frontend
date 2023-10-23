@@ -19,6 +19,10 @@ import {
   WrapperName,
   WrapperReviewCommon,
 } from './ReviewsSlider.styled';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllReviewsThunk } from '../../redux/feedback/operationsF';
 
 function LeftArrow(props) {
   const { onClick } = props;
@@ -80,13 +84,20 @@ export const ReviewsSlider = () => {
     ],
   };
 
+  const dispatch = useDispatch();
+  const reviewData = useSelector((state) => state.reviews.reviews);
+
+  useEffect(() => {
+    dispatch(getAllReviewsThunk());
+  }, [dispatch]);
+
   return (
     <>
       <Section>
         <Title> REVIEWS </Title>
         <ContainerWrapper>
           <Slider {...settings}>
-            {reviews.map((review) => (
+            {reviewData.map((review) => (
               <div key={review.id + review.name}>
                 <WrapperReviewCommon>
                   <WrapperName>
