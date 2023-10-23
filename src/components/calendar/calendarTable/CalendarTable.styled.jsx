@@ -44,7 +44,7 @@ export const ItemWrapper = styled.div`
     border-bottom-right-radius: 8px;
   }
   @media screen and (min-width: 768px) {
-    padding: 4px 4px;
+    padding: 4px 4px 12px;
   }
 `;
 
@@ -86,10 +86,9 @@ export const ItemDate = styled.p`
 export const TasksWrapper = styled.div`
   width: calc(100% - 4px);
   position: absolute;
-  top: 36px;
+  top: 30px;
   left: 2px;
-  //overflow-y: auto;
-  //scroll-snap-align: start;
+  overflow-y: scroll;
   @media screen and (min-width: 768px) {
     width: calc(100% - 8px);
     top: 50px;
@@ -106,6 +105,8 @@ export const ItemTask = styled.a`
   display: block;
   width: auto;
   padding: 4px 4px 4px 8px;
+  margin-bottom: 2px;
+  margin-right: 2px;
   border-radius: 8px;
   background-color: ${(prop) =>
     prop.high
