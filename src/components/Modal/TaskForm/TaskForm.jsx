@@ -106,8 +106,8 @@ export const TaskForm = ({ task, status, ...props }) => {
         validateOnChange={true}
         validationSchema={validationTaskSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(false);
           handleAdd(values);
+          setSubmitting(false);
         }}
       >
         {({
@@ -187,7 +187,13 @@ export const TaskForm = ({ task, status, ...props }) => {
 
             <Wrapper>
               {!editMode ? (
-                <Button type="submit" onSubmit={handleAdd}>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={() => {
+                    dispatch(handleAdd());
+                  }}
+                >
                   <BiPlus />
                   Add
                 </Button>
