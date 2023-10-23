@@ -24,22 +24,23 @@ import {
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../../redux/modal/modalSlice.js';
 import { useParams } from 'react-router-dom';
-
+import { parse } from 'date-fns';
 import PropTypes from 'prop-types';
 
 export const TaskForm = ({ task, status, ...props }) => {
   const dispatch = useDispatch();
 
   const editMode = props?.editMode || false;
-  const category = status || 'To do';
+  const category = status || 'to-do';
 
   const { currentDate } = useParams();
+  const date = parse(currentDate, 'yyyy-MM-dd', Date.now());
 
   const initialValues = {
     title: task?.title || '',
     start: task?.start || '',
     end: task?.end || '',
-    priority: task?.priority || 'Low',
+    priority: task?.priority || 'low',
   };
 
   const PRIORITIES = [
@@ -84,11 +85,11 @@ export const TaskForm = ({ task, status, ...props }) => {
   // }));
   const handleAdd = (values) => {
     if (!editMode) {
-      dispatch(addTask({ ...values, category, date: currentDate }));
+      dispatch(addTask({ ...values, category, date: date }));
       dispatch(closeModal());
     } else {
       dispatch(
-        updateTask({
+        editTask({
           id: task._id,
           task: { date: task.date, ...values, category },
         }),
@@ -186,7 +187,7 @@ export const TaskForm = ({ task, status, ...props }) => {
 
             <Wrapper>
               {!editMode ? (
-                <Button type="submit">
+                <Button type="submit" onSubmit={handleAdd}>
                   <BiPlus />
                   Add
                 </Button>
