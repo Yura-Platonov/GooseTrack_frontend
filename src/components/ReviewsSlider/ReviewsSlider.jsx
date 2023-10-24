@@ -114,7 +114,7 @@ export const ReviewsSlider = () => {
               <div key={review.id + review.name}>
                 <WrapperReviewCommon>
                   <WrapperName>
-                    <AvatarReview src={review.avatar} alt={review.name} />
+                    <AvatarReview src={review.avatarURL} alt={review.name} />
 
                     <WrapperRatingName>
                       <ReviewName>{review.name}</ReviewName>
