@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { Rating } from '@smastrom/react-rating';
 
 export const Section = styled.section`
   margin-top: 64px;
@@ -9,6 +10,11 @@ export const Section = styled.section`
   }
 `;
 
+export const WrapperRatingName = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+`;
 export const Title = styled.h2`
   font-size: 28px;
   font-family: Inter;
@@ -75,7 +81,7 @@ export const ReviewComment = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.3;
-  margin-top: 24px;
+  margin-top: 11px;
   color: rgba(17, 17, 17, 0.7);
 `;
 

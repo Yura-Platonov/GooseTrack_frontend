@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 import { format, subMonths, addMonths, subDays, addDays } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -13,14 +14,11 @@ import {
   IconBack,
 } from './PeriodPaginator.styled';
 
-const PeriodPaginator = ({ selectedDate, typeDateDay, setSelectedDate }) => {
+const PeriodPaginator = ({ selectedDate, typeDay, setSelectedDate }) => {
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
     return (
       <TitleWrapper onClick={onClick} ref={ref}>
-        {format(
-          selectedDate,
-          typeDateDay === true ? 'd MMM yyyy' : 'MMMM yyyy',
-        )}
+        {format(selectedDate, typeDay === true ? 'd MMM yyyy' : 'MMMM yyyy')}
       </TitleWrapper>
     );
   });
@@ -43,7 +41,7 @@ const PeriodPaginator = ({ selectedDate, typeDateDay, setSelectedDate }) => {
         <PrevBtn
           onClick={() => {
             const result =
-              typeDateDay === true
+              typeDay === true
                 ? subDays(selectedDate, 1)
                 : subMonths(selectedDate, 1);
             setSelectedDate(result);
@@ -54,7 +52,7 @@ const PeriodPaginator = ({ selectedDate, typeDateDay, setSelectedDate }) => {
         <NextBtn
           onClick={() => {
             const result =
-              typeDateDay === true
+              typeDay === true
                 ? addDays(selectedDate, 1)
                 : addMonths(selectedDate, 1);
             setSelectedDate(result);
@@ -68,3 +66,9 @@ const PeriodPaginator = ({ selectedDate, typeDateDay, setSelectedDate }) => {
 };
 
 export default PeriodPaginator;
+
+PeriodPaginator.propTypes = {
+  selectedDate: PropTypes.instanceOf(Date),
+  setSelectedDate: PropTypes.func.isRequired,
+  typeDay: PropTypes.bool.isRequired,
+};

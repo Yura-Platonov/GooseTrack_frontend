@@ -5,7 +5,9 @@ export const Section = styled.section`
   /* flex: 1; */
   flex-direction: column;
   position: fixed;
-  width: 185px;
+  left: 0;
+  top: 0;
+  width: 225px;
   background-color: var(--white);
   z-index: 2;
   height: 100%;
@@ -13,7 +15,10 @@ export const Section = styled.section`
 
   .logo-box {
     display: flex;
+    margin-top: 24px;
+    margin-left: 20px;
     align-items: center;
+    width: 185px;
     height: 35px;
     padding-bottom: 64px;
     background-color: var(--white);
@@ -54,7 +59,7 @@ export const Section = styled.section`
   .button-out {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,11 +80,14 @@ export const Section = styled.section`
   }
 
   @media (min-width: 768px) {
-    width: 225px;
+    width: 287px;
     .logo-box {
       display: flex;
       align-items: center;
       height: 58px;
+      width: 225px;
+      margin-top: 24px;
+      margin-left: 32px;
       padding-bottom: 50px;
       background-color: var(--white);
     }
@@ -108,7 +116,7 @@ export const Section = styled.section`
     .button-out {
       position: absolute;
       bottom: 0;
-      left: 0;
+      left: 24px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -130,9 +138,7 @@ export const Section = styled.section`
   @media (min-width: 1440px) {
     position: relative;
     overflow: hidden;
-    width: 241px;
-    margin-top: 32px;
-    margin-left: 24px;
+    width: 289px;
     max-height: 100vh;
     min-height: calc(100vh - 60px);
 
@@ -160,8 +166,6 @@ export const Section = styled.section`
     }
     .button-out {
       position: absolute;
-      bottom: 0;
-      left: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -184,6 +188,8 @@ export const Section = styled.section`
 export const Div = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
+  width: 185px;
 
   .nav-box {
     display: flex;
@@ -229,6 +235,8 @@ export const Div = styled.div`
     stroke: var(--blue);
   }
   @media (min-width: 768px) {
+    margin-left: 32px;
+    width: 225px;
     .nav-box {
       display: flex;
       flex-direction: column;
@@ -273,8 +281,8 @@ export const Div = styled.div`
     }
   }
   @media (min-width: 1440px) {
-
-    
+    margin-left: 24px;
+    width: 241px;
     .nav-box {
       display: flex;
       flex-direction: column;

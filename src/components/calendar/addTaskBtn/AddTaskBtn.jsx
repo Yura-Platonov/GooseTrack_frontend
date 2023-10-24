@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../../redux/modal/modalSlice.js';
 import { AddBtnContainer, IconAdd, NameBtn } from './AddTaskBtn.styled';
-import PropTypes from 'prop-types';
 
 const AddTaskBtn = () => {
   const dispatch = useDispatch();
@@ -17,9 +16,5 @@ const AddTaskBtn = () => {
     </AddBtnContainer>
   );
 };
-
-// AddTaskBtn.propTypes = {
-//   onClick: PropTypes.func.isRequired,
-// };
 
 export default AddTaskBtn;

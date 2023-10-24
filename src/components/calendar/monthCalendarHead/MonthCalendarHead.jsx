@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import PropTypes from 'prop-types';
 import { format, startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns';
 import { ContainerDays, ItemDay } from './MonthCalendarHead.styled';
 
@@ -24,3 +25,7 @@ const MonthCalendarHead = ({ selectedDate }) => {
 };
 
 export default MonthCalendarHead;
+
+MonthCalendarHead.propTypes = {
+  selectedDate: PropTypes.instanceOf(Date),
+};

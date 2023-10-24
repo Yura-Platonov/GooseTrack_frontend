@@ -1,4 +1,6 @@
 import { useId } from 'react';
+import PropTypes from 'prop-types';
+
 import DayCalendarHead from '../dayCalendarHead/DayCalendarHead';
 import TasksColumn from '../tasksColumn/TasksColumn';
 import { ColumnsContainer } from './ChoosedDay.styled';
@@ -28,3 +30,8 @@ const ChoosedDay = ({ selectedDate, setSelectedDate }) => {
 };
 
 export default ChoosedDay;
+
+ChoosedDay.propTypes = {
+  selectedDate: PropTypes.instanceOf(Date),
+  setSelectedDate: PropTypes.func.isRequired,
+};

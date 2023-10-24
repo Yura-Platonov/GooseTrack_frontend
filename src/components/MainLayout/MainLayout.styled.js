@@ -55,7 +55,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   min-height: 100vh;
-  width: 100%;
+  width:100%;
 `;
 
 export const HeaderWrapper = styled.div`

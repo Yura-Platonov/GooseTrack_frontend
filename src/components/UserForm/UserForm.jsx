@@ -69,8 +69,16 @@ const UserForm = () => {
         .required('Phone is a required field'),
       skype: Yup.string().max(16).optional(),
     }),
-    onSubmit: (values) =>
-      dispatch(updateUser(values)).then((res) => {
+    onSubmit: (values) => {
+      const formData = new FormData();
+      formData.append('avatar', values.avatar);
+      formData.append('name', values.name);
+      formData.append('email', values.email);
+      formData.append('birthdate', values.birthdate);
+      formData.append('phone', values.phone);
+      formData.append('skype', values.skype);
+
+      dispatch(updateUser(formData)).then((res) => {
         if (updateUser.fulfilled.match(res)) {
           Notiflix.Notify.success('User data successfully changed and updated');
         } else if (updateUser.rejected.match(res)) {
@@ -78,7 +86,8 @@ const UserForm = () => {
             'Something went wrong, please try again later...',
           );
         }
-      }),
+      });
+    },
   });
 
   return (
@@ -89,7 +98,7 @@ const UserForm = () => {
             <Section>
               <label htmlFor="file">
                 <About>
-                  <Image src={image} alt="nadiia doe" />
+                  <Image src={formik.values.avatar || image} alt="nadiia doe" />
                   <PlusContainer>
                     <Icon />
                   </PlusContainer>
@@ -103,6 +112,9 @@ const UserForm = () => {
                 name="file"
                 accept=".jpg, .jpeg, .png, .gif"
                 style={{ display: 'none' }}
+                onChange={(event) => {
+                  formik.setFieldValue('avatar', event.currentTarget.files[0]);
+                }}
               />
               {formik.errors.file && formik.touched.file ? (
                 <Error>{formik.errors.file}</Error>

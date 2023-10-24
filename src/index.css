@@ -55,7 +55,7 @@
   --month-status-low: #ceeefd;
   --month-status-medium: #fcf0d4;
   --month-status-high: var(--pink);
-  --day-status-low: #72c2f8;
+  --day-status-low:var(--blue);
   --day-status-medium: #f3b249;
   --day-status-high: #ea3d65;
 

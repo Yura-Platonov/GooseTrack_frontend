@@ -21,30 +21,23 @@ const CalendarPage = () => {
   const tasks = useSelector(selectMonthTasks);
   const { currentDate } = useParams();
 
-  //console.log(selectedDate);
-  //console.log(selectedMonth);
   // const date = new Date(Number(currentDate));
 
-  console.log(tasks);
-
-  useEffect(() => {
+    useEffect(() => {
     if (!typeDay) {
       navigate(`/calendar/month/${selectedDate.getTime()}`);
     } else if (typeDay) {
       navigate(`/calendar/day/${selectedDate.getTime()}`);
     }
 
-    //Запит на таски, поки що так
-    if (tasks.length === 0 || today.getMonth() + 1 !== selectedMonth) {
-      dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
-    } else if (tasks.length !== 0 && today.getMonth() + 1 === selectedMonth) {
-      dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
-    } else if (
+    //Запит на таски
+    if (
       tasks.length !== 0 &&
       new Date(tasks.tasks[0].date).getMonth() + 1 === selectedMonth
     ) {
       return;
     }
+    dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
   }, [selectedDate]);
 
   return (
