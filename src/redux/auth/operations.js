@@ -93,7 +93,7 @@ export const toggleTheme = createAsyncThunk(
   'auth/toggleTheme',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('api/auth/theme');
+      const { data } = await instance.patch('api/auth/theme');
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
