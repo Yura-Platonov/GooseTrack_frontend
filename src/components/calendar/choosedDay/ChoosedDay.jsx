@@ -1,12 +1,15 @@
 import DayCalendarHead from '../dayCalendarHead/DayCalendarHead';
 import { ColumnsContainer } from './ChoosedDay.styled';
 import TasksColumn from '../tasksColumn/TasksColumn';
-
+import { selectMonthTasks } from '../../../redux/task/selectors';
 import { useId } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ChoosedDay = ({ tasks = [], getTask, selectedDate, setSelectedDate }) => {
+const ChoosedDay = ({ getTask, selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
+
+  const tasks = useSelector(selectMonthTasks);
 
   return (
     <>

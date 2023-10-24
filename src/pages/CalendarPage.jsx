@@ -23,7 +23,7 @@ const CalendarPage = () => {
 
   // const date = new Date(Number(currentDate));
 
-    useEffect(() => {
+  useEffect(() => {
     if (!typeDay) {
       navigate(`/calendar/month/${selectedDate.getTime()}`);
     } else if (typeDay) {
@@ -59,6 +59,7 @@ const CalendarPage = () => {
         <ChoosedDay
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
+          tasks={tasks.tasks}
         />
       )}
     </Container>
