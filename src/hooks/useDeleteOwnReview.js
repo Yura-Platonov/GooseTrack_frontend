@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { deleteOwnReviewThunk } from '../redux/feedback/operations.js';
 import { setIsOpen } from '../redux/modal/modalSlice.js';
-// import { closeModal } from '../redux/modal/modalSlice.js';
 import { Notify } from 'notiflix';
 
 const useDeleteOwnReview = () => {
@@ -14,6 +13,9 @@ const useDeleteOwnReview = () => {
         }),
       );
       document.body.style.overflow = 'auto';
+    },
+    getModalId = (object, value) => {
+      return Object.keys(object).filter((key) => object[key] === value);
     },
     deleteOwnReview = () => {
       dispatch(deleteOwnReviewThunk()).then((res) => {
@@ -39,7 +41,7 @@ const useDeleteOwnReview = () => {
       });
     };
 
-  return { deleteOwnReview, onCloseModal };
+  return { deleteOwnReview, onCloseModal, getModalId };
 };
 
 export default useDeleteOwnReview;

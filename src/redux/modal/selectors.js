@@ -1,4 +1,3 @@
-// export const selectIsOpen = (state) => state.modal.isOpen;
 import { createSelector } from '@reduxjs/toolkit';
 
 const modalSelector = (state) => state.modal;

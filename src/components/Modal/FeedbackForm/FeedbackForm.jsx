@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FaStar, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
-import { v4 as uuidv4 } from 'uuid';
+import { useId } from 'react';
 import useAddOwnReview from '../../../hooks/useAddOwnReview.js';
 import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
@@ -78,7 +78,7 @@ const FeedbackForm = () => {
           {[...Array(5)].map((star, i) => {
             const ratingValue = i + 1;
             return (
-              <label key={uuidv4()}>
+              <label key={useId()}>
                 <Input
                   name="rating"
                   type="radio"

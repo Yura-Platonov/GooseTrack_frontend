@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getOwnReviewThunk } from '../redux/feedback/operations.js';
-// import { openModal, setIsOpen } from '../redux/modal/modalSlice.js';
 import { setIsOpen } from '../redux/modal/modalSlice.js';
 import { selectReviews } from '../redux/feedback/selectors.js';
 import { selectIsLoading } from '../redux/feedback/selectors.js';
-// import { selectIsOpen } from '../redux/modal/selectors.js';
 import { selectError } from '../redux/feedback/selectors.js';
 import { Notify } from 'notiflix';
 
@@ -15,20 +13,6 @@ const useGetOwnReview = () => {
     review = useSelector(selectReviews),
     isLoading = useSelector(selectIsLoading),
     error = useSelector(selectError),
-    // isModalOpen = useSelector(selectIsOpen),
-    // onOpenModal = () => {
-    //   dispatch(openModal());
-    //   document.body.style.overflow = 'hidden';
-    // },
-
-    // toggleIsOpen = (modalId) => {
-    //   dispatch(
-    //     setIsOpen({
-    //       id: modalId,
-    //       isOpen: true,
-    //     }),
-    //   );
-    // },
     checkIsOpen = (modalId) => {
       return useSelector((state) => modalIsOpenSelector(state, modalId));
     },
@@ -73,14 +57,6 @@ const useGetOwnReview = () => {
     getOwnReview,
     checkIsOpen,
   };
-  // return {
-  //   review,
-  //   isLoading,
-  //   isModalOpen,
-  //   error,
-  //   onOpenModal,
-  //   getOwnReview,
-  // };
 };
 
 export default useGetOwnReview;
