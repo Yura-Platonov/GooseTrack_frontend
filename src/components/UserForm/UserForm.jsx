@@ -23,53 +23,53 @@ import {
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import logo from '../../images/userForm/logo1-min.jpeg';
+// import logo from '../../images/userForm/logo1-min.jpeg';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../redux/auth/operations.js';
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
 // import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const userData = useSelector((state) => state.auth.user);
-  console.log(userData.avatarURL);
+  console.log(userData);
 
   const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
-      avatarURL: userData ? userData.avatarURL : logo,
-      name: userData ? userData.name || '' : 'Nadiia Doe',
+      avatar: [],
+      avatarURL: userData ? userData.avatarURL : '',
+      username: userData ? userData.username || '' : 'Nadiia Doe',
       email: userData ? userData.email : 'nadiia@gmail.com',
-      birthdate: userData ? userData.birthdate || new Date() : new Date(),
+      birthday: userData ? userData.birthday || new Date() : new Date(),
       phone: userData ? userData.phone || '' : '',
       skype: userData ? userData.skype || '' : '',
     },
     validationSchema: Yup.object({
-      avatarURL: Yup.string()
-        // .test('isFile', 'Wrong file type', (value) => {
-        //   if (!value) {
-        //     return true;
-        //   }
-        //   return value instanceof File;
-        // })
-        .url('Invalid URL'),
-      name: Yup.string().min(2, 'Min 2 symbols').max(16, 'Max 16 symbols'),
+      avatar: Yup.mixed().test('isFile', 'Wrong file type', (value) => {
+        if (!value) {
+          return true;
+        }
+        return value instanceof File;
+      }),
+      // .url('Invalid URL'),
+      username: Yup.string().min(2, 'Min 2 symbols').max(16, 'Max 16 symbols'),
 
       email: Yup.string().email('Wrong email address'),
 
-      birthdate: Yup.date('Choose a date'),
+      birthday: Yup.date('Choose a date'),
 
       phone: Yup.number().min(7, 'Min 7 symbols'),
       skype: Yup.string().max(16),
     }),
     onSubmit: async (values) => {
       const formData = new FormData();
-      formData.append('avatar', values.avatarURL);
-      formData.append('name', values.name);
+      formData.append('avatar', values.avatar);
+      formData.append('name', values.username);
       formData.append('email', values.email);
-      formData.append('birthdate', values.birthdate);
+      formData.append('birthdate', values.birthday);
       formData.append('phone', values.phone);
       formData.append('skype', values.skype);
 
@@ -112,11 +112,20 @@ const UserForm = () => {
             <Section>
               <label htmlFor="avatar">
                 <About>
-                  <Image src={formik.values.avatarURL} alt="nadiia doe" />
+                  <Image
+                    src={
+                      userData.avatarURL
+                        ? userData.avatarURL
+                        : formik.values.avatar
+                    }
+                    alt="nadiia doe"
+                  />
                   <PlusContainer>
                     <Icon />
                   </PlusContainer>
-                  <Title>Nadiia Doe</Title>
+                  <Title>
+                    {userData.username ? userData.username : 'Nadiia Doe'}
+                  </Title>
                   <User>User</User>
                 </About>
               </label>
@@ -129,30 +138,30 @@ const UserForm = () => {
                 onChange={onMainPhotoSelected}
                 // onChange={fileReader}
               />
-              {formik.errors.avatarURL && formik.touched.avatarURL ? (
-                <Error>{formik.errors.avatarURL}</Error>
+              {formik.errors.avatar && formik.touched.avatar ? (
+                <Error>{formik.errors.avatar}</Error>
               ) : null}
             </Section>
           </>
           <Fields>
             <div>
               <Section>
-                <StyledLabel htmlFor="name">User Name</StyledLabel>
+                <StyledLabel htmlFor="username">User Name</StyledLabel>
                 <StyledInput
                   type="text"
-                  id="name"
-                  name="name"
+                  id="username"
+                  name="username"
                   placeholder="Nadiia Doe"
-                  value={formik.values.name || ''}
+                  value={formik.values.username || ''}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.errors.name && formik.touched.name ? (
-                  <Error>{formik.errors.name}</Error>
+                {formik.errors.username && formik.touched.username ? (
+                  <Error>{formik.errors.username}</Error>
                 ) : null}
               </Section>
               <Section>
-                <StyledLabel htmlFor="birthdate">Birthday</StyledLabel>
+                <StyledLabel htmlFor="birthday">Birthday</StyledLabel>
                 {/* <StyledInput
                         type="date"
                         name="birthdate"
@@ -170,8 +179,8 @@ const UserForm = () => {
                   icon={<TickIcon />}
                 />
 
-                {formik.errors.birthdate && formik.touched.birthdate ? (
-                  <Error>{formik.errors.birthdate}</Error>
+                {formik.errors.birthday && formik.touched.birthday ? (
+                  <Error>{formik.errors.birthday}</Error>
                 ) : null}
               </Section>
               <Section>
