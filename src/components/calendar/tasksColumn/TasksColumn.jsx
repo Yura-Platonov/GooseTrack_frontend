@@ -9,7 +9,7 @@ import { TaskModal } from '../../Modal/TaskModal/TaskModal';
 import { default as Modal } from '../../Modal/Modal';
 import { ColumnsTasksList } from '../tasksColumnsList/TasksColumnsList.jsx';
 
-const TasksColumn = ({ tasks, title, selectedDate }) => {
+const TasksColumn = ({ tasks = [], title, selectedDate }) => {
   const isOpen = useSelector(selectIsOpen);
 
   return (
@@ -35,18 +35,18 @@ const TasksColumn = ({ tasks, title, selectedDate }) => {
 export default TasksColumn;
 
 TasksColumn.propTypes = {
-  tasks: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      start: PropTypes.string.isRequired,
-      end: PropTypes.string.isRequired,
-      priority: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-      owner: PropTypes.string.isRequired,
-    }).isRequired,
-  ),
+  // tasks: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     _id: PropTypes.string.isRequired,
+  //     title: PropTypes.string.isRequired,
+  //     start: PropTypes.string.isRequired,
+  //     end: PropTypes.string.isRequired,
+  //     priority: PropTypes.string.isRequired,
+  //     date: PropTypes.string.isRequired,
+  //     category: PropTypes.string.isRequired,
+  //     owner: PropTypes.string.isRequired,
+  //   }).isRequired,
+  // ),
   title: PropTypes.string.isRequired,
   selectedDate: PropTypes.instanceOf(Date),
 };
