@@ -28,5 +28,8 @@ export const validationTaskSchema = object({
     ),
   priority: string()
     .required('Priority is required')
-    .oneOf(['Low', 'Medium', 'High'], 'Invalid priority'),
+    .oneOf(['low', 'medium', 'high'], 'Invalid priority'),
+  category: string()
+    .oneOf(['to-do', 'in-progress', 'done'], 'Invalid priority value')
+    .required('Select a category'),
 });

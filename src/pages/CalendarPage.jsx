@@ -68,6 +68,7 @@ const CalendarPage = () => {
         <ChoosedDay
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
+          tasks={tasks.tasks}
         />
       )}
     </Container>

@@ -1,11 +1,13 @@
-import { useId } from 'react';
-import PropTypes from 'prop-types';
-
 import DayCalendarHead from '../dayCalendarHead/DayCalendarHead';
-import TasksColumn from '../tasksColumn/TasksColumn';
 import { ColumnsContainer } from './ChoosedDay.styled';
+import TasksColumn from '../tasksColumn/TasksColumn';
+import { selectMonthTasks } from '../../../redux/task/selectors';
+import { useId } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { nanoid } from '@reduxjs/toolkit';
 
-const ChoosedDay = ({ selectedDate, setSelectedDate }) => {
+const ChoosedDay = ({tasks=[] , getTask, selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
 
   return (
@@ -18,9 +20,10 @@ const ChoosedDay = ({ selectedDate, setSelectedDate }) => {
         {columnTitles.map((columnTitle) => {
           return (
             <TasksColumn
-              key={useId()}
+              key={nanoid()}
               title={columnTitle}
-              collection={''}
+              tasks={tasks}
+              getTask={getTask}
             ></TasksColumn>
           );
         })}

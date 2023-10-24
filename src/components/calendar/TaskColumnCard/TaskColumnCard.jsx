@@ -9,16 +9,25 @@ import {
   AvatarImg,
 } from './TaskColumnCard.styled';
 
-export const TaskColumnCard = (data, title) => {
-  const { description, avatarUrl, priority } = data;
+import { useSelector } from 'react-redux';
+import { selectIsLoading, selectUser } from '../../../redux/auth/selectors';
+
+export const TaskColumnCard = ({ task, getTask }) => {
+  const { title, priority } = task;
+
+  const isLoading = useSelector(selectIsLoading);
+  const userSelector = useSelector(selectUser);
+  const name = userSelector?.name || 'Name';
+  const avatar = userSelector?.userImgUrl;
+
   return (
     <Container>
       <TaskTitle line={1} element="h4" truncateText="..." text={task.title} />
       <Wrapper>
         <Wrapper>
           <TaskAvatarWrapper>
-            {avatarUrl ? (
-              <AvatarImg src={avatarUrl} alt="User Avatar" />
+            {isLoading ? (
+              <AvatarImg src={avatar} alt="User Avatar" />
             ) : (
               <SvgAvatar />
             )}
@@ -27,7 +36,7 @@ export const TaskColumnCard = (data, title) => {
             {priority}
           </TaskPriority>
         </Wrapper>
-        <Toolbar task={data} title={title} />
+        <Toolbar getTask={getTask} task={task} />
       </Wrapper>
     </Container>
   );

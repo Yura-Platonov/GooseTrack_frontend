@@ -6,10 +6,9 @@ export const MenuContent = styled.div`
   top: 12px;
   right: -64px;
   width: 115px;
-  height: 70px;
   padding: 12px;
 
-  background-color: rgba(220, 227, 229, 0.8);
+  background-color: var(--white);
   border: var(--border-modal);
   border-radius: 8px;
   box-shadow: var(--box-shadow);
@@ -17,8 +16,6 @@ export const MenuContent = styled.div`
   @media screen and (min-width: 768px) {
     top: 10px;
     left: -8px;
-    width: 147px;
-    height: 90px;
     padding: 20px;
   }
 `;
@@ -36,6 +33,7 @@ export const Button = styled.button`
   font-family: var(--main-font);
   font-size: 12px;
   font-weight: 500;
+  border: none;
 
   padding: 0;
   display: flex;

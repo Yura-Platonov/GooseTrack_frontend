@@ -59,7 +59,7 @@
   --month-status-low: #ceeefd;
   --month-status-medium: #fcf0d4;
   --month-status-high: var(--pink);
-  --day-status-low:var(--blue);
+  --day-status-low: var(--blue);
   --day-status-medium: #f3b249;
   --day-status-high: #ea3d65;
 
@@ -73,7 +73,7 @@
   --heading-text-color: #171820;
   --description-text-color: #111111e6;
   --task-btn-cancel-bg-color: #efefef;
-  --border-dark-theme: 1px solid rgba(255, 255, 255, 0.15);
+  --border-dark-theme: 1px solid #ffffff26;
   --border-modal: 1px solid #dce3e5cc;
   --background-table: #dce3e580;
   --change-date-btn: #dce3e5;
