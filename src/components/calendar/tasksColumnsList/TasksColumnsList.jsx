@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import { TaskColumnCard } from '../TaskColumnCard/TaskColumnCard';
 import { TasksList } from './TasksColumnsList.styled';
 
-export const ColumnsTasksList = ({ getTask, selectedDate }) => {
-  const [tasks, setTasks] = useState([]);
+export const ColumnsTasksList = ({tasks, getTask, selectedDate }) => {
 
   return (
     <>
