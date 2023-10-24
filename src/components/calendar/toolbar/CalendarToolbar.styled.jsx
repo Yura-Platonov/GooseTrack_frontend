@@ -4,6 +4,7 @@ export const Toolbar = styled.div`
 display: block;
   width: 100%;
   margin-bottom: 24px;
+  margin-top: 32px;
   @media screen and (min-width: 768px) {
      display: flex;
      margin-bottom: 32px;

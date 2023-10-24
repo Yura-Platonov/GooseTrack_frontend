@@ -85,12 +85,14 @@ export const ItemDate = styled.p`
 
 export const TasksWrapper = styled.div`
   width: calc(100% - 4px);
+  max-height: 48px;
   position: absolute;
   top: 30px;
   left: 2px;
-  overflow-y: scroll;
+  overflow-y: scroll;  
   @media screen and (min-width: 768px) {
     width: calc(100% - 8px);
+    max-height: 56px;
     top: 50px;
     left: 4px;
   }
