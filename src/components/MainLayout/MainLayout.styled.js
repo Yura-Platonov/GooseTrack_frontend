@@ -23,7 +23,7 @@ export const Box = styled.div`
 
   @media screen and (min-width: 1440px) {
     width: 1151px;
-    height: 700px;
+    height: auto;
 
     overflow-y: auto;
     overflow-x: hidden;
