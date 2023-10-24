@@ -2,54 +2,13 @@ import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
   dark: {
-    title: '#FFF',//text 1, text 3, title, date_btn_active_text,activeLink_text,nfp_message,
-    text_2: 'rgba(250, 250, 250, 0.3)', //  text_4, text_6, text_7, text_8
-    text_5: 'rgba(250, 250, 250, 0.9)',
-    title_2: '#111',
-    main_bg: 'rgba(23, 24, 32, 1)', // task_bg , task_modal_bg, task_modal_border, input_bg,disabled_btn
-    page_bg: '#21222C',//feedback_light_btn
- 
-    date_btn_active: 'rgba(62, 133, 243, 1)', //addtask_btn
- 
-    bg_1: 'rgba(19, 21, 26, 1)',//main_border
-    activeLink_bg: '#3E85F3',
-    scroll_bar: 'rgba(45, 48, 55, 1)',
     
-    date_btn: 'rgba(33, 34, 44, 1)', //statistics_bg ,scroll_bar_track
-    tabl_border: 'rgba(255, 255, 255, 0.15)',//input_border,input_border_2
-    
-    close_btn: 'rgba(255, 255, 255, 0.6)',
     
 
  
   },
   light: {
-    text_1: 'rgba(52, 52, 52, 0.5)', //text_2, text_4
-    text_3: 'rgba(52, 52, 52, 1)',//text_5, text_6, 
     
-    title: '#111', //text_7 
-    text_8: 'rgba(52, 52, 52, 0.8)',
-    
-    main_bg: 'rgba(247, 246, 249, 1)',//task_bg, 
-    page_bg: '#FFF',//task_modal_bg, title_2б bg_1,statistics_bg
-
-    task_modal_border: 'rgba(220, 227, 229, 0.8)',
-    date_btn: 'rgba(227, 243, 255, 1)',
-    date_btn_active: 'rgba(202, 232, 255, 1)',
-    date_btn_active_text: 'rgba(62, 133, 243, 1)',
-    addtask_btn: 'rgba(227, 243, 255, 1)',
-    activeLink_text: 'rgba(62, 133, 243, 1)',
-    activeLink_bg: '#e3f3ff',
-    scroll_bar: 'rgba(231, 229, 229, 1)',
-    scroll_bar_track: 'rgba(242, 242, 242, 1)',
-    main_border: 'rgba(220, 227, 229, 0.5)',
-    tabl_border: '#dce3e580',
-    input_border: 'rgba(246, 246, 246, 1)',//input_bg
-    input_border_2: 'rgba(17, 17, 17, 0.15)',
-    close_btn: 'rgba(62, 133, 243, 1)',
-    feedback_light_btn: '#E5EDFA',//disabled_btn
-    
-    nfp_message: 'rgba(17, 17, 17, 0.7)',
   },
 };
 export const variables = {
