@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  max-width: 1440px;
+  
   height: 812px;
   padding-inline: 20px;
 
@@ -21,7 +21,7 @@ export const Container = styled.section`
   }
 
   @media screen and (min-width: 1024px) {
-    max-width: 1440px;
+    
     height: 770px;
 
     gap: 40px;

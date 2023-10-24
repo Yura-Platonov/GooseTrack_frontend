@@ -15,11 +15,15 @@ import ChoosedDay from './calendar/choosedDay/ChoosedDay';
 
 const MainPage = lazy(() => import('./MainPage/MainPage'));
 const CalendarPage = lazy(() => import('../pages/CalendarPage'));
-const StatisticsPage = lazy(() => import('../pages/StatisticPage'));
+const StatisticsPage = lazy(() =>
+  import('../pages/StatisticPage/StatisticPage'),
+);
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound/PageNotFound'));
-const UserProfilePage = lazy(() => import('../pages/UserProfilePage/UserProfilePage'));
+const UserProfilePage = lazy(() =>
+  import('../pages/UserProfilePage/UserProfilePage'),
+);
 
 export function App() {
   const dispatch = useDispatch();
@@ -39,14 +43,13 @@ export function App() {
           </Route>
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<MainLayout />}>
-            <Route path="account" element={<UserProfilePage/>} />
+              <Route path="account" element={<UserProfilePage />} />
               <Route path="calendar" element={<CalendarPage />}>
                 <Route path="month/:currentDate" element={ChoosedMonth} />
                 <Route path="day/:currentDate" element={ChoosedDay} />
               </Route>
               <Route path="statistics" element={<StatisticsPage />} />
             </Route>
-            
           </Route>
 
           <Route path="*" element={<PageNotFound />} />
