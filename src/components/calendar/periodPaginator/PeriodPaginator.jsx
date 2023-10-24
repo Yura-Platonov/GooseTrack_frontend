@@ -70,5 +70,5 @@ export default PeriodPaginator;
 PeriodPaginator.propTypes = {
   selectedDate: PropTypes.instanceOf(Date),
   setSelectedDate: PropTypes.func.isRequired,
-  typeDay: PropTypes.bool.isRequired,
+  typeDay: PropTypes.bool,
 };
