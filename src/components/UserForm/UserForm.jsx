@@ -23,7 +23,7 @@ import {
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import image from '../../images/side-head/Elli.png';
+import logo from '../../images/userForm/logo1-min.jpeg';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../redux/auth/operations.js';
@@ -33,62 +33,69 @@ import Notiflix from 'notiflix';
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const userData = useSelector((state) => state.auth.user);
+  console.log(userData.avatarURL);
 
   const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
-      avatar: userData ? userData.avatar : '',
-      name: userData ? userData.name : '',
-      email: userData ? userData.email : '',
-      birthdate: userData ? userData.birthdate : '',
-      phone: userData ? userData.phone : '',
-      skype: userData ? userData.skype : '',
+      avatarURL: userData ? userData.avatarURL : logo,
+      name: userData ? userData.name || '' : 'Nadiia Doe',
+      email: userData ? userData.email : 'nadiia@gmail.com',
+      birthdate: userData ? userData.birthdate || new Date() : new Date(),
+      phone: userData ? userData.phone || '' : '',
+      skype: userData ? userData.skype || '' : '',
     },
     validationSchema: Yup.object({
-      avatar: Yup.mixed()
-        .test('isFile', 'Wrong file type', (value) => {
-          if (!value) {
-            return true;
-          }
-          return value instanceof File;
-        })
-        .required('Choose a file'),
-      name: Yup.string()
-        .min(2, 'Min 2 symbols')
-        .max(16, 'Max 16 symbols')
-        .required('Name is a required field'),
-      email: Yup.string()
-        .email('Wrong email address')
-        .required('Email is a required field'),
-      birthdate: Yup.date('Choose a date').required(
-        'Birthdate is a required field',
-      ),
-      phone: Yup.number()
-        .min(7, 'Min 7 symbols')
-        .required('Phone is a required field'),
-      skype: Yup.string().max(16).optional(),
-    }),
-    onSubmit: (values) => {
-      const formData = new FormData();
-      formData.append('avatar', values.avatar);
-      formData.append('name', values.name);
-      formData.append('email', values.email);
-      formData.append('birthdate', values.birthdate);
-      formData.append('phone', values.phone);
-      formData.append('skype', values.skype);
+      avatarURL: Yup.string()
+        // .test('isFile', 'Wrong file type', (value) => {
+        //   if (!value) {
+        //     return true;
+        //   }
+        //   return value instanceof File;
+        // })
+        .url('Invalid URL'),
+      name: Yup.string().min(2, 'Min 2 symbols').max(16, 'Max 16 symbols'),
 
-      dispatch(updateUser(formData)).then((res) => {
-        if (updateUser.fulfilled.match(res)) {
-          Notiflix.Notify.success('User data successfully changed and updated');
-        } else if (updateUser.rejected.match(res)) {
-          Notiflix.Notify.failure(
-            'Something went wrong, please try again later...',
-          );
-        }
-      });
+      email: Yup.string().email('Wrong email address'),
+
+      birthdate: Yup.date('Choose a date'),
+
+      phone: Yup.number().min(7, 'Min 7 symbols'),
+      skype: Yup.string().max(16),
+    }),
+    onSubmit: async (values) => {
+      console.log(values);
+      await dispatch(updateUser(values));
+
+      // dispatch(updateUser(values)).then((res) => {
+      //   if (updateUser.fulfilled.match(res)) {
+      //     Notiflix.Notify.success('User data successfully changed and updated');
+      //   } else if (updateUser.rejected.match(res)) {
+      //     Notiflix.Notify.failure(
+      //       'Something went wrong, please try again later...',
+      //     );
+      //   }
+      // });
+      // formik.resetForm();
     },
   });
+
+  const onMainPhotoSelected = (event) => {
+    const file = event.target.files[0];
+    formik.setFieldValue('avatar', file);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataURL = e.target.result;
+
+      const imageElement = document.querySelector('#avatar-image');
+      if (imageElement) {
+        imageElement.src = dataURL;
+      }
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <Container>
@@ -96,9 +103,9 @@ const UserForm = () => {
         <StyledForm onSubmit={formik.handleSubmit}>
           <>
             <Section>
-              <label htmlFor="file">
+              <label htmlFor="avatar">
                 <About>
-                  <Image src={formik.values.avatar || image} alt="nadiia doe" />
+                  <Image src={formik.values.avatarURL} alt="nadiia doe" />
                   <PlusContainer>
                     <Icon />
                   </PlusContainer>
@@ -108,16 +115,15 @@ const UserForm = () => {
               </label>
               <input
                 type="file"
-                id="file"
-                name="file"
+                id="avatar"
+                name="avatar"
                 accept=".jpg, .jpeg, .png, .gif"
                 style={{ display: 'none' }}
-                onChange={(event) => {
-                  formik.setFieldValue('avatar', event.currentTarget.files[0]);
-                }}
+                onChange={onMainPhotoSelected}
+                // onChange={fileReader}
               />
-              {formik.errors.file && formik.touched.file ? (
-                <Error>{formik.errors.file}</Error>
+              {formik.errors.avatarURL && formik.touched.avatarURL ? (
+                <Error>{formik.errors.avatarURL}</Error>
               ) : null}
             </Section>
           </>
@@ -130,7 +136,7 @@ const UserForm = () => {
                   id="name"
                   name="name"
                   placeholder="Nadiia Doe"
-                  value={formik.values.name}
+                  value={formik.values.name || ''}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
@@ -200,7 +206,7 @@ const UserForm = () => {
                   name="skype"
                   id="skype"
                   placeholder="Add a skype number"
-                  value={formik.values.skype}
+                  // value={formik.values.skype}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
@@ -210,8 +216,8 @@ const UserForm = () => {
               </Section>
             </div>
           </Fields>
+          <Button type="submit">Save Changes</Button>
         </StyledForm>
-        <Button type="button">Save Changes</Button>
       </Wrapper>
     </Container>
   );
