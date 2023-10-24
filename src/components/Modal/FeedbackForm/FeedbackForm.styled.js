@@ -34,18 +34,18 @@ export const RatingTitle = styled.div`
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 `;
 
-export const CloseButton = styled.button`
+export const FormCloseButton = styled.button`
   position: absolute;
   right: 14px;
   top: 14px;
   padding: 0px;
   background-color: transparent;
   border: none;
-  stroke: #111111;
-  transition: stroke 500ms ease-in-out;
+  color: #111111;
+  transition: color 500ms ease-in-out;
 
   &:hover {
-    stroke: var(--blue);
+    color: var(--blue);
   }
 
   @media screen and (min-width: 768px) {
@@ -64,7 +64,6 @@ export const Form = styled.form`
 `;
 
 export const ReviewLabel = styled.label`
-  padding-bottom: 8px;
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
@@ -94,7 +93,7 @@ export const Textarea = styled.textarea`
   }
 `;
 
-export const ButtonContainer = styled.div`
+export const FormButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 8px;
@@ -156,6 +155,68 @@ export const CancelButton = styled.button`
   @media screen and (min-width: 768px) {
     width: 198px;
     padding: 15px 0;
+  }
+`;
+
+export const ReviewHeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+`;
+
+export const ReviewBtnContainer = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const ReviewEditButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: var(--user-panel-active);
+  color: var(--blue);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 0px 4px 1px rgba(62, 133, 243, 0.75);
+  transition:
+    background-color 500ms ease-in-out,
+    color 500ms ease-in-out,
+    box-shadow 200ms ease-in-out;
+
+  &:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    box-shadow: 0px 0px 8px 0px rgba(62, 133, 243, 0.75);
+  }
+  &:focus {
+    background-color: var(--blue);
+    color: var(--white);
+    box-shadow: 0px 0px 8px 0px rgba(62, 133, 243, 0.75);
+  }
+`;
+export const ReviewDeleteButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #ea3d6520;
+  color: var(--day-status-high);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 0px 4px 1px rgba(234, 61, 101, 0.75);
+  transition:
+    background-color 500ms ease-in-out,
+    color 500ms ease-in-out,
+    box-shadow 200ms ease-in-out;
+
+  &:hover {
+    background-color: var(--day-status-high);
+    color: var(--white);
+    box-shadow: 0px 0px 8px 0px rgba(234, 61, 101, 0.75);
   }
 `;
 

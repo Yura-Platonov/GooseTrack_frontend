@@ -1,15 +1,21 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 import { Button } from './AddFeedbackBtn.styled.js';
-import { openModal } from '../../../redux/modal/modalSlice.js';
 
 const AddFeedbackBtn = () => {
-  const dispatch = useDispatch();
+  const { getOwnReview, isModalOpen, onOpenModal } = useGetOwnReview();
+
+  useEffect(() => {
+    if (isModalOpen) {
+      getOwnReview();
+    }
+  }, [isModalOpen]);
+
   return (
     <Button
       type="button"
       onClick={() => {
-        dispatch(openModal());
+        onOpenModal();
       }}
     >
       Feedback
