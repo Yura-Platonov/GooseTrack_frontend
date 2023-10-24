@@ -70,7 +70,7 @@ const Sidebar = ({ toggleMenu }) => {
             <li>
               <NavLink
                 className={'button-8'}
-                to="/"
+                to="/account"
                 onClick={() => toggleMenu()}
               >
                 {myAccIcon}

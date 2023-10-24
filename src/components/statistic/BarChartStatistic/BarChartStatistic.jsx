@@ -8,32 +8,45 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { StyledBarChart } from './BarChartStatistic.styled';
+import { useEffect, useState } from 'react';
 
-const data = [
-  {
-    name: 'To Do',
-    byDay: 100,
-    byMonth: 35,
-  },
-  {
-    name: 'In Progress',
-    byDay: 15,
-    byMonth: 55,
-  },
-  {
-    name: 'Done',
-    byDay: 40,
-    byMonth: 85,
-  },
-];
+function BarChartStatistic({ statistics }) {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-function BarChartStatistic() {
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const data = [
+    {
+      name: 'To Do',
+      byDay: statistics.todoByDayPercentage,
+      byMonth: statistics.todoByMonthPercentage,
+    },
+    {
+      name: 'In Progress',
+      byDay: statistics.inprogressByDayPercentage,
+      byMonth: statistics.inprogressByMonthPercentage,
+    },
+    {
+      name: 'Done',
+      byDay: statistics.doneByDayPercentage,
+      byMonth: statistics.doneByMonthPercentage,
+    },
+  ];
+
   return (
     <>
       <StyledBarChart>
         <ResponsiveContainer width="100%" height={413}>
           <BarChart
-            barGap={8}
+            barGap={windowWidth < 375 ? 8 : 14}
             width={300}
             height={266}
             data={data}
@@ -43,7 +56,7 @@ function BarChartStatistic() {
               left: 0,
               bottom: 0,
             }}
-            barSize={22}
+            barSize={windowWidth < 375 ? 14 : 27}
           >
             <CartesianGrid stroke="var(--user-panel-active)" vertical={false} />
             <XAxis dataKey="name" axisLine={false} tickLine={false} />
