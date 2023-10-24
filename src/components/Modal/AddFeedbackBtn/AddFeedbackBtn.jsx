@@ -3,19 +3,20 @@ import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 import { Button } from './AddFeedbackBtn.styled.js';
 
 const AddFeedbackBtn = () => {
-  const { getOwnReview, isModalOpen, onOpenModal } = useGetOwnReview();
+  const { getOwnReview, checkIsOpen, onOpenModal } = useGetOwnReview();
+  const isOpen = checkIsOpen('modal1');
 
   useEffect(() => {
-    if (isModalOpen) {
+    if (isOpen) {
       getOwnReview();
     }
-  }, [isModalOpen]);
+  }, [isOpen]);
 
   return (
     <Button
       type="button"
       onClick={() => {
-        onOpenModal();
+        onOpenModal('modal1');
       }}
     >
       Feedback

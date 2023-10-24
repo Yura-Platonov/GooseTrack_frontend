@@ -1,6 +1,6 @@
 import { TaskForm } from '../TaskForm/TaskForm';
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../../../redux/modal/modalSlice.js';
+// import { closeModal } from '../../../redux/modal/modalSlice.js';
 import PropTypes from 'prop-types';
 import { Button, CloseSvg, ModalContent } from '../Modal.styled.js';
 
@@ -12,7 +12,7 @@ export const TaskModal = ({ task, status, ...props }) => {
       <Button
         type="button"
         onClick={() => {
-          dispatch(closeModal());
+          // dispatch(closeModal());
         }}
       >
         <CloseSvg />

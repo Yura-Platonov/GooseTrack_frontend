@@ -49,7 +49,7 @@ const FeedbackForm = () => {
       isReview
         ? handleReviewSend(values.feedBack, values.rating)
         : handleReviewEdit(values.feedBack, values.rating);
-      onCloseModal();
+      onCloseModal('modal1');
     },
 
     validationSchema: Yup.object().shape({
@@ -67,7 +67,7 @@ const FeedbackForm = () => {
       <FormCloseButton
         type="button"
         onClick={() => {
-          onCloseModal();
+          onCloseModal('modal1');
         }}
       >
         <RxCross2 size={24} />
@@ -121,7 +121,7 @@ const FeedbackForm = () => {
                 type="button"
                 onClick={() => {
                   deleteOwnReview();
-                  onCloseModal();
+                  onCloseModal('modal1');
                 }}
               >
                 <FaTrashAlt size={16} />
@@ -150,7 +150,7 @@ const FeedbackForm = () => {
             <CancelButton
               type="button"
               onClick={() => {
-                onCloseModal();
+                onCloseModal('modal1');
               }}
             >
               Cancel

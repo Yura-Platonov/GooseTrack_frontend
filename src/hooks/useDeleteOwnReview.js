@@ -1,12 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { deleteOwnReviewThunk } from '../redux/feedback/operations.js';
-import { closeModal } from '../redux/modal/modalSlice.js';
+import { setIsOpen } from '../redux/modal/modalSlice.js';
+// import { closeModal } from '../redux/modal/modalSlice.js';
 import { Notify } from 'notiflix';
 
 const useDeleteOwnReview = () => {
   const dispatch = useDispatch(),
-    onCloseModal = () => {
-      dispatch(closeModal());
+    onCloseModal = (modalId) => {
+      dispatch(
+        setIsOpen({
+          id: modalId,
+          isOpen: false,
+        }),
+      );
       document.body.style.overflow = 'auto';
     },
     deleteOwnReview = () => {

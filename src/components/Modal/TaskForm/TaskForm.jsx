@@ -22,7 +22,7 @@ import {
   getTasksByMonth,
 } from '../../../redux/task/operations';
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../../../redux/modal/modalSlice.js';
+// import { closeModal } from '../../../redux/modal/modalSlice.js';
 import { useParams } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
@@ -85,7 +85,7 @@ export const TaskForm = ({ task, status, ...props }) => {
   const handleAdd = (values) => {
     if (!editMode) {
       dispatch(addTask({ ...values, category, date: currentDate }));
-      dispatch(closeModal());
+      // dispatch(closeModal());
     } else {
       dispatch(
         updateTask({
@@ -93,7 +93,7 @@ export const TaskForm = ({ task, status, ...props }) => {
           task: { date: task.date, ...values, category },
         }),
       );
-      dispatch(closeModal());
+      // dispatch(closeModal());
     }
   };
 
@@ -200,7 +200,7 @@ export const TaskForm = ({ task, status, ...props }) => {
                 type="button"
                 disabled={isSubmitting}
                 onClick={() => {
-                  dispatch(closeModal());
+                  // dispatch(closeModal());
                 }}
               >
                 Cancel

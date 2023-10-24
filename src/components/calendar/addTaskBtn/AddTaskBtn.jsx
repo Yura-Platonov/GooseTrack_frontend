@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { openModal } from '../../../redux/modal/modalSlice.js';
+// import { openModal } from '../../../redux/modal/modalSlice.js';
 import { AddBtnContainer, IconAdd, NameBtn } from './AddTaskBtn.styled';
 
 const AddTaskBtn = () => {
@@ -8,7 +8,7 @@ const AddTaskBtn = () => {
     <AddBtnContainer
       type="button"
       onClick={() => {
-        dispatch(openModal());
+        // dispatch(openModal());
       }}
     >
       <IconAdd />
