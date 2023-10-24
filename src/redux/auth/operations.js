@@ -90,15 +90,15 @@ export const updateUser = createAsyncThunk(
 );
 
 export const toggleTheme = createAsyncThunk(
-  'auth/toggle-theme',
-  async (credentials, { rejectWithValue }) => {
+  'auth/toggleTheme',
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('api/auth/toggle-theme', credentials);
+      const { data } = await axios.patch('api/auth/theme');
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 

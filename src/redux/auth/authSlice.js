@@ -91,8 +91,8 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
-      .addCase(toggleTheme.fulfilled, (state, { payload }) => {
-        state.user.themeInterface = payload.themeInterface;
+      .addCase(toggleTheme.fulfilled, (state) => {
+        state.user.theme = !state.user.theme;
         state.isLoading = false;
       })
       .addCase(toggleTheme.pending, state => {
