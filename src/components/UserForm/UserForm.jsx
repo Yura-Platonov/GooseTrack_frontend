@@ -65,8 +65,15 @@ const UserForm = () => {
       skype: Yup.string().max(16),
     }),
     onSubmit: async (values) => {
-      console.log(values);
-      await dispatch(updateUser(values));
+      const formData = new FormData();
+      formData.append('avatar', values.avatarURL);
+      formData.append('name', values.name);
+      formData.append('email', values.email);
+      formData.append('birthdate', values.birthdate);
+      formData.append('phone', values.phone);
+      formData.append('skype', values.skype);
+
+      await dispatch(updateUser(formData));
 
       // dispatch(updateUser(values)).then((res) => {
       //   if (updateUser.fulfilled.match(res)) {
