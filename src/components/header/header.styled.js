@@ -23,7 +23,7 @@ export const Section = styled.section`
   .btn {
     padding: 0;
     border: 0;
-    background-color: var(--white);
+    background-color: transparent;
   }
   .burgerBtn {
     margin-right: auto;

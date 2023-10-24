@@ -6,7 +6,7 @@ import AddFeedbackBtn from '../Modal/AddFeedbackBtn/AddFeedbackBtn.jsx';
 import AddFeedbackModal from '../Modal/AddFeedbackModal/AddFeedbackModal.jsx';
 import { useLocation } from 'react-router-dom/dist';
 
-import { barSvg1, barSvg2, themeSvg1, themeSvg2 } from './headerSvg';
+import { barSvg1, barSvg2, themeSvg1, themeSvg2, themeSvg3, themeSvg4 } from './headerSvg';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { ThemeToggler } from './ThemeToggler/ThemeToggler';
@@ -82,10 +82,17 @@ const Header = () => {
 
         <div className="user-box">
           <AddFeedbackBtn />
-          <button className="btn" type="button" onClick={themeBtn}>
-            {windowWidth >= 768 ? themeSvg1 : themeSvg2}
-          </button>
-          <ThemeToggler></ThemeToggler>
+          {user.theme ? (
+            <button className="btn" type="button" onClick={themeBtn}>
+              {windowWidth >= 768 ? themeSvg1 : themeSvg2}
+            </button>
+          ) : (
+            <button className="btn" type="button" onClick={themeBtn}>
+                {windowWidth >= 768 ? themeSvg3 : themeSvg4}
+            </button>
+          )}
+
+          {/* <ThemeToggler></ThemeToggler> */}
           <h2 className="user-name">{user.username}</h2>
           <img
             className="avi"
