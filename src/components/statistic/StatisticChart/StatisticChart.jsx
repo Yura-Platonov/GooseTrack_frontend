@@ -1,12 +1,12 @@
 import BarChartStatistic from '../BarChartStatistic/BarChartStatistic';
-import { Text } from './StatisticChart.styled';
+import { Text, Wrapper } from './StatisticChart.styled';
 
 function StatisticChart({ statistics }) {
   return (
-    <div>
+    <Wrapper>
       <Text>Tasks</Text>
       <BarChartStatistic statistics={statistics} />
-    </div>
+    </Wrapper>
   );
 }
 

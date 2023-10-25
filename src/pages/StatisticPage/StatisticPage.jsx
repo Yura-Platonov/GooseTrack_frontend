@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import LegendList from '../../components/statistic/LegendList/LegendList';
 import PeriodPaginator from '../../components/calendar/periodPaginator/PeriodPaginator';
 import { Toolbar } from '../../components/calendar/toolbar/CalendarToolbar.styled';
-import { Container } from './StatisticPage.styled';
+import { Container, WrapperToolbar } from './StatisticPage.styled';
 import StatisticChart from '../../components/statistic/StatisticChart/StatisticChart';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,26 +20,27 @@ const StatisticPage = () => {
   useEffect(() => {
     const year = selectedDate.getFullYear();
     const month = selectedDate.getMonth() + 1;
+    setType(true);
 
     dispatch(getTasksByMonth({ year, month }));
-    setType(true);
   }, [dispatch, selectedDate]);
 
   const monthTasks = useSelector(selectMonthTasks, selectedDate);
-
 
   const statistics = statisticCalculations(monthTasks.tasks, selectedDate);
 
   return (
     <Container>
-      <Toolbar>
-        <PeriodPaginator
-          selectedDate={selectedDate}
-          typeDateDay={typeDay}
-          setSelectedDate={setSelectedDate}
-        />
-        <LegendList />
-      </Toolbar>
+      <WrapperToolbar>
+        <Toolbar>
+          <PeriodPaginator
+            selectedDate={selectedDate}
+            typeDateDay={typeDay}
+            setSelectedDate={setSelectedDate}
+          />
+          <LegendList />
+        </Toolbar>
+      </WrapperToolbar>
       <StatisticChart statistics={statistics} />
     </Container>
   );
