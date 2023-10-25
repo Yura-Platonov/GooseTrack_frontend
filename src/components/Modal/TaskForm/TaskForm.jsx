@@ -15,19 +15,19 @@ import {
 import { BiPlus } from 'react-icons/bi';
 import { VscEdit } from 'react-icons/vsc';
 import { validationTaskSchema } from '../../../helpers/validationTaskSchema';
-import {
-  addTask, editTask,
-} from '../../../redux/task/operations';
+import { addTask, editTask } from '../../../redux/task/operations';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { parse } from 'date-fns';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
+import { isOpenSelector } from '../../../redux/modal/selectors';
 
 export const TaskForm = ({ task, status, ...props }) => {
   const dispatch = useDispatch();
-  const { onCloseModal } = useDeleteOwnReview();
+  const { onCloseModal, getModalId } = useDeleteOwnReview();
+  const closeModalId = getModalId(isOpenSelector.lastResult(), true)[0];
 
   const [enterText, setEnterText] = useState('');
   const [start, setStart] = useState('09:30');
@@ -100,15 +100,15 @@ export const TaskForm = ({ task, status, ...props }) => {
   const handleAdd = (values) => {
     if (!editMode) {
       dispatch(addTask(...values));
-      onCloseModal('modal2');
-      } else {
-        dispatch(
-          editTask({
-            id: task._id,
-            task: { date: task.date, ...values, category },
-          }),
-        );
-      onCloseModal('modal2');
+      onCloseModal(closeModalId);
+    } else {
+      dispatch(
+        editTask({
+          id: task._id,
+          task: { date: task.date, ...values, category },
+        }),
+      );
+      onCloseModal(closeModalId);
     }
   };
 
@@ -220,7 +220,7 @@ export const TaskForm = ({ task, status, ...props }) => {
                 type="button"
                 disabled={isSubmitting}
                 onClick={() => {
-                  onCloseModal('modal2');
+                  onCloseModal(closeModalId);
                 }}
               >
                 Cancel

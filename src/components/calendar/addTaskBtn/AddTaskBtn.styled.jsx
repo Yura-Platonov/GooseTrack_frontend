@@ -17,7 +17,7 @@ export const AddBtnContainer = styled.button`
   &:hover {
     background-color: var(--switch-active);
   }
-  @media screen and (min-width: 768px) 
+  @media screen and (min-width: 768px) {
     height: 52px;
   }
 `;
