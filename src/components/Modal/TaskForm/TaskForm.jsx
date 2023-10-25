@@ -24,7 +24,7 @@ import { useEffect, useState } from 'react';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
 import { isOpenSelector } from '../../../redux/modal/selectors';
 
-export const TaskForm = ({ task, status, ...props }) => {
+export const TaskForm = ({ openMoalId, task, status, ...props }) => {
   const dispatch = useDispatch();
   const { onCloseModal, getModalId } = useDeleteOwnReview();
   const closeModalId = getModalId(isOpenSelector.lastResult(), true)[0];
@@ -35,17 +35,11 @@ export const TaskForm = ({ task, status, ...props }) => {
   const [priorities, setPriorities] = useState('low');
 
   const editMode = props?.editMode || false;
-  const category = status.toLowerCase();
-  // console.log(category)
-
+  const category = status.toLowerCase().replace(' ', '-');
   const today = new Date();
-
-  // Отримуємо рік, місяць і день
   const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0'); // +1, тому що місяці в JavaScript починаються з 0
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
   const day = today.getDate().toString().padStart(2, '0');
-
-  // Формуємо рядок в форматі "YYYY-MM-DD"
   const formattedDate = `${year}-${month}-${day}`;
 
   const initialValues = {
@@ -71,36 +65,12 @@ export const TaskForm = ({ task, status, ...props }) => {
       name: 'high',
     },
   ];
-  // dispatch(deleteTask('65330c0f8f2a4831c04e5599'));
-
-  // dispatch(
-  //   editTask({
-  //     id: '65330c0f8f2a4831c04e5599',
-  //     task: {
-  //       title: 'tewstun',
-  //       start: '13:30',
-  //       end: '13:35',
-  //       priority: 'medium',
-  //       date: '2023-10-15',
-  //       category: 'to-do',
-  //     },
-  //   }),
-  // );
-
-  // dispatch(getTasksByMonth({year: 2023, month:10}));
-
-  //   dispatch(addTask({
-  //     title: "adsasd",
-  //     start: "13:30",
-  //     end: "13:35",
-  //     priority: "medium",
-  //     date: "2023-10-15",
-  //     category:"to-do"
-  // }));
   const handleAdd = (values) => {
     if (!editMode) {
       dispatch(addTask(...values));
-      onCloseModal(closeModalId);
+
+      onCloseModal(openMoalId);
+
     } else {
       dispatch(
         editTask({
@@ -108,7 +78,9 @@ export const TaskForm = ({ task, status, ...props }) => {
           task: { date: task.date, ...values, category },
         }),
       );
-      onCloseModal(closeModalId);
+
+      onCloseModal(openMoalId);
+
     }
   };
 
@@ -220,7 +192,9 @@ export const TaskForm = ({ task, status, ...props }) => {
                 type="button"
                 disabled={isSubmitting}
                 onClick={() => {
-                  onCloseModal(closeModalId);
+
+                  onCloseModal(openMoalId);
+
                 }}
               >
                 Cancel
