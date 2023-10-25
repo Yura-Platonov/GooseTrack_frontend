@@ -7,7 +7,6 @@ import Modal from '../Modal.jsx';
 
 export const TaskModal = ({ task, status, ...props }) => {
   const { onCloseModal } = useDeleteOwnReview();
-
   return ReactDOM.createPortal(
     <Modal>
       <ModalContent>
@@ -23,6 +22,7 @@ export const TaskModal = ({ task, status, ...props }) => {
       </ModalContent>
     </Modal>,
     document.getElementById('portal'),
+
   );
 };
 

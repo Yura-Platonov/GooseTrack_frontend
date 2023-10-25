@@ -16,7 +16,7 @@ import { BiPlus } from 'react-icons/bi';
 import { VscEdit } from 'react-icons/vsc';
 import { validationTaskSchema } from '../../../helpers/validationTaskSchema';
 import {
-  addTask
+  addTask, editTask,
 } from '../../../redux/task/operations';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -35,7 +35,8 @@ export const TaskForm = ({ task, status, ...props }) => {
   const [priorities, setPriorities] = useState('low');
 
   const editMode = props?.editMode || false;
-  const category = status || 'to-do';
+  const category = status.toLowerCase();
+  // console.log(category)
 
   const today = new Date();
 
@@ -100,13 +101,13 @@ export const TaskForm = ({ task, status, ...props }) => {
     if (!editMode) {
       dispatch(addTask(...values));
       onCloseModal('modal2');
-      // } else {
-      //   dispatch(
-      //     editTask({
-      //       id: task._id,
-      //       task: { date: task.date, ...values, category },
-      //     }),
-      //   );
+      } else {
+        dispatch(
+          editTask({
+            id: task._id,
+            task: { date: task.date, ...values, category },
+          }),
+        );
       onCloseModal('modal2');
     }
   };
