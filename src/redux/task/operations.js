@@ -43,9 +43,9 @@ export const deleteTask = createAsyncThunk(
 
 export const editTask = createAsyncThunk(
   'task/editTask',
-  async ({ id, task }, { rejectWithValue }) => {
+  async ({ id, dataTask }, { rejectWithValue }) => {
     try {
-      const response = await instance.patch(`/api/task/${id}`, task);
+      const response = await instance.patch(`/api/task/${id}`, dataTask);
       return response.data;
     } catch (error) {
       rejectWithValue(error.message);
