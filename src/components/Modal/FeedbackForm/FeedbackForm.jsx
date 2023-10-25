@@ -1,36 +1,55 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { closeModal } from '../../../redux/modal/modalSlice.js';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { FaStar } from 'react-icons/fa';
-import { v4 as uuidv4 } from 'uuid';
+import { FaStar, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
+import { RxCross2 } from 'react-icons/rx';
+import { useId } from 'react';
+import useAddOwnReview from '../../../hooks/useAddOwnReview.js';
+import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
+import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
+import useEditOwnReview from '../../../hooks/useEditOwnReview.js';
+import Spinner from '../../Spinner/spinner.jsx';
 import {
   RatingContainer,
   RatingTitle,
-  CloseButton,
+  FormCloseButton,
   Container,
   Form,
   Input,
   ReviewLabel,
   Textarea,
-  ButtonContainer,
+  FormButtonContainer,
   SubmitButton,
   CancelButton,
   ValidationMessage,
+  ReviewHeaderContainer,
+  ReviewBtnContainer,
+  ReviewEditButton,
+  ReviewDeleteButton,
   faStarStyle,
 } from './FeedbackForm.styled.js';
 
 const FeedbackForm = () => {
-  const dispatch = useDispatch();
+  const [editMode, setEditMode] = useState(false);
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
+  const { handleReviewSend, isReview } = useAddOwnReview();
+  const { review, isLoading } = useGetOwnReview();
+  const { deleteOwnReview, onCloseModal } = useDeleteOwnReview();
+  const { handleReviewEdit } = useEditOwnReview();
+  const changeMode = isReview ? isReview : editMode;
+
   const formik = useFormik({
     initialValues: {
-      rating: null,
-      feedBack: '',
+      rating: isReview ? 4 : review.stars,
+      feedBack: review.comment,
     },
     onSubmit: (values) => {
-      dispatch(closeModal());
-      console.log(JSON.stringify(values, null, 2));
+      isReview
+        ? handleReviewSend(values.feedBack, values.rating)
+        : handleReviewEdit(values.feedBack, values.rating);
+      onCloseModal('modal1');
     },
 
     validationSchema: Yup.object().shape({
@@ -44,41 +63,22 @@ const FeedbackForm = () => {
   });
   return (
     <Container>
-      <CloseButton
+      {isLoading && <Spinner />}
+      <FormCloseButton
         type="button"
         onClick={() => {
-          dispatch(closeModal());
+          onCloseModal('modal1');
         }}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="Modal closed"
-          width="24"
-          height="24"
-          viewBox="0 0 34 34"
-          fill="none"
-        >
-          <path
-            d="M25.5 8.5L8.5 25.5"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M8.5 8.5L25.5 25.5"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </CloseButton>
+        <RxCross2 size={24} />
+      </FormCloseButton>
       <Form onSubmit={formik.handleSubmit}>
         <RatingContainer>
           <RatingTitle>Rating</RatingTitle>
           {[...Array(5)].map((star, i) => {
             const ratingValue = i + 1;
             return (
-              <label key={uuidv4()}>
+              <label key={useId()}>
                 <Input
                   name="rating"
                   type="radio"
@@ -105,30 +105,58 @@ const FeedbackForm = () => {
             );
           })}
         </RatingContainer>
-        <ReviewLabel htmlFor="feedBack">Review</ReviewLabel>
+        <ReviewHeaderContainer>
+          <ReviewLabel htmlFor="feedBack">Review</ReviewLabel>
+          {!isReview && (
+            <ReviewBtnContainer>
+              <ReviewEditButton
+                type="button"
+                onClick={() => {
+                  toggleEditMode();
+                }}
+              >
+                <FaPencilAlt size={16} />
+              </ReviewEditButton>
+              <ReviewDeleteButton
+                type="button"
+                onClick={() => {
+                  deleteOwnReview();
+                  onCloseModal('modal1');
+                }}
+              >
+                <FaTrashAlt size={16} />
+              </ReviewDeleteButton>
+            </ReviewBtnContainer>
+          )}
+        </ReviewHeaderContainer>
         <Textarea
           id="feedBack"
           name="feedBack"
           placeholder="Enter text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          value={formik.values.feedBack}
         ></Textarea>
         <ValidationMessage>
           {formik.errors.feedBack &&
             formik.touched.feedBack &&
             formik.errors.feedBack}
         </ValidationMessage>
-        <ButtonContainer>
-          <SubmitButton type="submit">Save</SubmitButton>
-          <CancelButton
-            type="button"
-            onClick={() => {
-              dispatch(closeModal());
-            }}
-          >
-            Cancel
-          </CancelButton>
-        </ButtonContainer>
+        {changeMode && (
+          <FormButtonContainer>
+            <SubmitButton type="submit">
+              {isReview ? 'Save' : 'Edit'}
+            </SubmitButton>
+            <CancelButton
+              type="button"
+              onClick={() => {
+                onCloseModal('modal1');
+              }}
+            >
+              Cancel
+            </CancelButton>
+          </FormButtonContainer>
+        )}
       </Form>
     </Container>
   );

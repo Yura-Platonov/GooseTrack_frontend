@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   startOfMonth,
   endOfMonth,
@@ -15,8 +15,6 @@ import {
 import PropTypes from 'prop-types';
 
 import { selectMonthTasks } from '../../../redux/task/selectors';
-import { selectIsOpen } from '../../../redux/modal/selectors';
-import { openModal } from '../../../redux/modal/modalSlice';
 import { TaskModal } from '../../Modal/TaskModal/TaskModal';
 import { default as Modal } from '../../Modal/Modal';
 import {
@@ -27,11 +25,12 @@ import {
   TasksWrapper,
   ItemTask,
 } from './CalendarTable.styled';
+import useGetOwnReview from '../../../hooks/useGetOwnReview';
 
 const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
   const tasks = useSelector(selectMonthTasks);
-  const isOpen = useSelector(selectIsOpen);
-  const dispatch = useDispatch();
+  const { checkIsOpen, onOpenModal } = useGetOwnReview();
+  const isOpen = checkIsOpen('modal2');
 
   const startMonth = startOfMonth(selectedDate);
   const endMonth = endOfMonth(selectedDate);
@@ -81,7 +80,7 @@ const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
                         high={priority === 'high' ? 1 : 0}
                         medium={priority === 'medium' ? 1 : 0}
                         onClick={() => {
-                          dispatch(openModal());
+                          onOpenModal('modal2');
                         }}
                       >
                         {title}

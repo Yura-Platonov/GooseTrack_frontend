@@ -1,14 +1,14 @@
-import { useDispatch } from 'react-redux';
-import { openModal } from '../../../redux/modal/modalSlice.js';
 import { AddBtnContainer, IconAdd, NameBtn } from './AddTaskBtn.styled';
+import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 
 const AddTaskBtn = () => {
-  const dispatch = useDispatch();
+  const { onOpenModal } = useGetOwnReview();
+
   return (
     <AddBtnContainer
       type="button"
       onClick={() => {
-        dispatch(openModal());
+        onOpenModal('modal2');
       }}
     >
       <IconAdd />

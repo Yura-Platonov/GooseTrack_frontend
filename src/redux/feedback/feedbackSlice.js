@@ -5,7 +5,7 @@ import {
   editOwnReviewThunk,
   getAllReviewsThunk,
   getOwnReviewThunk,
-} from './operationsF';
+} from './operations.js';
 
 const initialState = {
   reviews: [],
@@ -51,7 +51,7 @@ const reviewsSlice = createSlice({
       })
       .addCase(addOwnReviewThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.reviews= action.payload;
+        state.reviews = action.payload;
       })
       .addCase(addOwnReviewThunk.rejected, (state, action) => {
         state.isLoading = false;

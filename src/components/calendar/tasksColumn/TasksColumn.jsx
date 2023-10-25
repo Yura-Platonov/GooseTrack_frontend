@@ -1,16 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectIsOpen } from '../../../redux/modal/selectors.js';
 import ColumnHeadBar from '../columnHeadBar/ColumnHeadBar';
 import AddTaskBtn from '../addTaskBtn/AddTaskBtn';
 import { ColumnContainer } from './TasksColumn.styled';
 import { TaskModal } from '../../Modal/TaskModal/TaskModal';
 import { default as Modal } from '../../Modal/Modal';
 import { ColumnsTasksList } from '../tasksColumnsList/TasksColumnsList.jsx';
+import useGetOwnReview from '../../../hooks/useGetOwnReview';
 
 const TasksColumn = ({ tasks = [], title, selectedDate }) => {
-  const isOpen = useSelector(selectIsOpen);
+  const { checkIsOpen } = useGetOwnReview();
+  const isOpen = checkIsOpen('modal2');
 
   return (
     <>

@@ -1,18 +1,17 @@
 import { TaskForm } from '../TaskForm/TaskForm';
-import { useDispatch } from 'react-redux';
-import { closeModal } from '../../../redux/modal/modalSlice.js';
 import PropTypes from 'prop-types';
 import { Button, CloseSvg, ModalContent } from '../Modal.styled.js';
+import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
 
 export const TaskModal = ({ task, status, ...props }) => {
-  const dispatch = useDispatch();
+  const { onCloseModal } = useDeleteOwnReview();
 
   return (
     <ModalContent>
       <Button
         type="button"
         onClick={() => {
-          dispatch(closeModal());
+          onCloseModal('modal2');
         }}
       >
         <CloseSvg />

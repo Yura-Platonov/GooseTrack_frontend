@@ -1,23 +1,23 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { useDispatch } from 'react-redux';
-import { closeModal } from '../../redux/modal/modalSlice.js';
 import { useEffect } from 'react';
 import { Container, Overlay } from './Modal.styled.js';
+import useDeleteOwnReview from '../../hooks/useDeleteOwnReview.js';
+import { isOpenSelector } from '../../redux/modal/selectors.js';
 
 export const Modal = ({ children }) => {
-  const dispatch = useDispatch();
+  const { onCloseModal, getModalId } = useDeleteOwnReview();
+  const modalId = getModalId(isOpenSelector.lastResult(), true)[0];
 
   const handleOverlayClick = (e) => {
     if (e.currentTarget === e.target) {
-      dispatch(closeModal());
+      onCloseModal(modalId);
     }
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === 'Escape') {
-        dispatch(closeModal());
+        onCloseModal(modalId);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -25,12 +25,13 @@ export const Modal = ({ children }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [closeModal]);
+  }, [onCloseModal]);
 
   return ReactDOM.createPortal(
     <>
-      <Overlay onClick={handleOverlayClick} />
-      <Container>{children}</Container>
+      <Overlay onClick={handleOverlayClick}>
+        <Container>{children}</Container>
+      </Overlay>
     </>,
     document.getElementById('portal'),
   );

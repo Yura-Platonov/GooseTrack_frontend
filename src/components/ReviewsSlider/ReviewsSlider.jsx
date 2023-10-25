@@ -23,7 +23,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllReviewsThunk } from '../../redux/feedback/operationsF';
+import { getAllReviewsThunk } from '../../redux/feedback/operations.js';
 import { Rating, Star } from '@smastrom/react-rating';
 
 import '@smastrom/react-rating/style.css';
