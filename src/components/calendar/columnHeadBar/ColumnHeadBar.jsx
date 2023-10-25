@@ -5,18 +5,17 @@ import {
   AddTaskBtn,
   IconAdd,
 } from './ColumnHeadBar.styled';
-import { openModal } from '../../../redux/modal/modalSlice.js';
-import { useDispatch } from 'react-redux';
+import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 
 const ColumnHeadBar = ({ title, handleShowModal }) => {
-  const dispatch = useDispatch();
+  const { onOpenModal } = useGetOwnReview();
   return (
     <TitleContainer>
       <Title>{title}</Title>
       <AddTaskBtn
         type="button"
         onClick={() => {
-          dispatch(openModal());
+          onOpenModal('modal2');
         }}
       >
         <IconAdd onClick={handleShowModal} />

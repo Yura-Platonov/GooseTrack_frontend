@@ -26,6 +26,7 @@ import { useParams } from 'react-router-dom';
 import { parse } from 'date-fns';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
 
 export const TaskForm = ({ task, status, ...props }) => {
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ export const TaskForm = ({ task, status, ...props }) => {
   const handleAdd = (values) => {
     if (!editMode) {
       dispatch(addTask(...values));
-      dispatch(closeModal());
+      onCloseModal('modal2');
       // } else {
       //   dispatch(
       //     editTask({
@@ -109,7 +110,7 @@ export const TaskForm = ({ task, status, ...props }) => {
       //       task: { date: task.date, ...values, category },
       //     }),
       //   );
-      dispatch(closeModal());
+      onCloseModal('modal2');
     }
   };
 

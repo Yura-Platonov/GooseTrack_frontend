@@ -2,7 +2,6 @@ import { TaskForm } from '../TaskForm/TaskForm';
 import PropTypes from 'prop-types';
 import { Button, CloseSvg, ModalContent } from '../Modal.styled.js';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
-import { Modal } from '../Modal.jsx';
 
 export const TaskModal = ({ task, status, ...props }) => {
   const { onCloseModal } = useDeleteOwnReview();
