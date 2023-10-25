@@ -6,11 +6,11 @@ export const StyledBarChart = styled.div`
   font-style: 'normal';
   font-weight: '500';
 
-  @media (max-width: 375px) {
+  @media (max-width: 767px) {
     font-size: 12px;
   }
 
-  @media (min-width: 375px) {
+  @media (min-width: 768px) {
     font-size: 16px;
   }
 `;

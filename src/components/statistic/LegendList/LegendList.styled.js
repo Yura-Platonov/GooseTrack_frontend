@@ -27,6 +27,7 @@ const ListItem = styled.li`
 `;
 
 const Dot = styled.span`
+  user-select: none;
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -42,6 +43,7 @@ const ByMonthDot = styled(Dot)`
 `;
 
 const Text = styled.span`
+  user-select: none;
   font-size: 16px;
 `;
 
