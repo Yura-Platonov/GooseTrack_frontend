@@ -69,14 +69,7 @@ function BarChartStatistic({ statistics }) {
             <Tooltip />
 
             <defs>
-              <linearGradient
-                id="colorByDay"
-                x1="11.4074"
-                y1="98"
-                x2="11.4074"
-                y2="3.56244e-08"
-                gradientUnits="userSpaceOnUse"
-              >
+              <linearGradient id="colorByDay" x1="0%" y1="100%" x2="0%" y2="0%">
                 <stop stopColor="var(--pink)" />
                 <stop
                   offset="0.96875"
@@ -87,11 +80,10 @@ function BarChartStatistic({ statistics }) {
 
               <linearGradient
                 id="colorByMonth"
-                x1="11.4074"
-                y1="246"
-                x2="11.4074"
-                y2="8.94245e-08"
-                gradientUnits="userSpaceOnUse"
+                x1="0%"
+                y1="100%"
+                x2="0%"
+                y2="0%"
               >
                 <stop stopColor="var(--blue)" />
                 <stop offset="1" stopColor="var(--blue)" stopOpacity="0" />
