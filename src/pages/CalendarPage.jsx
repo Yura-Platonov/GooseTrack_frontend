@@ -37,6 +37,7 @@ const CalendarPage = () => {
     dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
   }, [dispatch, selectedDate, typeDay]);
 
+
   return (
     <Container>
       <CalendarToolbar

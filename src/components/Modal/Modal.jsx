@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import { useEffect } from 'react';
 import { Container, Overlay } from './Modal.styled.js';
 import useDeleteOwnReview from '../../hooks/useDeleteOwnReview.js';
@@ -27,13 +26,12 @@ export const Modal = ({ children }) => {
     };
   }, [onCloseModal]);
 
-  return ReactDOM.createPortal(
+  return (
     <>
       <Overlay onClick={handleOverlayClick}>
         <Container>{children}</Container>
       </Overlay>
-    </>,
-    document.getElementById('portal'),
+    </>
   );
 };
 
