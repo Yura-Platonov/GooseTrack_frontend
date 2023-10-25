@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ColumnHeadBar from '../columnHeadBar/ColumnHeadBar';
 import AddTaskBtn from '../addTaskBtn/AddTaskBtn';
@@ -11,6 +11,8 @@ import useGetOwnReview from '../../../hooks/useGetOwnReview';
 const TasksColumn = ({ tasks = [], title, selectedDate }) => {
   const { checkIsOpen } = useGetOwnReview();
   const isOpen = checkIsOpen('modal2');
+
+  useEffect(() => {}, [isOpen]);
 
   return (
     <>
