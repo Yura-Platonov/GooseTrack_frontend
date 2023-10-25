@@ -5,16 +5,20 @@ import { TaskModal } from '../../Modal/TaskModal/TaskModal';
 import { useId } from 'react';
 
 const AddTaskBtn = ({ title }) => {
+
   const { onOpenModal,checkIsOpen } = useGetOwnReview();
   const openMoalId = useId()
   const isOpen = checkIsOpen(openMoalId);
   
+
   return (
     <>
       <AddBtnContainer
         type="button"
         onClick={() => {
+
           onOpenModal(openMoalId);
+
         }}
       >
         <IconAdd />

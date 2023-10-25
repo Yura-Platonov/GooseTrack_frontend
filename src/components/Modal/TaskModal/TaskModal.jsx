@@ -6,16 +6,20 @@ import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
 import Modal from '../Modal.jsx';
 import { isOpenSelector } from '../../../redux/modal/selectors';
 
+
 export const TaskModal = ({ openMoalId, task, status, ...props }) => {
   const { onCloseModal } = useDeleteOwnReview();
   
+
   return ReactDOM.createPortal(
     <Modal>
       <ModalContent>
         <Button
           type="button"
           onClick={() => {
+
             onCloseModal(openMoalId);
+
           }}
         >
           <CloseSvg />
