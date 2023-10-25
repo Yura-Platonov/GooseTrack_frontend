@@ -22,7 +22,7 @@ const tasksSlice = createSlice({
     builder
       .addCase(getTasksByMonth.fulfilled, (state, { payload }) => {
         state.monthTasks = payload;
-        console.log(payload);
+        // console.log(payload);
       })
       .addCase(addTask.fulfilled, (state, { payload }) => {
         state.monthTasks.tasks.push(payload); 
@@ -34,7 +34,7 @@ const tasksSlice = createSlice({
         );
       })
       .addCase(editTask.fulfilled, (state, { payload }) => {
-        state.monthTasks = state.monthTasks.map((task) =>
+        state.monthTasks = state.monthTasks.tasks.map((task) =>
           task._id === payload._id ? payload : task,
         );
       })

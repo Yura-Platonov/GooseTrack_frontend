@@ -18,7 +18,7 @@ export const TaskColumnCard = ({ task, getTask }) => {
   const isLoading = useSelector(selectIsLoading);
   const userSelector = useSelector(selectUser);
   const name = userSelector?.name || 'Name';
-  const avatar = userSelector?.userImgUrl;
+  const avatar = userSelector?.avatarURL;
 
   return (
     <Container>
@@ -26,7 +26,7 @@ export const TaskColumnCard = ({ task, getTask }) => {
       <Wrapper>
         <Wrapper>
           <TaskAvatarWrapper>
-            {isLoading ? (
+            {avatar ? (
               <AvatarImg src={avatar} alt="User Avatar" />
             ) : (
               <SvgAvatar />

@@ -7,8 +7,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { nanoid } from '@reduxjs/toolkit';
 
-const ChoosedDay = ({tasks=[] , getTask, selectedDate, setSelectedDate }) => {
+const ChoosedDay = ({ tasks = [], getTask, selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
+  
+
+  const categorizedTasks = {
+    'To do': tasks.filter((task) => task.category === 'to-do'),
+    'In progress': tasks.filter((task) => task.category === 'in-progress'),
+    'Done': tasks.filter((task) => task.category === 'done'),
+  };
 
   return (
     <>
@@ -22,7 +29,7 @@ const ChoosedDay = ({tasks=[] , getTask, selectedDate, setSelectedDate }) => {
             <TasksColumn
               key={nanoid()}
               title={columnTitle}
-              tasks={tasks}
+              tasks={categorizedTasks[columnTitle]}
               getTask={getTask}
             ></TasksColumn>
           );

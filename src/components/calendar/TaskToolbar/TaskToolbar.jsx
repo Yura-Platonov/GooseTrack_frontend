@@ -46,7 +46,7 @@ export const TaskToolbar = ({ toggleModal, task }) => {
 };
 
 TaskToolbar.propTypes = {
-  toggleModal: PropTypes.func.isRequired,
+  // toggleModal: PropTypes.func.isRequired,
   task: PropTypes.shape({
     _id: PropTypes.string.isRequired,
   }).isRequired,
