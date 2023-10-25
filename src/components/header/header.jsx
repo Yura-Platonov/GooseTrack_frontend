@@ -41,18 +41,19 @@ const Header = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    const path = location.pathname;
+     const path = location.pathname;
     switch (path) {
-      case '/calendar':
-        setCurrentPage('Calendar');
-        break;
+      case '/account':
+        setCurrentPage('User Profile');        
+        break;        
       case '/statistics':
         setCurrentPage('Statistics');
         break;
       default:
-        setCurrentPage('User Profile');
+        setCurrentPage('Calendar');
     }
-  }, [location.pathname]);
+
+  }, [location]);
 
   useEffect(() => {
     const handleResize = () => {
