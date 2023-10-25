@@ -25,7 +25,7 @@ const tasksSlice = createSlice({
         // console.log(payload);
       })
       .addCase(addTask.fulfilled, (state, { payload }) => {
-        state.monthTasks.tasks.push(payload); 
+       state.monthTasks= state.monthTasks.tasks.push(payload); 
         
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
