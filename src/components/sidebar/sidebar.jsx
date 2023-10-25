@@ -34,6 +34,7 @@ const Sidebar = ({ toggleMenu }) => {
 
   const handleLogout = () => {
     dispatch(logout());
+    toggleMenu();
   };
 
    useEffect(() => {

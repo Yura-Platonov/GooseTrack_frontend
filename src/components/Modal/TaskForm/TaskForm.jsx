@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import {
   RadioButtonInput,
   Wrapper,
-  Button,
+  Btn,
   ButtonCancel,
   Span,
   Label,
@@ -23,38 +23,53 @@ import {
 } from '../../../redux/task/operations';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
+import { parse } from 'date-fns';
 import PropTypes from 'prop-types';
-import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
+import { useEffect, useState } from 'react';
 
 export const TaskForm = ({ task, status, ...props }) => {
   const dispatch = useDispatch();
   const { onCloseModal } = useDeleteOwnReview();
 
-  const editMode = props?.editMode || false;
-  const category = status || 'To do';
+  const [enterText, setEnterText] = useState('');
+  const [start, setStart] = useState('09:30');
+  const [end, setEnd] = useState('10:00');
+  const [priorities, setPriorities] = useState('low');
 
-  const { currentDate } = useParams();
+  const editMode = props?.editMode || false;
+  const category = status || 'to-do';
+
+  const today = new Date();
+
+  // Отримуємо рік, місяць і день
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0'); // +1, тому що місяці в JavaScript починаються з 0
+  const day = today.getDate().toString().padStart(2, '0');
+
+  // Формуємо рядок в форматі "YYYY-MM-DD"
+  const formattedDate = `${year}-${month}-${day}`;
 
   const initialValues = {
-    title: task?.title || '',
-    start: task?.start || '',
-    end: task?.end || '',
-    priority: task?.priority || 'Low',
+    title: enterText,
+    start: start.slice(0, 5),
+    end: end.slice(0, 5),
+    priority: priorities.toLowerCase(),
+    date: formattedDate,
+    category,
   };
 
   const PRIORITIES = [
     {
       value: 'Low',
-      name: 'Low',
+      name: 'low',
     },
     {
       value: 'Medium',
-      name: 'Medium',
+      name: 'medium',
     },
     {
       value: 'High',
-      name: 'High',
+      name: 'high',
     },
   ];
   // dispatch(deleteTask('65330c0f8f2a4831c04e5599'));
@@ -85,16 +100,16 @@ export const TaskForm = ({ task, status, ...props }) => {
   // }));
   const handleAdd = (values) => {
     if (!editMode) {
-      dispatch(addTask({ ...values, category, date: currentDate }));
-      onCloseModal('modal2');
-    } else {
-      dispatch(
-        updateTask({
-          id: task._id,
-          task: { date: task.date, ...values, category },
-        }),
-      );
-      onCloseModal('modal2');
+      dispatch(addTask(...values));
+      dispatch(closeModal());
+      // } else {
+      //   dispatch(
+      //     editTask({
+      //       id: task._id,
+      //       task: { date: task.date, ...values, category },
+      //     }),
+      //   );
+      dispatch(closeModal());
     }
   };
 
@@ -106,8 +121,8 @@ export const TaskForm = ({ task, status, ...props }) => {
         validateOnChange={true}
         validationSchema={validationTaskSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(false);
           handleAdd(values);
+          setSubmitting(false);
         }}
       >
         {({
@@ -187,15 +202,20 @@ export const TaskForm = ({ task, status, ...props }) => {
 
             <Wrapper>
               {!editMode ? (
-                <Button type="submit">
+                <Btn
+                  type="button"
+                  onClick={() => {
+                    dispatch(addTask(values));
+                  }}
+                >
                   <BiPlus />
                   Add
-                </Button>
+                </Btn>
               ) : (
-                <Button type="submit" disabled={isSubmitting}>
+                <Btn type="button" disabled={isSubmitting}>
                   <VscEdit />
                   Edit
-                </Button>
+                </Btn>
               )}
               <ButtonCancel
                 type="button"

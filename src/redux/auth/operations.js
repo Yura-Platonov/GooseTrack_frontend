@@ -88,3 +88,17 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const toggleTheme = createAsyncThunk(
+  'auth/toggleTheme',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.patch('api/auth/theme');
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+

@@ -6,15 +6,26 @@ import AddFeedbackBtn from '../Modal/AddFeedbackBtn/AddFeedbackBtn.jsx';
 import AddFeedbackModal from '../Modal/AddFeedbackModal/AddFeedbackModal.jsx';
 import { useLocation } from 'react-router-dom/dist';
 
-import { barSvg1, barSvg2, themeSvg1, themeSvg2 } from './headerSvg';
+import {
+  barSvg1,
+  barSvg2,
+  themeSvg1,
+  themeSvg2,
+  themeSvg3,
+  themeSvg4,
+} from './headerSvg';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
+import { ThemeToggler } from './ThemeToggler/ThemeToggler';
+import { useDispatch } from 'react-redux';
+import { toggleTheme } from '../../redux/auth/operations';
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [currentPage, setCurrentPage] = useState('Home');
 
+  const dispatch = useDispatch();
   const location = useLocation();
   const user = useSelector(selectUser);
   const toggleMenu = () => {
@@ -53,6 +64,10 @@ const Header = () => {
     };
   }, []);
 
+  const themeBtn = () => {
+    dispatch(toggleTheme());
+  };
+
   return (
     <Section>
       {isMenuOpen && windowWidth < 1440 ? (
@@ -73,13 +88,21 @@ const Header = () => {
 
         <div className="user-box">
           <AddFeedbackBtn />
-          <button className="btn" type="button">
-            {windowWidth >= 768 ? themeSvg1 : themeSvg2}
-          </button>
+          {user.theme ? (
+            <button className="btn" type="button" onClick={themeBtn}>
+              {windowWidth >= 768 ? themeSvg1 : themeSvg2}
+            </button>
+          ) : (
+            <button className="btn" type="button" onClick={themeBtn}>
+              {windowWidth >= 768 ? themeSvg3 : themeSvg4}
+            </button>
+          )}
+
+          {/* <ThemeToggler></ThemeToggler> */}
           <h2 className="user-name">{user.username}</h2>
           <img
             className="avi"
-            src={user.avatarUrl ? user.avatarUrl : nad}
+            src={user.avatarURL ? user.avatarURL : nad}
             alt="user-AVi"
           />
         </div>

@@ -13,18 +13,19 @@ export const TasksList = styled.ul`
   padding-right: 6px;
   min-height: 1px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(242, 242, 242, 1);
+  scollbar-height: 112px;
+  scrollbar-color: rgba(231, 229, 229, 1);
   &::-webkit-scrollbar {
     width: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(242, 242, 242, 1);
     border-radius: 12px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(242, 242, 242, 1);
     border-radius: 12px;
   }
 

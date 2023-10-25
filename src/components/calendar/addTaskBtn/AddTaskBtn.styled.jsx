@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 export const AddBtnContainer = styled.button`
   display: flex;
-  width: 100%;
+  max-width: 288px;
   height: 48px;
   align-items: center;
   justify-content: center;
@@ -17,7 +17,7 @@ export const AddBtnContainer = styled.button`
   &:hover {
     background-color: var(--switch-active);
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) 
     height: 52px;
   }
 `;

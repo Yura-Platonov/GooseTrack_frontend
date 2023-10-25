@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { variables } from '../../Styles/GlobalStyle';
 
 export const Section = styled.section`
   /* margin-top: 24px;
@@ -22,7 +23,7 @@ export const Section = styled.section`
   .btn {
     padding: 0;
     border: 0;
-    background-color: var(--white);
+    background-color: transparent;
   }
   .burgerBtn {
     margin-right: auto;
@@ -78,7 +79,7 @@ export const Section = styled.section`
       gap: 14px;
     }
     .user-name {
-      color: var(--user-panel-text);
+      color: ${props => props.theme.title};
       font-family: Inter;
       font-size: 18px;
       font-style: normal;

@@ -9,14 +9,14 @@ export const Container = styled.li`
   flex-direction: column;
   gap: 28px;
   padding: 14px;
-  width: 100%;
+  // width: 100%;
 
-  background-color: var(--form-textarea);
-  border: var(--border-dark-theme);
+  background-color: #f7f6f9;
+  border: 1px solid rgba(220, 227, 229, 0.8);
   border-radius: 8px;
 
   @media (min-width: 1280px) {
-    min-height: 110px;
+    height: 110px;
     padding-top: 14px;
     padding-right: 10px;
     padding-bottom: 18px;
@@ -43,7 +43,7 @@ export const TaskTitle = styled(Truncate)`
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1.29;
-  color: red;
+  color: var(--primary-text-color);
 `;
 
 export const SvgAvatar = styled(AiOutlineUser)`
@@ -75,13 +75,14 @@ export const TaskPriority = styled.p`
       return '--day-status-low';
     }}
   );
+  font-family: var(--main-font);
   border-radius: 4px;
   font-style: normal;
   font-weight: 600;
   font-size: 10px;
   line-height: 1.2;
   text-align: center;
-  color: var(white);
+  color: var(--white);
 `;
 
 export const Toolbar = styled(TaskToolbar)`

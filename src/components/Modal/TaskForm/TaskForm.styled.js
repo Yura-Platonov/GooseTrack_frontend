@@ -85,7 +85,7 @@ export const Errors = styled.span`
   }
 `;
 
-export const Button = styled.button`
+export const Btn = styled.button`
   width: 100%;
   height: 42px;
   display: flex;
@@ -229,7 +229,7 @@ export const RadioButtonInput = styled.input`
     position: absolute;
     height: 12px;
     width: 12px;
-    color: var(--user-panel-active);
+    color: red;
     outline: 2px solid;
 
     @media (min-width: 768px) {
