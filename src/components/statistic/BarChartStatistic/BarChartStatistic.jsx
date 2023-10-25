@@ -60,7 +60,12 @@ function BarChartStatistic({ statistics }) {
           >
             <CartesianGrid stroke="var(--user-panel-active)" vertical={false} />
             <XAxis dataKey="name" axisLine={false} tickLine={false} />
-            <YAxis axisLine={false} tickLine={false} domain={[0, 100]} />
+            <YAxis
+              axisLine={false}
+              tickLine={false}
+              domain={[0, 100]}
+              tickCount={6}
+            />
             <Tooltip />
 
             <defs>
