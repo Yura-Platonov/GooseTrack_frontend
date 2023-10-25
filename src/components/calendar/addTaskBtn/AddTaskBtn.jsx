@@ -2,18 +2,19 @@ import { AddBtnContainer, IconAdd, NameBtn } from './AddTaskBtn.styled';
 import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 import Modal from '../../Modal/Modal';
 import { TaskModal } from '../../Modal/TaskModal/TaskModal';
+import { useId } from 'react';
 
 const AddTaskBtn = ({ title }) => {
-  const { onOpenModal } = useGetOwnReview();
-  const { checkIsOpen } = useGetOwnReview();
-  const isOpen = checkIsOpen('modal2');
-
+  const { onOpenModal,checkIsOpen } = useGetOwnReview();
+  const openMoalId = useId()
+  const isOpen = checkIsOpen(openMoalId);
+  
   return (
     <>
       <AddBtnContainer
         type="button"
         onClick={() => {
-          onOpenModal('modal2');
+          onOpenModal(openMoalId);
         }}
       >
         <IconAdd />
@@ -21,7 +22,7 @@ const AddTaskBtn = ({ title }) => {
       </AddBtnContainer>
       {isOpen && (
         <Modal>
-          <TaskModal status={title} />
+          <TaskModal status={title} openMoalId={openMoalId} />
         </Modal>
       )}
     </>
