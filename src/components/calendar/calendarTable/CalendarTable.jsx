@@ -31,7 +31,7 @@ const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
   const tasks = useSelector(selectMonthTasks);
   const { checkIsOpen, onOpenModal } = useGetOwnReview();
   const isOpen = checkIsOpen('modal2');
-
+  
   const startMonth = startOfMonth(selectedDate);
   const endMonth = endOfMonth(selectedDate);
   const startDay = startOfWeek(startMonth, { weekStartsOn: 1 });

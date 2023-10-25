@@ -1,16 +1,12 @@
 import DayCalendarHead from '../dayCalendarHead/DayCalendarHead';
 import { ColumnsContainer } from './ChoosedDay.styled';
 import TasksColumn from '../tasksColumn/TasksColumn';
-import { selectMonthTasks } from '../../../redux/task/selectors';
-import { useId } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { nanoid } from '@reduxjs/toolkit';
 
 const ChoosedDay = ({ tasks = [], getTask, selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
   
-
   const categorizedTasks = {
     'To do': tasks.filter((task) => task.category === 'to-do'),
     'In progress': tasks.filter((task) => task.category === 'in-progress'),
@@ -31,6 +27,7 @@ const ChoosedDay = ({ tasks = [], getTask, selectedDate, setSelectedDate }) => {
               title={columnTitle}
               tasks={categorizedTasks[columnTitle]}
               getTask={getTask}
+              selectedDate={selectedDate}
             ></TasksColumn>
           );
         })}
