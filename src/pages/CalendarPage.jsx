@@ -38,10 +38,7 @@ const CalendarPage = () => {
     dispatch,
     selectedDate,
     typeDay,
-    tasks,
-    selectedMonth,
-    selectedYear,
-    navigate,
+    tasks
   ]);
 
   return (

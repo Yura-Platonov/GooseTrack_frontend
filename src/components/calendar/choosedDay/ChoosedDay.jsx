@@ -11,12 +11,11 @@ const ChoosedDay = ({ tasks = [], getTask, selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
   
 
-  const categorizedTasks = {
-    'To do': tasks.filter((task) => task.category === 'to-do'),
-    'In progress': tasks.filter((task) => task.category === 'in-progress'),
-    'Done': tasks.filter((task) => task.category === 'done'),
-  };
-
+const categorizedTasks = {
+  'To do': [...tasks.filter((task) => task.category === 'to-do')],
+  'In progress': [...tasks.filter((task) => task.category === 'in-progress')],
+  'Done': [...tasks.filter((task) => task.category === 'done')],
+};
   return (
     <>
       <DayCalendarHead
