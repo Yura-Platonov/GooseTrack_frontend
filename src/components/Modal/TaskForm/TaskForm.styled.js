@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  min-width: 246px;
+  min-width: 335px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -212,14 +212,14 @@ export const RadioButtonInput = styled.input`
     /* color: ; */
     ${({ priority }) => {
       switch (priority) {
-        case 'Low':
-          return 'background-color: var(--day-status-low); color: var(--task-priority-low-checked-color); border-color: var(--day-status-low)';
-        case 'Medium':
-          return 'background-color: var(--day-status-medium); color: var(--task-priority-medium-checked-color)';
-        case 'High':
-          return 'background-color: var(--day-status-high); color: var(--task-priority-high-checked-color)';
+        case 'low':
+          return 'background-color: var(--day-status-low)';
+        case 'medium':
+          return 'background-color: var(--day-status-medium)';
+        case 'high':
+          return 'background-color: var(--day-status-high); ';
         default:
-          return 'background-color: var(--day-status-low); color: var(--task-priority-low-checked-color); color: var(--day-status-low)';
+          return 'background-color: var(--day-status-low); ';
       }
     }}
   }
@@ -229,8 +229,8 @@ export const RadioButtonInput = styled.input`
     position: absolute;
     height: 12px;
     width: 12px;
-    color: red;
-    outline: 2px solid;
+    color: #72c2f880;
+    outline: 3px solid;
 
     @media (min-width: 768px) {
       height: 14px;
