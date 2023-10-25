@@ -9,6 +9,7 @@ import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
 import useEditOwnReview from '../../../hooks/useEditOwnReview.js';
 import Spinner from '../../Spinner/spinner.jsx';
+import { isOpenSelector } from '../../../redux/modal/selectors.js';
 import {
   RatingContainer,
   RatingTitle,
@@ -36,8 +37,9 @@ const FeedbackForm = () => {
   };
   const { handleReviewSend, isReview } = useAddOwnReview();
   const { review, isLoading } = useGetOwnReview();
-  const { deleteOwnReview, onCloseModal } = useDeleteOwnReview();
+  const { deleteOwnReview, onCloseModal, getModalId } = useDeleteOwnReview();
   const { handleReviewEdit } = useEditOwnReview();
+  const closeModalId = getModalId(isOpenSelector.lastResult(), true)[0];
   const changeMode = isReview ? isReview : editMode;
 
   const formik = useFormik({
@@ -49,7 +51,7 @@ const FeedbackForm = () => {
       isReview
         ? handleReviewSend(values.feedBack, values.rating)
         : handleReviewEdit(values.feedBack, values.rating);
-      onCloseModal('modal1');
+      onCloseModal(closeModalId);
     },
 
     validationSchema: Yup.object().shape({
@@ -67,7 +69,7 @@ const FeedbackForm = () => {
       <FormCloseButton
         type="button"
         onClick={() => {
-          onCloseModal('modal1');
+          onCloseModal(closeModalId);
         }}
       >
         <RxCross2 size={24} />
@@ -121,7 +123,7 @@ const FeedbackForm = () => {
                 type="button"
                 onClick={() => {
                   deleteOwnReview();
-                  onCloseModal('modal1');
+                  onCloseModal(closeModalId);
                 }}
               >
                 <FaTrashAlt size={16} />
@@ -150,7 +152,7 @@ const FeedbackForm = () => {
             <CancelButton
               type="button"
               onClick={() => {
-                onCloseModal('modal1');
+                onCloseModal(closeModalId);
               }}
             >
               Cancel

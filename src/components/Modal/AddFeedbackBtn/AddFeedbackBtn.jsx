@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useId } from 'react';
 import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 import { Button } from './AddFeedbackBtn.styled.js';
 
 const AddFeedbackBtn = () => {
   const { getOwnReview, checkIsOpen, onOpenModal } = useGetOwnReview();
-  const isOpen = checkIsOpen('modal1');
+  const openModalId = useId();
+  const isOpen = checkIsOpen(openModalId);
 
   useEffect(() => {
     if (isOpen) {
@@ -16,7 +17,7 @@ const AddFeedbackBtn = () => {
     <Button
       type="button"
       onClick={() => {
-        onOpenModal('modal1');
+        onOpenModal(openModalId);
       }}
     >
       Feedback

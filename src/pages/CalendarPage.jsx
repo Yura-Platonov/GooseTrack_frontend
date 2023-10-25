@@ -17,8 +17,7 @@ const CalendarPage = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const tasks = useSelector(selectMonthTasks);
-
+  const { tasks } = useSelector(selectMonthTasks);
   useEffect(() => {
     if (!typeDay) {
       navigate(`/calendar/month/${selectedDate.getTime()}`);
@@ -26,14 +25,18 @@ const CalendarPage = () => {
       navigate(`/calendar/day/${selectedDate.getTime()}`);
     }
 
-    if (
+    // if(typeDay){
+    //   dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
+    // } else 
+    if(tasks &&
       tasks.length !== 0 &&
-      new Date(tasks.tasks[0].date).getMonth() + 1 === selectedMonth
+      new Date(tasks[0].date).getMonth() + 1 === selectedMonth
     ) {
       return;
     }
     dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
-  }, [dispatch, selectedDate, typeDay, tasks]);
+  }, [dispatch, selectedDate, typeDay]);
+
 
   return (
     <Container>
@@ -54,7 +57,7 @@ const CalendarPage = () => {
         <ChoosedDay
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
-          tasks={tasks.tasks}
+          tasks={tasks}
         />
       )}
     </Container>

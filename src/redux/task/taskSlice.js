@@ -28,12 +28,12 @@ const tasksSlice = createSlice({
         state.monthTasks.tasks.push(payload);
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        state.monthTasks = state.monthTasks.filter(
+        state.monthTasks = state.monthTasks.tasks.filter(
           (task) => task._id !== payload.id,
         );
       })
       .addCase(editTask.fulfilled, (state, { payload }) => {
-        state.monthTasks = state.monthTasks.map((task) =>
+        state.monthTasks = state.monthTasks.tasks.map((task) =>
           task._id === payload._id ? payload : task,
         );
       })
