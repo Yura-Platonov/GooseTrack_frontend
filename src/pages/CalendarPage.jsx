@@ -7,6 +7,7 @@ import ChoosedDay from '../components/calendar/choosedDay/ChoosedDay';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectMonthTasks } from '../redux/task/selectors';
 import { getTasksByMonth } from '../redux/task/operations';
+import { isOpenSelector } from '../redux/modal/selectors';
 
 const CalendarPage = () => {
   const today = new Date();
@@ -18,7 +19,6 @@ const CalendarPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {tasks} = useSelector(selectMonthTasks);
-
   useEffect(() => {
     if (!typeDay) {
       navigate(`/calendar/month/${selectedDate.getTime()}`);
@@ -34,7 +34,15 @@ const CalendarPage = () => {
       return;
     }
     dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
-  }, [dispatch, selectedDate, typeDay, tasks]);
+  }, [
+    dispatch,
+    selectedDate,
+    typeDay,
+    tasks,
+    selectedMonth,
+    selectedYear,
+    navigate,
+  ]);
 
   return (
     <Container>
