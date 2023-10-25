@@ -9,10 +9,7 @@ import { ColumnsTasksList } from '../tasksColumnsList/TasksColumnsList.jsx';
 import useGetOwnReview from '../../../hooks/useGetOwnReview';
 
 const TasksColumn = ({ tasks = [], title, selectedDate }) => {
-  const { checkIsOpen } = useGetOwnReview();
-  const isOpen = checkIsOpen('modal2');
 
-  useEffect(() => {}, [isOpen]);
 
   return (
     <>
@@ -25,11 +22,7 @@ const TasksColumn = ({ tasks = [], title, selectedDate }) => {
         />
         <AddTaskBtn selectedDate={selectedDate} title={title} />
       </ColumnContainer>
-      {isOpen && (
-        <Modal>
-          <TaskModal />
-        </Modal>
-      )}
+     
     </>
   );
 };

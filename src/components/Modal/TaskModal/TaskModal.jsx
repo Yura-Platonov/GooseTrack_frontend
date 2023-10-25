@@ -5,7 +5,7 @@ import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
 
 export const TaskModal = ({ task, status, ...props }) => {
   const { onCloseModal } = useDeleteOwnReview();
-
+// console.log(status);зни
   return (
     <ModalContent>
       <Button
@@ -16,7 +16,7 @@ export const TaskModal = ({ task, status, ...props }) => {
       >
         <CloseSvg />
       </Button>
-      <TaskForm task={task} status={status} {...props} />
+      <TaskForm  task={task} status={status} {...props} />
     </ModalContent>
   );
 };
