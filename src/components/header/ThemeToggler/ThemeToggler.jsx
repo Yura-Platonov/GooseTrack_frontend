@@ -4,16 +4,17 @@ import { toggleTheme } from '../../../redux/auth/operations';
 
 export const ThemeToggler = () => {
   const dispatch = useDispatch();
-  const themeInterface = useSelector(state => state.auth.user.themeInterface);
+  const theme = useSelector(state => state.auth.user.theme);
 
   function handlerClick() {
     dispatch(toggleTheme());
   }
 
+
   return (
     <ButtonToggle onClick={handlerClick}>
-      {themeInterface === 'light' && <SunSVG />}
-      {themeInterface === 'dark' && <MoonSVG />}
+      {theme === 'lightTheme' && <SunSVG />}
+      {theme === 'darkTheme' && <MoonSVG />}
     </ButtonToggle>
   );
 };

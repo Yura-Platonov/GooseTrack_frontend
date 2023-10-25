@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { selectToken } from '../redux/auth/selectors';
 import { Container } from './App.styled';
+import { ProviderTheme } from '../components/ProviderTheme/ProviderTheme'
 
-import { PublicRoute } from 'components/PublicRoute';
-import { PrivateRoute } from 'components/PrivateRoute';
+
+import { PublicRoute } from '../components/PublicRoute';
+import { PrivateRoute } from '../components/PrivateRoute';
 
 import Spinner from './Spinner/spinner';
 import { MainLayout } from './MainLayout/MainLayout';
@@ -28,11 +30,15 @@ const UserProfilePage = lazy(() =>
 export function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  // const userTheme = useSelector(selectTheme);
+
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch, token]);
+  
 
   return (
+    <ProviderTheme >
     <Container>
       <Suspense fallback={<Spinner />}>
         <Routes>
@@ -56,5 +62,6 @@ export function App() {
         </Routes>
       </Suspense>
     </Container>
+    </ProviderTheme>
   );
 }

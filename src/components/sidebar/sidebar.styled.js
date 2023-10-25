@@ -11,7 +11,7 @@ export const Section = styled.section`
   background-color: var(--white);
   z-index: 2;
   height: 100%;
-  background-color: #fff;
+  background-color: ${p=>p.theme.colors.sideBar.mainBg};
 
   .logo-box {
     display: flex;

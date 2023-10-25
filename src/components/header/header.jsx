@@ -14,6 +14,7 @@ import {
   themeSvg3,
   themeSvg4,
 } from './headerSvg';
+
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { ThemeToggler } from './ThemeToggler/ThemeToggler';
@@ -88,7 +89,7 @@ const Header = () => {
 
         <div className="user-box">
           <AddFeedbackBtn />
-          {user.theme ? (
+          {/* {user.theme ? (
             <button className="btn" type="button" onClick={themeBtn}>
               {windowWidth >= 768 ? themeSvg1 : themeSvg2}
             </button>
@@ -96,9 +97,8 @@ const Header = () => {
             <button className="btn" type="button" onClick={themeBtn}>
               {windowWidth >= 768 ? themeSvg3 : themeSvg4}
             </button>
-          )}
-
-          {/* <ThemeToggler></ThemeToggler> */}
+          )} */}
+          <ThemeToggler></ThemeToggler>
           <h2 className="user-name">{user.username}</h2>
           <img
             className="avi"
