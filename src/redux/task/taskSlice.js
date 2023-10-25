@@ -29,7 +29,7 @@ const tasksSlice = createSlice({
         
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        state.monthTasks = state.monthTasks.filter(
+        state.monthTasks = state.monthTasks.tasks.filter(
           (task) => task._id !== payload.id,
         );
       })

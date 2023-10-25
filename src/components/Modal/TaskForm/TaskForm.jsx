@@ -16,10 +16,7 @@ import { BiPlus } from 'react-icons/bi';
 import { VscEdit } from 'react-icons/vsc';
 import { validationTaskSchema } from '../../../helpers/validationTaskSchema';
 import {
-  addTask,
-  deleteTask,
-  editTask,
-  getTasksByMonth,
+  addTask
 } from '../../../redux/task/operations';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
