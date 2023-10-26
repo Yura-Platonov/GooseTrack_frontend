@@ -24,7 +24,7 @@ import { useEffect, useState } from 'react';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
 import { toast } from 'react-toastify';
 
-export const EditForm = ({ task }) =>{
+export const EditForm = ({ taskId, openMoalId, task, status, ...props }) => {
   const dispatch = useDispatch();
   const { onCloseModal } = useDeleteOwnReview();
 
@@ -32,7 +32,6 @@ export const EditForm = ({ task }) =>{
   const [start, setStart] = useState('09:30');
   const [end, setEnd] = useState('10:00');
   const [priorities, setPriorities] = useState('low');
-
 
   const category = status.toLowerCase().replace(' ', '-');
   const today = new Date();
@@ -50,7 +49,6 @@ export const EditForm = ({ task }) =>{
     category,
   };
 
-
   const PRIORITIES = [
     {
       value: 'Low',
@@ -65,81 +63,72 @@ export const EditForm = ({ task }) =>{
       name: 'high',
     },
   ];
-  useEffect(() => {
-    if (editText.length > 255) {
-      toast.error('Title cannot be longer than 255 characters');
-    }
-    setEditText(editText);
-  }, [editText]);
+  // useEffect(() => {
+  //   if (editText.length > 255) {
+  //     toast.error('Title cannot be longer than 255 characters');
+  //   }
+  //   setEditText(editText);
+  // }, [editText]);
 
-  const timeFormValidation = () => {
-    let status = 'valid';
-    if (Number(start) >= Number(end)) {
-      status = 'invalid';
-    }
-    return status;
-  };
+  // const timeFormValidation = () => {
+  //   let status = 'valid';
+  //   if (Number(start) >= Number(end)) {
+  //     status = 'invalid';
+  //   }
+  //   return status;
+  // };
 
-  const updateTaskFu = () => {
-    if (timeFormValidation() === 'invalid') {
-      toast.error('End Time of your task can not be less then Start Time');
-      return;
-    }
-    if (!start && !end && !editText) {
-      toast.error('Fields cannot be empty');
-      return;
-    }
-    onCloseModal('modal2');
-    const id = task._id;
-    const task = {
-      id: task._id,
-      task: {
-        title: editText,
-        start,
-        end,
-        createdAt: task.createdAt,
-        priority: priorities.toLowerCase(),
-      },
-    };
-
-    dispatch(editTask(taskForUpdate, id));
-  };
-  //   const handleAdd = (values) => {
-  //     if (!editMode) {
-  //       dispatch(addTask(...values));
-  //       onCloseModal('modal2');
-  //     } else {
-  //       dispatch(
-  //         editTask({
-  //           id: task._id,
-  //           task: { date: task.date, ...values, category },
-  //         }),
-  //       );
-  //       onCloseModal('modal2');
-  //     }
+  // const updateTaskFu = () => {
+  //   if (timeFormValidation() === 'invalid') {
+  //     toast.error('End Time of your task can not be less then Start Time');
+  //     return;
+  //   }
+  //   if (!start && !end && !editText) {
+  //     toast.error('Fields cannot be empty');
+  //     return;
+  //   }
+  //   onCloseModal('modal2');
+  //   const id = task._id;
+  //   const task = {
+  //     id: task._id,
+  //     task: {
+  //       title: editText,
+  //       start,
+  //       end,
+  //       createdAt: task.createdAt,
+  //       priority: priorities.toLowerCase(),
+  //     },
   //   };
 
-    const titleSetter = (event) => {
-      const { value } = event.target;
-      setEditText((prevState) => (prevState = value));
-    };
-    const onChangeStart = (startDate) => {
-      let startValue = startDate.toLocaleTimeString('en-UK');
-      startValue = startValue.substring(0, startValue.lastIndexOf(':'));
-      if (startValue >= end) {
-        setEnd(startValue);
-      }
-      setStart(startValue);
-    };
-    const onChangeEnd = (endDate) => {
-      let endValue = endDate.toLocaleTimeString('en-UK');
-      endValue = endValue.substring(0, endValue.lastIndexOf(':'));
-      if (start >= endValue) {
-        toast.error('End Time of your task can not be less then Start Time');
-        return;
-      }
-      setEnd(endValue);
-    };
+  //   dispatch(editTask(taskForUpdate, id));
+  // };
+
+  // const titleSetter = (event) => {
+  //   const { value } = event.target;
+  //   setEditText((prevState) => (prevState = value));
+  // };
+  // const onChangeStart = (startDate) => {
+  //   let startValue = startDate.toLocaleTimeString('en-UK');
+  //   startValue = startValue.substring(0, startValue.lastIndexOf(':'));
+  //   if (startValue >= end) {
+  //     setEnd(startValue);
+  //   }
+  //   setStart(startValue);
+  // };
+  // const onChangeEnd = (endDate) => {
+  //   let endValue = endDate.toLocaleTimeString('en-UK');
+  //   endValue = endValue.substring(0, endValue.lastIndexOf(':'));
+  //   if (start >= endValue) {
+  //     toast.error('End Time of your task can not be less then Start Time');
+  //     return;
+  //   }
+  //   setEnd(endValue);
+  // };
+
+  const handleEdit = (values) => {
+    dispatch(editTask({ id: taskId, dataTask:values }));
+    onCloseModal(openMoalId);
+  };
 
   return (
     <>
@@ -149,7 +138,7 @@ export const EditForm = ({ task }) =>{
         validateOnChange={true}
         validationSchema={validationTaskSchema}
         onSubmit={(values, { setSubmitting }) => {
-          updateTaskFu(values);
+          handleEdit(values);
           setSubmitting(false);
         }}
       >
@@ -163,14 +152,10 @@ export const EditForm = ({ task }) =>{
           isSubmitting,
           setFieldValue,
         }) => (
-          <Form onSubmit={handleSubmit}
-            endSetter={onChangeEnd}>
-            
+          <Form onSubmit={handleSubmit}>
             <Label htmlFor="title">
               <Span>Title</Span>
               <Input
-                titleSetter={titleSetter}
-                 enterText={editText}
                 type="text"
                 name="title"
                 id="title"
@@ -190,7 +175,6 @@ export const EditForm = ({ task }) =>{
                   step="60"
                   name="start"
                   id="start"
-                  startTime={start}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.start}
@@ -210,7 +194,6 @@ export const EditForm = ({ task }) =>{
                   onBlur={handleBlur}
                   value={values.end}
                   placeholder="Select time"
-                   endTime={end}
                 />
                 <Errors>{errors.end && touched.end && errors.end}</Errors>
               </Label>
@@ -235,7 +218,7 @@ export const EditForm = ({ task }) =>{
             </RadioButtonGroup>
 
             <Wrapper>
-              <Btn type="button" onClick={() => dispatch(updateTaskFu)}>
+              <Btn type="button" onClick={() => handleEdit(values)}>
                 <VscEdit />
                 Edit
               </Btn>
@@ -244,7 +227,7 @@ export const EditForm = ({ task }) =>{
                 type="button"
                 disabled={isSubmitting}
                 onClick={() => {
-                  onCloseModal('modal2');
+                  onCloseModal(openMoalId);
                 }}
               >
                 Cancel

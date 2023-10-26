@@ -25,7 +25,12 @@ const tasksSlice = createSlice({
         // console.log(payload);
       })
       .addCase(addTask.fulfilled, (state, { payload }) => {
-       state.monthTasks = state.monthTasks.push(payload.tasks);
+        // Check if state.monthTasks is an array and push the payload into it
+        if (Array.isArray(state.monthTasks)) {
+          state.monthTasks.push(payload);
+        } else {
+          state.monthTasks = [payload]; // Initialize the array if it's not an array
+        }
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.monthTasks = state.monthTasks.tasks.filter(
@@ -33,9 +38,11 @@ const tasksSlice = createSlice({
         );
       })
       .addCase(editTask.fulfilled, (state, { payload }) => {
-        state.monthTasks = state.monthTasks.tasks.map((task) =>
-          task._id === payload._id ? payload : task,
-        );
+        if (payload && payload.task) {
+          state.monthTasks.tasks = state.monthTasks.tasks.map((task) =>
+            task._id === payload.task._id ? payload.task : task,
+          );
+        }
       })
       .addCase(logout.fulfilled, (state) => {
         state.monthTasks = [];

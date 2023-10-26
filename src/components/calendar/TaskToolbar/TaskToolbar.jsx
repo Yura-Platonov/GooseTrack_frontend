@@ -12,13 +12,19 @@ import { setIsOpen } from '../../../redux/modal/modalSlice';
 import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 import Modal from '../../Modal/Modal';
 import { EditModal } from '../../Modal/editModal/editModal';
+import { useId } from 'react';
 
-export const TaskToolbar = ({ title, task }) => {
+export const TaskToolbar = ({ status, title, task }) => {
   const dispatch = useDispatch();
   const onDelete = () => dispatch(deleteTask(task._id));
-  const { onOpenModal } = useGetOwnReview();
-  const { checkIsOpen } = useGetOwnReview();
-  const isOpen = checkIsOpen('modal2');
+  // const { onOpenModal } = useGetOwnReview();
+  // const { checkIsOpen } = useGetOwnReview();
+  // const isOpen = checkIsOpen('modal2');
+
+  const { onOpenModal, checkIsOpen } = useGetOwnReview();
+  const openMoalId = useId();
+  const isOpen = checkIsOpen(openMoalId);
+
   return (
     <List>
       <Item>
@@ -42,14 +48,18 @@ export const TaskToolbar = ({ title, task }) => {
         <Button
           type="button"
           onClick={() => {
-            onOpenModal('modal2');
+            onOpenModal(openMoalId);
           }}
         >
           <BiPencil />
         </Button>
         {isOpen && (
           <Modal>
-            <EditModal />
+            <EditModal
+              openMoalId={openMoalId}
+              status={status}
+              taskId={task._id}
+            />
           </Modal>
         )}
       </li>
