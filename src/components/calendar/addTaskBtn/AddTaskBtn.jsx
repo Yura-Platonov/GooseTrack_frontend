@@ -1,4 +1,4 @@
-import { AddBtnContainer, IconAdd, NameBtn } from './AddTaskBtn.styled';
+import {AddBtnDelimiter, AddBtnContainer, IconAdd, NameBtn } from './AddTaskBtn.styled';
 import useGetOwnReview from '../../../hooks/useGetOwnReview.js';
 import Modal from '../../Modal/Modal';
 import { TaskModal } from '../../Modal/TaskModal/TaskModal';
@@ -10,6 +10,7 @@ const AddTaskBtn = ({ title }) => {
 
   return (
     <>
+    <AddBtnDelimiter></AddBtnDelimiter>
       <AddBtnContainer
         type="button"
         onClick={() => {

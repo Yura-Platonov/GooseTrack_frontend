@@ -25,10 +25,8 @@ const CalendarPage = () => {
       navigate(`/calendar/day/${selectedDate.getTime()}`);
     }
 
-    // if(typeDay){
-    //   dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
-    // } else 
-    if(tasks &&
+    if (
+      tasks &&
       tasks.length !== 0 &&
       new Date(tasks[0].date).getMonth() + 1 === selectedMonth
     ) {
@@ -36,7 +34,6 @@ const CalendarPage = () => {
     }
     dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
   }, [dispatch, selectedDate, typeDay]);
-
 
   return (
     <Container>

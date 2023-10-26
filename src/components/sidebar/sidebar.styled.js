@@ -125,6 +125,7 @@ export const Section = styled.section`
       width: 141px;
       height: 56px;
       border-radius: 16px;
+      border-color: transparent;
       background: #3e85f3;
       box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
       font-family: Inter;
