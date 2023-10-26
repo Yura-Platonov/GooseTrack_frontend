@@ -147,27 +147,8 @@ const today = new Date();
 
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        validateOnBlur={true}
-        validateOnChange={true}
-        validationSchema={validationTaskSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          updateTaskFu(values);
-          setSubmitting(false);
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          setFieldValue,
-        }) => (
-          <Form onSubmit={handleSubmit}
+     
+          <Form
             endSetter={onChangeEnd}>
             
             <Label htmlFor="title">
@@ -178,12 +159,10 @@ const today = new Date();
                 type="text"
                 name="title"
                 id="title"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
+            
                 placeholder="Enter text"
               />
-              <Errors>{errors.title && touched.title && errors.title}</Errors>
+            
             </Label>
 
             <Wrapper>
@@ -195,12 +174,10 @@ const today = new Date();
                   name="start"
                   id="start"
                   startTime={start}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.start}
+                 
                   placeholder="Select time"
                 />
-                <Errors>{errors.start && touched.start && errors.start}</Errors>
+              
               </Label>
 
               <Label htmlFor="end">
@@ -210,13 +187,11 @@ const today = new Date();
                   step="60"
                   name="end"
                   id="end"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.end}
+                  
                   placeholder="Select time"
                    endTime={end}
                 />
-                <Errors>{errors.end && touched.end && errors.end}</Errors>
+             
               </Label>
             </Wrapper>
 
@@ -228,7 +203,7 @@ const today = new Date();
                     value={priority.name}
                     name="priority"
                     priority={priority.name}
-                    checked={values.priority === priority.name}
+                    checked={priority === priority.name}
                     onChange={() => {
                       setFieldValue('priority', priority.name);
                     }}
@@ -246,7 +221,7 @@ const today = new Date();
 
               <ButtonCancel
                 type="button"
-                disabled={isSubmitting}
+              
                 onClick={() => {
                   onCloseModal('modal2');
                 }}
@@ -255,8 +230,7 @@ const today = new Date();
               </ButtonCancel>
             </Wrapper>
           </Form>
-        )}
-      </Formik>
+      
     </>
   );
 };

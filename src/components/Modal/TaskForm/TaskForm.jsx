@@ -33,9 +33,9 @@ export const TaskForm = ({ task, status, ...props }) => {
   const [priorities, setPriorities] = useState('low');
 
   // const editMode = props?.editMode || false;
-  const category = status;
+  // const category = status.toLowerCase();
   // console.log(category)
-
+  const category = status ;
   const today = new Date();
 
   // Отримуємо рік, місяць і день

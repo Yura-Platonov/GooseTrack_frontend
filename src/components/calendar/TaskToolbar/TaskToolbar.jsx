@@ -49,7 +49,7 @@ export const TaskToolbar = ({ title, task }) => {
         </Button>
         {isOpen && (
           <Modal>
-            <EditModal status={title} />
+            <EditModal />
           </Modal>
         )}
       </li>
