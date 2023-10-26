@@ -24,26 +24,23 @@ import { useEffect, useState } from 'react';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
 import { toast } from 'react-toastify';
 
-export const EditForm = ({ task }) => {
+export const EditForm = ({ task }) =>{
   const dispatch = useDispatch();
   const { onCloseModal } = useDeleteOwnReview();
 
-  const [editText, setEditText] = useState("");
+  const [editText, setEditText] = useState('');
   const [start, setStart] = useState('09:30');
   const [end, setEnd] = useState('10:00');
   const [priorities, setPriorities] = useState('low');
-const today = new Date();
 
-  // Отримуємо рік, місяць і день
+
+  const category = status.toLowerCase().replace(' ', '-');
+  const today = new Date();
   const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0'); // +1, тому що місяці в JavaScript починаються з 0
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
   const day = today.getDate().toString().padStart(2, '0');
-
-  // Формуємо рядок в форматі "YYYY-MM-DD"
   const formattedDate = `${year}-${month}-${day}`;
 
-  const category = status; 
-  
   const initialValues = {
     title: editText,
     start: start.slice(0, 5),
@@ -68,7 +65,6 @@ const today = new Date();
       name: 'high',
     },
   ];
-
   useEffect(() => {
     if (editText.length > 255) {
       toast.error('Title cannot be longer than 255 characters');
@@ -94,14 +90,14 @@ const today = new Date();
       return;
     }
     onCloseModal('modal2');
-    const id = taskFromCard._id;
-    const taskForUpdate = {
-      id: taskFromCard._id,
+    const id = task._id;
+    const task = {
+      id: task._id,
       task: {
         title: editText,
         start,
         end,
-        createdAt: taskFromCard.createdAt,
+        createdAt: task.createdAt,
         priority: priorities.toLowerCase(),
       },
     };
@@ -147,8 +143,27 @@ const today = new Date();
 
   return (
     <>
-     
-          <Form
+      <Formik
+        initialValues={initialValues}
+        validateOnBlur={true}
+        validateOnChange={true}
+        validationSchema={validationTaskSchema}
+        onSubmit={(values, { setSubmitting }) => {
+          updateTaskFu(values);
+          setSubmitting(false);
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          setFieldValue,
+        }) => (
+          <Form onSubmit={handleSubmit}
             endSetter={onChangeEnd}>
             
             <Label htmlFor="title">
@@ -159,10 +174,12 @@ const today = new Date();
                 type="text"
                 name="title"
                 id="title"
-            
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
                 placeholder="Enter text"
               />
-            
+              <Errors>{errors.title && touched.title && errors.title}</Errors>
             </Label>
 
             <Wrapper>
@@ -174,10 +191,12 @@ const today = new Date();
                   name="start"
                   id="start"
                   startTime={start}
-                 
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.start}
                   placeholder="Select time"
                 />
-              
+                <Errors>{errors.start && touched.start && errors.start}</Errors>
               </Label>
 
               <Label htmlFor="end">
@@ -187,11 +206,13 @@ const today = new Date();
                   step="60"
                   name="end"
                   id="end"
-                  
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.end}
                   placeholder="Select time"
                    endTime={end}
                 />
-             
+                <Errors>{errors.end && touched.end && errors.end}</Errors>
               </Label>
             </Wrapper>
 
@@ -203,7 +224,7 @@ const today = new Date();
                     value={priority.name}
                     name="priority"
                     priority={priority.name}
-                    checked={priority === priority.name}
+                    checked={values.priority === priority.name}
                     onChange={() => {
                       setFieldValue('priority', priority.name);
                     }}
@@ -221,7 +242,7 @@ const today = new Date();
 
               <ButtonCancel
                 type="button"
-              
+                disabled={isSubmitting}
                 onClick={() => {
                   onCloseModal('modal2');
                 }}
@@ -230,7 +251,8 @@ const today = new Date();
               </ButtonCancel>
             </Wrapper>
           </Form>
-      
+        )}
+      </Formik>
     </>
   );
 };
