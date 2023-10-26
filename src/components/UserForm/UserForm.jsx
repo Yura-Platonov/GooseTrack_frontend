@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -42,7 +42,7 @@ const UserForm = () => {
       avatar: [],
       avatarURL: userData ? userData.avatarURL : '',
       username: userData ? userData.username || '' : '',
-      email: userData ? userData.email : '',
+      email: userData ? userData.email || '' : '',
       birthday: userData ? userData.birthday || new Date() : new Date(),
       phone: userData ? userData.phone || '' : '',
       skype: userData ? userData.skype || '' : '',
@@ -88,6 +88,19 @@ const UserForm = () => {
       // formik.resetForm();
     },
   });
+
+  useEffect(() => {
+    if (userData) {
+      formik.setValues({
+        avatar: userData.avatarURL || '',
+        username: userData.username || '',
+        email: userData.email || '',
+        birthday: userData.birthday || new Date(),
+        phone: userData.phone || '',
+        skype: userData.skype || '',
+      });
+    }
+  }, [userData]);
 
   const onMainPhotoSelected = (event) => {
     const file = event.target.files[0];
