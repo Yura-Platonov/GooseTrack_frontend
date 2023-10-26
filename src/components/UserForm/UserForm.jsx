@@ -33,7 +33,6 @@ import { updateUser } from '../../redux/auth/operations.js';
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const userData = useSelector((state) => state.auth.user);
-  console.log(userData);
 
   const dispatch = useDispatch();
 
@@ -41,8 +40,8 @@ const UserForm = () => {
     initialValues: {
       avatar: [],
       avatarURL: userData ? userData.avatarURL : '',
-      username: userData ? userData.username || '' : 'Nadiia Doe',
-      email: userData ? userData.email : 'nadiia@gmail.com',
+      username: userData ? userData.username || '' : '',
+      email: userData ? userData.email : '',
       birthday: userData ? userData.birthday || new Date() : new Date(),
       phone: userData ? userData.phone || '' : '',
       skype: userData ? userData.skype || '' : '',
@@ -124,7 +123,9 @@ const UserForm = () => {
                     <Icon />
                   </PlusContainer>
                   <Title>
-                    {userData.username ? userData.username : 'Nadiia Doe'}
+                    {userData.username
+                      ? userData.username
+                      : 'Enter your username'}
                   </Title>
                   <User>User</User>
                 </About>
@@ -151,7 +152,7 @@ const UserForm = () => {
                   type="text"
                   id="username"
                   name="username"
-                  placeholder="Nadiia Doe"
+                  placeholder="Enter your name"
                   value={formik.values.username || ''}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -189,7 +190,7 @@ const UserForm = () => {
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="nadiia@gmail.com"
+                  placeholder="Enter your email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -206,7 +207,7 @@ const UserForm = () => {
                   type="phone"
                   name="phone"
                   id="phone"
-                  placeholder="38 (097) 256 34 77"
+                  placeholder="Enter your phone number"
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -221,7 +222,7 @@ const UserForm = () => {
                   type="text"
                   name="skype"
                   id="skype"
-                  placeholder="Add a skype number"
+                  placeholder="Enter your skype number"
                   // value={formik.values.skype}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
