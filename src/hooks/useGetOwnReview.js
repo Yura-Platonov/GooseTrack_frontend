@@ -5,7 +5,6 @@ import { selectReviews } from '../redux/feedback/selectors.js';
 import { selectIsLoading } from '../redux/feedback/selectors.js';
 import { selectError } from '../redux/feedback/selectors.js';
 import { Notify } from 'notiflix';
-
 import { modalIsOpenSelector } from '../redux/modal/selectors.js';
 
 const useGetOwnReview = () => {
