@@ -28,7 +28,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(register.pending, state => {
+      .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(register.rejected, (state, { payload }) => {
@@ -43,7 +43,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(login.pending, state => {
+      .addCase(login.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(login.rejected, (state, { payload }) => {
@@ -52,13 +52,13 @@ export const authSlice = createSlice({
         state.error = payload.error;
       })
 
-     .addCase(logout.fulfilled, state => {
+      .addCase(logout.fulfilled, (state) => {
         state.user = {};
         state.token = '';
         state.isLoggedIn = false;
         state.isLoading = false;
       })
-      .addCase(logout.pending, state => {
+      .addCase(logout.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(logout.rejected, (state, { payload }) => {
@@ -70,7 +70,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.user = payload;
       })
-      .addCase(refresh.pending, state => {
+      .addCase(refresh.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(refresh.rejected, (state, { payload }) => {
@@ -83,7 +83,7 @@ export const authSlice = createSlice({
         state.user = payload;
         state.isLoading = false;
       })
-      .addCase(updateUser.pending, state => {
+      .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
@@ -91,11 +91,11 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
-      .addCase(toggleTheme.fulfilled, (state) => {
-        state.user.theme = !state.user.theme;
+      .addCase(toggleTheme.fulfilled, (state, { payload }) => {
+        state.user.theme = payload;
         state.isLoading = false;
       })
-      .addCase(toggleTheme.pending, state => {
+      .addCase(toggleTheme.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
