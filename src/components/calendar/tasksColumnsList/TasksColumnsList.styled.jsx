@@ -9,11 +9,10 @@ export const TasksList = styled.ul`
   justify-content: space-between;
   padding-left: 0;
   gap: 14px;
-  max-height: 301px;
   padding-right: 6px;
+  margin-bottom: auto;
   min-height: 1px;
   scrollbar-width: thin;
-  scollbar-height: 112px;
   scrollbar-color: rgba(231, 229, 229, 1);
   &::-webkit-scrollbar {
     width: 6px;

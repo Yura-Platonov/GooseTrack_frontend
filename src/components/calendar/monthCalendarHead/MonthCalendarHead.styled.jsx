@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const ContainerDays = styled.div`
   display: flex;
-  width: 100%;
+  width: calc(100% - 2px);
   height: 50px;
   margin-bottom: 14px;
   border: 1px solid var(--background-table);
