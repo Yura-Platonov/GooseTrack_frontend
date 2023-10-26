@@ -11,7 +11,7 @@ import {
   RadioButtonGroup,
   RadioButtonLabel,
   Input,
-} from './TaskForm.styled';
+} from '../TaskForm/TaskForm.styled';
 import { BiPlus } from 'react-icons/bi';
 import { VscEdit } from 'react-icons/vsc';
 import { validationTaskSchema } from '../../../helpers/validationTaskSchema';
@@ -22,19 +22,18 @@ import { parse } from 'date-fns';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
-import { isOpenSelector } from '../../../redux/modal/selectors';
+import { toast } from 'react-toastify';
 
-export const TaskForm = ({ openMoalId, task, status, ...props }) => {
+export const EditForm = ({ task }) =>{
   const dispatch = useDispatch();
   const { onCloseModal } = useDeleteOwnReview();
 
-
-  const [enterText, setEnterText] = useState('');
+  const [editText, setEditText] = useState('');
   const [start, setStart] = useState('09:30');
   const [end, setEnd] = useState('10:00');
   const [priorities, setPriorities] = useState('low');
 
-  const editMode = props?.editMode || false;
+
   const category = status.toLowerCase().replace(' ', '-');
   const today = new Date();
   const year = today.getFullYear();
@@ -43,13 +42,14 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
   const formattedDate = `${year}-${month}-${day}`;
 
   const initialValues = {
-    title: enterText,
+    title: editText,
     start: start.slice(0, 5),
     end: end.slice(0, 5),
     priority: priorities.toLowerCase(),
     date: formattedDate,
     category,
   };
+
 
   const PRIORITIES = [
     {
@@ -65,25 +65,81 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
       name: 'high',
     },
   ];
-  const handleAdd = (values) => {
-    if (!editMode) {
-       console.log(1);
-      dispatch(addTask(values));
-     
-      onCloseModal(openMoalId);
-      console.log(2)
-    } else {
-      dispatch(
-        editTask({
-          id: task._id,
-          task: { date: task.date, values, category },
-        }),
-      );
-
-      onCloseModal(openMoalId);
-
+  useEffect(() => {
+    if (editText.length > 255) {
+      toast.error('Title cannot be longer than 255 characters');
     }
+    setEditText(editText);
+  }, [editText]);
+
+  const timeFormValidation = () => {
+    let status = 'valid';
+    if (Number(start) >= Number(end)) {
+      status = 'invalid';
+    }
+    return status;
   };
+
+  const updateTaskFu = () => {
+    if (timeFormValidation() === 'invalid') {
+      toast.error('End Time of your task can not be less then Start Time');
+      return;
+    }
+    if (!start && !end && !editText) {
+      toast.error('Fields cannot be empty');
+      return;
+    }
+    onCloseModal('modal2');
+    const id = task._id;
+    const task = {
+      id: task._id,
+      task: {
+        title: editText,
+        start,
+        end,
+        createdAt: task.createdAt,
+        priority: priorities.toLowerCase(),
+      },
+    };
+
+    dispatch(editTask(taskForUpdate, id));
+  };
+  //   const handleAdd = (values) => {
+  //     if (!editMode) {
+  //       dispatch(addTask(...values));
+  //       onCloseModal('modal2');
+  //     } else {
+  //       dispatch(
+  //         editTask({
+  //           id: task._id,
+  //           task: { date: task.date, ...values, category },
+  //         }),
+  //       );
+  //       onCloseModal('modal2');
+  //     }
+  //   };
+
+    const titleSetter = (event) => {
+      const { value } = event.target;
+      setEditText((prevState) => (prevState = value));
+    };
+    const onChangeStart = (startDate) => {
+      let startValue = startDate.toLocaleTimeString('en-UK');
+      startValue = startValue.substring(0, startValue.lastIndexOf(':'));
+      if (startValue >= end) {
+        setEnd(startValue);
+      }
+      setStart(startValue);
+    };
+    const onChangeEnd = (endDate) => {
+      let endValue = endDate.toLocaleTimeString('en-UK');
+      endValue = endValue.substring(0, endValue.lastIndexOf(':'));
+      if (start >= endValue) {
+        toast.error('End Time of your task can not be less then Start Time');
+        return;
+      }
+      setEnd(endValue);
+    };
 
   return (
     <>
@@ -93,7 +149,7 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
         validateOnChange={true}
         validationSchema={validationTaskSchema}
         onSubmit={(values, { setSubmitting }) => {
-          handleAdd(values);
+          updateTaskFu(values);
           setSubmitting(false);
         }}
       >
@@ -107,10 +163,14 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
           isSubmitting,
           setFieldValue,
         }) => (
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}
+            endSetter={onChangeEnd}>
+            
             <Label htmlFor="title">
               <Span>Title</Span>
               <Input
+                titleSetter={titleSetter}
+                 enterText={editText}
                 type="text"
                 name="title"
                 id="title"
@@ -130,6 +190,7 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
                   step="60"
                   name="start"
                   id="start"
+                  startTime={start}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.start}
@@ -149,6 +210,7 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
                   onBlur={handleBlur}
                   value={values.end}
                   placeholder="Select time"
+                   endTime={end}
                 />
                 <Errors>{errors.end && touched.end && errors.end}</Errors>
               </Label>
@@ -173,29 +235,16 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
             </RadioButtonGroup>
 
             <Wrapper>
-              {/* {!editMode ? ( */}
-                <Btn
-                  type="button"
-                  onClick={() => {
-                    handleAdd(values);
-                  }}
-                >
-                  <BiPlus />
-                  Add
-                </Btn>
-              {/* ) : (
-                <Btn type="button" disabled={isSubmitting}>
-                  <VscEdit />
-                  Edit
-                </Btn>
-              )} */}
+              <Btn type="button" onClick={() => dispatch(updateTaskFu)}>
+                <VscEdit />
+                Edit
+              </Btn>
+
               <ButtonCancel
                 type="button"
                 disabled={isSubmitting}
                 onClick={() => {
-
-                  onCloseModal(openMoalId);
-
+                  onCloseModal('modal2');
                 }}
               >
                 Cancel
@@ -208,7 +257,7 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
   );
 };
 
-TaskForm.propTypes = {
+EditForm.propTypes = {
   task: PropTypes.shape({
     title: PropTypes.string,
     start: PropTypes.string,
