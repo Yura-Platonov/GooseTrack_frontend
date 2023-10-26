@@ -18,6 +18,7 @@ const CalendarPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { tasks } = useSelector(selectMonthTasks);
+  const  mounth  = useSelector(selectMonthTasks);
   useEffect(() => {
     if (!typeDay) {
       navigate(`/calendar/month/${selectedDate.getTime()}`);
@@ -33,7 +34,7 @@ const CalendarPage = () => {
       return;
     }
     dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
-  }, [dispatch, selectedDate, typeDay, tasks]);
+  }, [dispatch, selectedDate, typeDay, tasks, mounth]);
 
   return (
     <Container>

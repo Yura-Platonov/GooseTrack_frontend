@@ -6,12 +6,21 @@ import { ColumnsContainer } from './ChoosedDay.styled';
 
 const ChoosedDay = ({ tasks = [], getTask, selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
-
-  const categorizedTasks = {
-    'To do': tasks.filter((task) => task.category === 'to-do'),
-    'In progress': tasks.filter((task) => task.category === 'in-progress'),
-    Done: tasks.filter((task) => task.category === 'done'),
-  };
+console.log(tasks)
+ const categorizedTasks = {
+   'To do':
+     tasks && tasks.length > 0
+       ? tasks.filter((task) => task.category === 'to-do')
+       : [],
+   'In progress':
+     tasks && tasks.length > 0
+       ? tasks.filter((task) => task.category === 'in-progress')
+       : [],
+   'Done':
+     tasks && tasks.length > 0
+       ? tasks.filter((task) => task.category === 'done')
+       : [],
+ };
 
   return (
     <>
