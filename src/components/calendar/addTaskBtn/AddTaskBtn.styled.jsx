@@ -5,7 +5,7 @@ export const AddBtnDelimiter = styled.div`
   width: 100%;
   padding-top: 14px;
   @media screen and (min-width: 768px) {
-    padding-top: 32px;
+    padding-top: 18px;
   }
 `;
 
@@ -26,7 +26,6 @@ export const AddBtnContainer = styled.button`
     background-color: var(--switch-active);
   }
   @media screen and (min-width: 768px) {
-
     min-height: 52px;
   }
 `;
