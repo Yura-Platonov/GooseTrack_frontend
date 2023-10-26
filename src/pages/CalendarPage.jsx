@@ -33,7 +33,7 @@ const CalendarPage = () => {
       return;
     }
     dispatch(getTasksByMonth({ year: selectedYear, month: selectedMonth }));
-  }, [dispatch, selectedDate, typeDay]);
+  }, [dispatch, selectedDate, typeDay, tasks]);
 
   return (
     <Container>

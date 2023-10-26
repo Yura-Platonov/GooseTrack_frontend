@@ -14,7 +14,7 @@ export const Text = styled.p`
   }
 `;
 
-export const Wrapper = styled.p`
+export const Wrapper = styled.div`
   border-radius: 29px;
   border: 0.8px solid var(--user-panel-active);
 

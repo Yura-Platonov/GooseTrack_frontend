@@ -26,6 +26,7 @@ export const AddBtnContainer = styled.button`
     background-color: var(--switch-active);
   }
   @media screen and (min-width: 768px) {
+
     min-height: 52px;
   }
 `;
