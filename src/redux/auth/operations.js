@@ -22,7 +22,7 @@ export const register = createAsyncThunk(
     try {
       const response = await instance.post('api/auth/register', credentials);
       setToken(response.data.token);
-      Notify.success(`Welcome!!!`);
+      Notify.success(`Please check your email!!!`);
       return response.data;
     } catch (error) {
       Notify.failure(`This email is already in use`);
