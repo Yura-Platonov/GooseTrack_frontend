@@ -38,12 +38,13 @@ const UserForm = () => {
   const dispatch = useDispatch();
 
   const handleSave = (values) => {
-    dispatch(updateUser({ ...values, birthday: "1999-15-04"  }));
+    dispatch(updateUser({ ...values, birthday: '1999-15-04' }));
   };
 
   const formik = useFormik({
     initialValues: {
-      avatarURL: userData ? userData.avatarURL : '',
+      avatar: userData ? userData.avatarURL || '' : '',
+      avatarURL: userData ? userData.avatarURL || '' : '',
       username: userData ? userData.username || '' : '',
       email: userData ? userData.email || '' : '',
       birthday: userData ? userData.birthday || new Date() : new Date(),
@@ -77,8 +78,8 @@ const UserForm = () => {
       formData.append('phone', values.phone);
       formData.append('skype', values.skype);
 
-      handleSave(values)
-console.log(formData);
+      handleSave(values);
+      console.log(formData);
       // dispatch(updateUser(values)).then((res) => {
       //   if (updateUser.fulfilled.match(res)) {
       //     Notiflix.Notify.success('User data successfully changed and updated');
@@ -95,6 +96,7 @@ console.log(formData);
   useEffect(() => {
     if (userData) {
       formik.setValues({
+        avatarURL: userData.avatarURL || '',
         avatar: userData.avatarURL || '',
         username: userData.username || '',
         email: userData.email || '',
@@ -107,7 +109,9 @@ console.log(formData);
 
   const onMainPhotoSelected = (event) => {
     const file = event.target.files[0];
+
     formik.setFieldValue('avatar', file);
+    formik.setFieldValue('avatarURL', URL.createObjectURL(file));
 
     const reader = new FileReader();
     reader.onload = (e) => {
