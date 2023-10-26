@@ -14,7 +14,7 @@ import { selectIsLoading, selectUser } from '../../../redux/auth/selectors';
 
 export const TaskColumnCard = ({ task, getTask }) => {
   const { title, priority } = task;
-
+ console.log(task)
   const isLoading = useSelector(selectIsLoading);
   const userSelector = useSelector(selectUser);
   const name = userSelector?.name || 'Name';

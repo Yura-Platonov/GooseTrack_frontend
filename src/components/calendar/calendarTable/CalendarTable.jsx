@@ -67,7 +67,7 @@ const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
             </ItemLink>
 
             <TasksWrapper>
-              {tasks.length !== 0 &&
+              {tasks.tasks && tasks.tasks.length !== 0 &&
                 tasks.tasks.map(({ _id, date, title, priority }) => {
                   if (
                     new Date(date).getFullYear() === day.getFullYear() &&
