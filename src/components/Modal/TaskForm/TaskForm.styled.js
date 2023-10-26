@@ -212,11 +212,11 @@ export const RadioButtonInput = styled.input`
     /* color: ; */
     ${({ priority }) => {
       switch (priority) {
-        case 'Low':
+        case 'low':
           return 'background-color: var(--day-status-low); color: var(--task-priority-low-checked-color); border-color: var(--day-status-low)';
-        case 'Medium':
+        case 'medium':
           return 'background-color: var(--day-status-medium); color: var(--task-priority-medium-checked-color)';
-        case 'High':
+        case 'high':
           return 'background-color: var(--day-status-high); color: var(--task-priority-high-checked-color)';
         default:
           return 'background-color: var(--day-status-low); color: var(--task-priority-low-checked-color); color: var(--day-status-low)';

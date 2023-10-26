@@ -5,7 +5,7 @@ import { Button, CloseSvg, ModalContent } from '../Modal.styled.js';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
 import Modal from '../Modal.jsx';
 
-export const TaskModal = ({ task, status, ...props }) => {
+export const EditModal = ({ task, status, ...props }) => {
   const { onCloseModal } = useDeleteOwnReview();
   return ReactDOM.createPortal(
     <Modal>
@@ -25,7 +25,7 @@ export const TaskModal = ({ task, status, ...props }) => {
   );
 };
 
-TaskModal.propTypes = {
+EditModal.propTypes = {
   task: PropTypes.object,
   status: PropTypes.string,
 };

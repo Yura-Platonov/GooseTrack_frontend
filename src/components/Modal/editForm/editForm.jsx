@@ -24,14 +24,50 @@ import { useEffect, useState } from 'react';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
 import { toast } from 'react-toastify';
 
-export const EditForm = ({ taskFromCard }) => {
+export const EditForm = ({ task }) => {
   const dispatch = useDispatch();
   const { onCloseModal } = useDeleteOwnReview();
 
-  const [editText, setEditText] = useState(taskFromCard.title);
-  const [start, setStart] = useState(taskFromCard.start);
-  const [end, setEnd] = useState(taskFromCard.end);
-  const [priorities, setPriorities] = useState(taskFromCard.priority);
+  const [editText, setEditText] = useState("");
+  const [start, setStart] = useState('09:30');
+  const [end, setEnd] = useState('10:00');
+  const [priorities, setPriorities] = useState('low');
+const today = new Date();
+
+  // Отримуємо рік, місяць і день
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0'); // +1, тому що місяці в JavaScript починаються з 0
+  const day = today.getDate().toString().padStart(2, '0');
+
+  // Формуємо рядок в форматі "YYYY-MM-DD"
+  const formattedDate = `${year}-${month}-${day}`;
+
+  const category = status; 
+  
+  const initialValues = {
+    title: editText,
+    start: start.slice(0, 5),
+    end: end.slice(0, 5),
+    priority: priorities.toLowerCase(),
+    date: formattedDate,
+    category,
+  };
+
+
+  const PRIORITIES = [
+    {
+      value: 'Low',
+      name: 'low',
+    },
+    {
+      value: 'Medium',
+      name: 'medium',
+    },
+    {
+      value: 'High',
+      name: 'high',
+    },
+  ];
 
   useEffect(() => {
     if (editText.length > 255) {
@@ -87,27 +123,27 @@ export const EditForm = ({ taskFromCard }) => {
   //     }
   //   };
 
-  //   const titleSetter = (event) => {
-  //     const { value } = event.target;
-  //     setEditText((prevState) => (prevState = value));
-  //   };
-  //   const onChangeStart = (startDate) => {
-  //     let startValue = startDate.toLocaleTimeString('en-UK');
-  //     startValue = startValue.substring(0, startValue.lastIndexOf(':'));
-  //     if (startValue >= end) {
-  //       setEnd(startValue);
-  //     }
-  //     setStart(startValue);
-  //   };
-  //   const onChangeEnd = (endDate) => {
-  //     let endValue = endDate.toLocaleTimeString('en-UK');
-  //     endValue = endValue.substring(0, endValue.lastIndexOf(':'));
-  //     if (start >= endValue) {
-  //       toast.error('End Time of your task can not be less then Start Time');
-  //       return;
-  //     }
-  //     setEnd(endValue);
-  //   };
+    const titleSetter = (event) => {
+      const { value } = event.target;
+      setEditText((prevState) => (prevState = value));
+    };
+    const onChangeStart = (startDate) => {
+      let startValue = startDate.toLocaleTimeString('en-UK');
+      startValue = startValue.substring(0, startValue.lastIndexOf(':'));
+      if (startValue >= end) {
+        setEnd(startValue);
+      }
+      setStart(startValue);
+    };
+    const onChangeEnd = (endDate) => {
+      let endValue = endDate.toLocaleTimeString('en-UK');
+      endValue = endValue.substring(0, endValue.lastIndexOf(':'));
+      if (start >= endValue) {
+        toast.error('End Time of your task can not be less then Start Time');
+        return;
+      }
+      setEnd(endValue);
+    };
 
   return (
     <>
@@ -131,10 +167,14 @@ export const EditForm = ({ taskFromCard }) => {
           isSubmitting,
           setFieldValue,
         }) => (
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}
+            endSetter={onChangeEnd}>
+            
             <Label htmlFor="title">
               <Span>Title</Span>
               <Input
+                titleSetter={titleSetter}
+                 enterText={editText}
                 type="text"
                 name="title"
                 id="title"
@@ -154,6 +194,7 @@ export const EditForm = ({ taskFromCard }) => {
                   step="60"
                   name="start"
                   id="start"
+                  startTime={start}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.start}
@@ -173,6 +214,7 @@ export const EditForm = ({ taskFromCard }) => {
                   onBlur={handleBlur}
                   value={values.end}
                   placeholder="Select time"
+                   endTime={end}
                 />
                 <Errors>{errors.end && touched.end && errors.end}</Errors>
               </Label>

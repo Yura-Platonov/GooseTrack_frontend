@@ -32,7 +32,7 @@ export const TaskForm = ({ task, status, ...props }) => {
   const [end, setEnd] = useState('10:00');
   const [priorities, setPriorities] = useState('low');
 
-  const editMode = props?.editMode || false;
+  // const editMode = props?.editMode || false;
   const category = status;
   // console.log(category)
 
@@ -198,7 +198,7 @@ export const TaskForm = ({ task, status, ...props }) => {
             </RadioButtonGroup>
 
             <Wrapper>
-              {!editMode ? (
+              {/* {!editMode ? ( */}
                 <Btn
                   type="button"
                   onClick={() => {
@@ -208,12 +208,12 @@ export const TaskForm = ({ task, status, ...props }) => {
                   <BiPlus />
                   Add
                 </Btn>
-              ) : (
+              {/* ) : (
                 <Btn type="button" disabled={isSubmitting}>
                   <VscEdit />
                   Edit
                 </Btn>
-              )}
+              )} */}
               <ButtonCancel
                 type="button"
                 disabled={isSubmitting}
