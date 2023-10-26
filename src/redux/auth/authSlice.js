@@ -24,7 +24,7 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, { payload }) => {
         state.token = payload.token;
         state.user = payload.user;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = false;
         state.isLoading = false;
         state.error = null;
       })
