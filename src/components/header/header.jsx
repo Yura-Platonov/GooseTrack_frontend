@@ -39,7 +39,7 @@ const Header = () => {
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
-
+ useEffect(() => {}, [user]);
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -72,9 +72,9 @@ const Header = () => {
     };
   }, []);
 
-  const themeBtn = () => {
-    dispatch(toggleTheme());
-  };
+  // const themeBtn = () => {
+  //   dispatch(toggleTheme());
+  // };
 
   return (
     <Section>
@@ -114,7 +114,7 @@ const Header = () => {
 
         <div className="user-box">
           <AddFeedbackBtn />
-          {user.theme ? (
+          {/* {user.theme ? (
             <button className="btn" type="button" onClick={themeBtn}>
               {windowWidth >= 768 ? themeSvg1 : themeSvg2}
             </button>
@@ -122,7 +122,7 @@ const Header = () => {
             <button className="btn" type="button" onClick={themeBtn}>
               {windowWidth >= 768 ? themeSvg3 : themeSvg4}
             </button>
-          )}
+          )} */}
 
           {/* <ThemeToggler></ThemeToggler> */}
           <h2 className="user-name">{user.username}</h2>

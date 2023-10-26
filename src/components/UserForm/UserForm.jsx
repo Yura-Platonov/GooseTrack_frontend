@@ -33,13 +33,16 @@ import { updateUser } from '../../redux/auth/operations.js';
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const userData = useSelector((state) => state.auth.user);
-  console.log(userData);
+  // console.log(userData);
 
   const dispatch = useDispatch();
 
+  const handleSave = (values) => {
+    dispatch(updateUser({ ...values, birthday: "1999-15-04"  }));
+  };
+
   const formik = useFormik({
     initialValues: {
-      avatar: [],
       avatarURL: userData ? userData.avatarURL : '',
       username: userData ? userData.username || '' : '',
       email: userData ? userData.email || '' : '',
@@ -65,7 +68,7 @@ const UserForm = () => {
       phone: Yup.number().min(7, 'Min 7 symbols').optional(),
       skype: Yup.string().max(16).optional(),
     }),
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       const formData = new FormData();
       formData.append('avatar', values.avatar);
       formData.append('name', values.username);
@@ -74,8 +77,8 @@ const UserForm = () => {
       formData.append('phone', values.phone);
       formData.append('skype', values.skype);
 
-      await dispatch(updateUser(formData));
-
+      handleSave(values)
+console.log(formData);
       // dispatch(updateUser(values)).then((res) => {
       //   if (updateUser.fulfilled.match(res)) {
       //     Notiflix.Notify.success('User data successfully changed and updated');
@@ -251,7 +254,14 @@ const UserForm = () => {
               </Section>
             </div>
           </Fields>
-          <Button type="submit">Save Changes</Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              handleSave(formik.values);
+            }}
+          >
+            Save Changes
+          </Button>
         </StyledForm>
       </Wrapper>
     </Container>
