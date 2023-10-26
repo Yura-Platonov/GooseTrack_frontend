@@ -6,7 +6,7 @@ import { ColumnsContainer } from './ChoosedDay.styled';
 
 const ChoosedDay = ({ tasks = [], getTask, selectedDate, setSelectedDate }) => {
   const columnTitles = ['To do', 'In progress', 'Done'];
-console.log(tasks)
+// console.log(tasks)
  const categorizedTasks = {
    'To do':
      tasks && tasks.length > 0

@@ -15,14 +15,14 @@ const ColumnHeadBar = ({ title, handleShowModal }) => {
   return (
     <TitleContainer>
       <Title>{title}</Title>
-      <AddTaskBtn
+      {/* <AddTaskBtn
         type="button"
         onClick={() => {
           onOpenModal(openModalId);
         }}
       >
         <IconAdd onClick={handleShowModal} />
-      </AddTaskBtn>
+      </AddTaskBtn> */}
     </TitleContainer>
   );
 };
