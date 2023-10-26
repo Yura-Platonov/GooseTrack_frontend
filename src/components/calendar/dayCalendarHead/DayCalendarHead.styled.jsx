@@ -8,7 +8,7 @@ const dynamicStyle = (props) => css`
 export const ContainerDays = styled.div`
   display: flex;
   gap: 19px;
-  width: calc(100% - 36px);
+  width: calc(100% - 38px);
   padding: 14px 18px;
   margin-bottom: 14px;
   border: 1px solid var(--background-table);

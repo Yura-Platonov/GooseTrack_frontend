@@ -9,8 +9,6 @@ import { ColumnsTasksList } from '../tasksColumnsList/TasksColumnsList.jsx';
 import useGetOwnReview from '../../../hooks/useGetOwnReview';
 
 const TasksColumn = ({ tasks = [], title, selectedDate }) => {
-
-
   return (
     <>
       <ColumnContainer>
@@ -22,7 +20,6 @@ const TasksColumn = ({ tasks = [], title, selectedDate }) => {
         />
         <AddTaskBtn selectedDate={selectedDate} title={title} />
       </ColumnContainer>
-     
     </>
   );
 };

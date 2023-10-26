@@ -1,10 +1,18 @@
 import { AiOutlinePlus } from 'react-icons/ai';
 import styled from '@emotion/styled';
 
+export const AddBtnDelimiter = styled.div`
+  width: 100%;
+  padding-top: 14px;
+  @media screen and (min-width: 768px) {
+    padding-top: 32px;
+  }
+`;
+
 export const AddBtnContainer = styled.button`
   display: flex;
   max-width: 288px;
-  height: 48px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
   padding: 0;
@@ -17,8 +25,9 @@ export const AddBtnContainer = styled.button`
   &:hover {
     background-color: var(--switch-active);
   }
-  @media screen and (min-width: 768px) 
-    height: 52px;
+  @media screen and (min-width: 768px) {
+
+    min-height: 52px;
   }
 `;
 

@@ -91,9 +91,9 @@ export const updateUser = createAsyncThunk(
 
 export const toggleTheme = createAsyncThunk(
   'auth/toggleTheme',
-  async (_, { rejectWithValue }) => {
+  async (theme, { rejectWithValue }) => {
     try {
-      const { data } = await instance.patch('api/auth/theme');
+      const { data } = await instance.patch('api/auth/theme', theme);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

@@ -12,7 +12,7 @@ const dynamicStyle = (props) => css`
 
 export const ContainerGrid = styled.div`
   display: grid;
-  width: 100%;
+  width: calc(100% - 2px);
   height: 470px;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
@@ -89,7 +89,9 @@ export const TasksWrapper = styled.div`
   position: absolute;
   top: 30px;
   left: 2px;
-  overflow-y: scroll;  
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: auto; 
   @media screen and (min-width: 768px) {
     width: calc(100% - 8px);
     max-height: 56px;
