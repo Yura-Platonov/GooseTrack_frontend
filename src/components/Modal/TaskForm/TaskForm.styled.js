@@ -229,7 +229,7 @@ export const RadioButtonInput = styled.input`
     position: absolute;
     height: 12px;
     width: 12px;
-    color: red;
+    color:  var(  --switch-active);
     outline: 2px solid;
 
     @media (min-width: 768px) {
