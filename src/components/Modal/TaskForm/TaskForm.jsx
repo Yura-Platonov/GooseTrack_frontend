@@ -26,8 +26,8 @@ import { isOpenSelector } from '../../../redux/modal/selectors';
 
 export const TaskForm = ({ openMoalId, task, status, ...props }) => {
   const dispatch = useDispatch();
-  const { onCloseModal, getModalId } = useDeleteOwnReview();
-  const closeModalId = getModalId(isOpenSelector.lastResult(), true)[0];
+  const { onCloseModal } = useDeleteOwnReview();
+
 
   const [enterText, setEnterText] = useState('');
   const [start, setStart] = useState('09:30');
@@ -36,9 +36,6 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
 
   const editMode = props?.editMode || false;
   const category = status.toLowerCase().replace(' ', '-');
-  
-  console.log(category);
-  
   const today = new Date();
   const year = today.getFullYear();
   const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -70,19 +67,20 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
   ];
   const handleAdd = (values) => {
     if (!editMode) {
-      dispatch(addTask(...values));
-
-      onCloseModal('modal2');
-
+       console.log(1);
+      dispatch(addTask(values));
+     
+      onCloseModal(openMoalId);
+      console.log(2)
     } else {
       dispatch(
         editTask({
           id: task._id,
-          task: { date: task.date, ...values, category },
+          task: { date: task.date, values, category },
         }),
       );
 
-      onCloseModal('modal2');
+      onCloseModal(openMoalId);
 
     }
   };
@@ -179,7 +177,7 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
                 <Btn
                   type="button"
                   onClick={() => {
-                    dispatch(addTask(values));
+                    handleAdd(values);
                   }}
                 >
                   <BiPlus />
