@@ -33,6 +33,7 @@ import { updateUser } from '../../redux/auth/operations.js';
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const userData = useSelector((state) => state.auth.user);
+  console.log(userData);
 
   const dispatch = useDispatch();
 
@@ -47,21 +48,22 @@ const UserForm = () => {
       skype: userData ? userData.skype || '' : '',
     },
     validationSchema: Yup.object({
-      avatar: Yup.mixed().test('isFile', 'Wrong file type', (value) => {
-        if (!value) {
-          return true;
-        }
-        return value instanceof File;
-      }),
-      // .url('Invalid URL'),
-      username: Yup.string().min(2, 'Min 2 symbols').max(16, 'Max 16 symbols'),
-
-      email: Yup.string().email('Wrong email address'),
-
-      birthday: Yup.date('Choose a date'),
-
-      phone: Yup.number().min(7, 'Min 7 symbols'),
-      skype: Yup.string().max(16),
+      avatar: Yup.mixed()
+        .test('isFile', 'Wrong file type', (value) => {
+          if (!value) {
+            return true;
+          }
+          return value instanceof File;
+        })
+        .optional(),
+      username: Yup.string()
+        .min(2, 'Min 2 symbols')
+        .max(16, 'Max 16 symbols')
+        .optional(),
+      email: Yup.string().email('Wrong email address').optional(),
+      birthday: Yup.date('Choose a date').optional(),
+      phone: Yup.number().min(7, 'Min 7 symbols').optional(),
+      skype: Yup.string().max(16).optional(),
     }),
     onSubmit: async (values) => {
       const formData = new FormData();
@@ -153,7 +155,7 @@ const UserForm = () => {
                   id="username"
                   name="username"
                   placeholder="Enter your name"
-                  value={formik.values.username || ''}
+                  value={formik.values.username}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
@@ -176,7 +178,10 @@ const UserForm = () => {
                 <DateInput
                   showIcon
                   selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  onChange={(date) => {
+                    setStartDate(date);
+                    formik.setFieldValue('birthday', date);
+                  }}
                   icon={<TickIcon />}
                 />
 
