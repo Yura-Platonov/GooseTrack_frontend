@@ -36,6 +36,9 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
 
   const editMode = props?.editMode || false;
   const category = status.toLowerCase().replace(' ', '-');
+  
+  console.log(category);
+  
   const today = new Date();
   const year = today.getFullYear();
   const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -69,7 +72,7 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
     if (!editMode) {
       dispatch(addTask(...values));
 
-      onCloseModal(openMoalId);
+      onCloseModal('modal2');
 
     } else {
       dispatch(
@@ -79,7 +82,7 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
         }),
       );
 
-      onCloseModal(openMoalId);
+      onCloseModal('modal2');
 
     }
   };
