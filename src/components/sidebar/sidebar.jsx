@@ -34,7 +34,7 @@ const Sidebar = ({ toggleMenu }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    toggleMenu();
+    {windowWidth < 1440 && toggleMenu(); }  
   };
 
    useEffect(() => {
