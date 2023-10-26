@@ -66,23 +66,8 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
     },
   ];
   const handleAdd = (values) => {
-    if (!editMode) {
-       console.log(1);
       dispatch(addTask(values));
-     
       onCloseModal(openMoalId);
-      console.log(2)
-    } else {
-      dispatch(
-        editTask({
-          id: task._id,
-          task: { date: task.date, values, category },
-        }),
-      );
-
-      onCloseModal(openMoalId);
-
-    }
   };
 
   return (
@@ -173,7 +158,6 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
             </RadioButtonGroup>
 
             <Wrapper>
-              {/* {!editMode ? ( */}
                 <Btn
                   type="button"
                   onClick={() => {
@@ -183,12 +167,6 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
                   <BiPlus />
                   Add
                 </Btn>
-              {/* ) : (
-                <Btn type="button" disabled={isSubmitting}>
-                  <VscEdit />
-                  Edit
-                </Btn>
-              )} */}
               <ButtonCancel
                 type="button"
                 disabled={isSubmitting}

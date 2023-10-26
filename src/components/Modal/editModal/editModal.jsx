@@ -5,20 +5,28 @@ import { Button, CloseSvg, ModalContent } from '../Modal.styled.js';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview.js';
 import Modal from '../Modal.jsx';
 
-export const EditModal = ({ task, status, ...props }) => {
+export const EditModal = ({ openMoalId, taskId, task, status, ...props }) => {
+  console.log(taskId);
   const { onCloseModal } = useDeleteOwnReview();
+
   return ReactDOM.createPortal(
     <Modal>
       <ModalContent>
         <Button
           type="button"
           onClick={() => {
-            onCloseModal('modal2');
+            onCloseModal(openMoalId);
           }}
         >
           <CloseSvg />
         </Button>
-        <EditForm task={task} status={status} {...props} />
+        <EditForm
+          task={task}
+          taskId={taskId}
+          openMoalId={openMoalId}
+          status={status}
+          {...props}
+        />
       </ModalContent>
     </Modal>,
     document.getElementById('portal'),

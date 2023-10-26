@@ -12,9 +12,9 @@ import {
 import { useSelector } from 'react-redux';
 import { selectIsLoading, selectUser } from '../../../redux/auth/selectors';
 
-export const TaskColumnCard = ({ task, getTask }) => {
+export const TaskColumnCard = ({ status, task, getTask }) => {
   const { title, priority } = task;
- console.log(task)
+  console.log(task);
   const isLoading = useSelector(selectIsLoading);
   const userSelector = useSelector(selectUser);
   const name = userSelector?.name || 'Name';
@@ -36,7 +36,7 @@ export const TaskColumnCard = ({ task, getTask }) => {
             {priority}
           </TaskPriority>
         </Wrapper>
-        <Toolbar getTask={getTask} task={task} />
+        <Toolbar getTask={getTask} status={status} task={task} />
       </Wrapper>
     </Container>
   );
