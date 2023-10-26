@@ -27,12 +27,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../redux/auth/operations.js';
+import { selectUser } from '../../redux/auth/selectors.js';
 // import Notiflix from 'notiflix';
 // import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const userData = useSelector((state) => state.auth.user);
+  const userData = useSelector(selectUser);
   // console.log(userData);
 
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const UserForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      avatarURL: userData ? userData.avatarURL : '',
+      avatar: null,
       username: userData ? userData.username || '' : '',
       email: userData ? userData.email || '' : '',
       birthday: userData ? userData.birthday || new Date() : new Date(),
@@ -77,25 +78,14 @@ const UserForm = () => {
       formData.append('phone', values.phone);
       formData.append('skype', values.skype);
 
-      handleSave(values)
-console.log(formData);
-      // dispatch(updateUser(values)).then((res) => {
-      //   if (updateUser.fulfilled.match(res)) {
-      //     Notiflix.Notify.success('User data successfully changed and updated');
-      //   } else if (updateUser.rejected.match(res)) {
-      //     Notiflix.Notify.failure(
-      //       'Something went wrong, please try again later...',
-      //     );
-      //   }
-      // });
-      // formik.resetForm();
+      handleSave(values);
     },
   });
 
   useEffect(() => {
     if (userData) {
       formik.setValues({
-        avatar: userData.avatarURL || '',
+        avatar: null,
         username: userData.username || '',
         email: userData.email || '',
         birthday: userData.birthday || new Date(),
@@ -105,21 +95,14 @@ console.log(formData);
     }
   }, [userData]);
 
-  const onMainPhotoSelected = (event) => {
-    const file = event.target.files[0];
-    formik.setFieldValue('avatar', file);
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const dataURL = e.target.result;
-
-      const imageElement = document.querySelector('#avatar-image');
-      if (imageElement) {
-        imageElement.src = dataURL;
-      }
-    };
-    reader.readAsDataURL(file);
-  };
+     const handleAvatarUpload = (event) => {
+       const file = event.currentTarget.files[0];
+       if (file) {
+         formik.setFieldValue('avatar', file);
+         formik.setIsFormDirty(true);
+       }
+     };
 
   return (
     <Container>
@@ -154,12 +137,10 @@ console.log(formData);
                 name="avatar"
                 accept=".jpg, .jpeg, .png, .gif"
                 style={{ display: 'none' }}
-                onChange={onMainPhotoSelected}
+                onSubmit={handleAvatarUpload}
                 // onChange={fileReader}
               />
-              {formik.errors.avatar && formik.touched.avatar ? (
-                <Error>{formik.errors.avatar}</Error>
-              ) : null}
+
             </Section>
           </>
           <Fields>
@@ -244,7 +225,7 @@ console.log(formData);
                   name="skype"
                   id="skype"
                   placeholder="Enter your skype number"
-                  // value={formik.values.skype}
+                  value={formik.values.skype}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
