@@ -5,9 +5,6 @@ export const AddBtnDelimiter = styled.div`
   width: 100%;
   padding-top: 14px;
   @media screen and (min-width: 768px) {
-    padding-top: 32px;
-  }
-  @media screen and (min-width: 1440px) {
     padding-top: 18px;
   }
 `;
