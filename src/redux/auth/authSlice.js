@@ -83,6 +83,7 @@ export const authSlice = createSlice({
         console.log(payload);
         // Assuming the payload contains the updated user profile data including 'avatarURL'
         state.user = { ...state.user, ...payload };
+        console.log(state.user)
         state.isLoading = false;
       })
       .addCase(updateUser.pending, (state) => {
