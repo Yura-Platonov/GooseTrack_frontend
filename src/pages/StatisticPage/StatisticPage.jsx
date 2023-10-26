@@ -40,7 +40,7 @@ const StatisticPage = () => {
         <Toolbar>
           <PeriodPaginator
             selectedDate={selectedDate}
-            typeDateDay={typeDay}
+            typeDay={typeDay}
             setSelectedDate={setSelectedDate}
           />
           <LegendList />
