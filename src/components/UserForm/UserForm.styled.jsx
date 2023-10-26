@@ -53,8 +53,13 @@ export const Icon = styled(BsFillPlusCircleFill)`
 export const TickIcon = styled(MdOutlineKeyboardArrowDown)`
   width: 18px;
   height: 18px;
-  top: 3px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
+  pointer-events: none;
+  @media (min-width: 768px) {
+    top: 8px;
+    right: 8px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -209,7 +214,7 @@ export const StyledInput = styled.input`
   border: 1px solid rgba(17, 17, 17, 0.1);
   font-weight: bold;
   &::placeholder {
-    color: black;
+    color: rgba(0, 0, 0, 0.5);
     font-weight: bold;
     text-align: left;
   }
@@ -223,7 +228,7 @@ export const StyledInput = styled.input`
 
 export const DateInput = styled(DatePicker)`
   box-sizing: border-box;
-  padding-left: 14px;
+  padding-left: 14px !important;
   padding-right: 14px;
   margin-bottom: 18px;
   height: 42px;
@@ -232,7 +237,7 @@ export const DateInput = styled(DatePicker)`
   border: 1px solid rgba(17, 17, 17, 0.1);
   font-weight: bold;
   &::placeholder {
-    color: black;
+    color: rgba(0, 0, 0, 0.5);
     font-weight: bold;
     text-indent: 14px;
   }
