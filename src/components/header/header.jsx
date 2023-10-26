@@ -1,4 +1,11 @@
-import { Section } from './header.styled';
+import {
+  Section,
+  HeaderTitle,
+  HeaderImg,
+  HeaderWrapper,
+  HeaderText,
+  HeaderSpan,
+} from './header.styled';
 import nad from '../../images/side-head/Elli.png';
 import { useEffect, useState } from 'react';
 import Sidebar from '../sidebar/sidebar';
@@ -19,6 +26,7 @@ import { selectUser } from '../../redux/auth/selectors';
 import { ThemeToggler } from './ThemeToggler/ThemeToggler';
 import { useDispatch } from 'react-redux';
 import { toggleTheme } from '../../redux/auth/operations';
+import goose_LetGo from '../../images/side-head/goose_LetGo.png';
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -43,16 +51,16 @@ const Header = () => {
   useEffect(() => {
     const path = location.pathname;
     switch (path) {
-      case '/calendar':
-        setCurrentPage('Calendar');
+      case '/account':
+        setCurrentPage('User Profile');
         break;
       case '/statistics':
         setCurrentPage('Statistics');
         break;
       default:
-        setCurrentPage('User Profile');
+        setCurrentPage('Calendar');
     }
-  }, [location.pathname]);
+  }, [location]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -75,7 +83,25 @@ const Header = () => {
       ) : null}
       <div className="head-box">
         {windowWidth >= 1440 ? (
-          <span className="currentTitle">{currentPage}</span>
+          <HeaderTitle>
+            {currentPage === 'Calendar' && (
+              <HeaderImg
+                width="64"
+                height="60"
+                src={goose_LetGo}
+                alt="goose_LetGo"
+              />
+            )}
+            <HeaderWrapper>
+              <span className="currentTitle">{currentPage}</span>
+              {currentPage === 'Calendar' && (
+                <HeaderText>
+                  <HeaderSpan>Let go</HeaderSpan> of the past and focus on the
+                  present!
+                </HeaderText>
+              )}
+            </HeaderWrapper>
+          </HeaderTitle>
         ) : (
           <button className="btn burgerBtn" type="button" onClick={toggleMenu}>
             {windowWidth >= 1440

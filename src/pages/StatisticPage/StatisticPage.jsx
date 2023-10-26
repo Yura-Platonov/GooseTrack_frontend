@@ -9,12 +9,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getTasksByMonth } from '../../redux/task/operations';
 import { selectMonthTasks } from '../../redux/task/selectors';
+import { selectErrorTasks } from '../../redux/task/selectors';
 
 import statisticCalculations from '../../helpers/statisticCalculations';
 
 const StatisticPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [typeDay, setType] = useState(false);
+  const error = useSelector(selectErrorTasks);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +29,10 @@ const StatisticPage = () => {
 
   const monthTasks = useSelector(selectMonthTasks, selectedDate);
 
-  const statistics = statisticCalculations(monthTasks.tasks, selectedDate);
+  let statistics = [];
+  if (error === null) {
+    statistics = statisticCalculations(monthTasks.tasks, selectedDate);
+  }
 
   return (
     <Container>
@@ -35,7 +40,7 @@ const StatisticPage = () => {
         <Toolbar>
           <PeriodPaginator
             selectedDate={selectedDate}
-            typeDateDay={typeDay}
+            typeDay={typeDay}
             setSelectedDate={setSelectedDate}
           />
           <LegendList />

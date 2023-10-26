@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux';
 import { editOwnReviewThunk } from '../redux/feedback/operations.js';
 import { Notify } from 'notiflix';
 
-//! Need fix
 const useEditOwnReview = () => {
   const dispatch = useDispatch(),
     handleReviewEdit = (feedBack, rating) => {
