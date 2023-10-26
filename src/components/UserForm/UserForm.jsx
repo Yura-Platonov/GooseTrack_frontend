@@ -33,17 +33,16 @@ import { updateUser } from '../../redux/auth/operations.js';
 const UserForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const userData = useSelector((state) => state.auth.user);
-  console.log(userData);
+  // console.log(userData);
 
   const dispatch = useDispatch();
 
   const handleSave = (values) => {
-    dispatch(updateUser({ ...values, birthday: "1999-15-04" }));
+    dispatch(updateUser({ ...values, birthday: "1999-15-04"  }));
   };
 
   const formik = useFormik({
     initialValues: {
-      avatar: [],
       avatarURL: userData ? userData.avatarURL : '',
       username: userData ? userData.username || '' : '',
       email: userData ? userData.email : '',
