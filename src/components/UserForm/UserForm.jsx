@@ -38,13 +38,15 @@ const UserForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleSave = (values) => {
-    dispatch(updateUser({ ...values, birthday: "1999-15-04"  }));
-  };
+const handleSave = (values) => {
+  const modifiedValues = { ...values, birthday: '1999-15-04' };
+  console.log(modifiedValues);
+  dispatch(updateUser(modifiedValues));
+};
 
   const formik = useFormik({
     initialValues: {
-      avatar: null,
+      avatar: userData? userData.avatarUrl : "",
       username: userData ? userData.username || '' : '',
       email: userData ? userData.email || '' : '',
       birthday: userData ? userData.birthday || new Date() : new Date(),
@@ -85,7 +87,7 @@ const UserForm = () => {
   useEffect(() => {
     if (userData) {
       formik.setValues({
-        avatar: null,
+        avatar: userData.avatarUrl || '',
         username: userData.username || '',
         email: userData.email || '',
         birthday: userData.birthday || new Date(),
@@ -96,14 +98,16 @@ const UserForm = () => {
   }, [userData]);
 
 
-     const handleAvatarUpload = (event) => {
-       const file = event.currentTarget.files[0];
-       if (file) {
-         formik.setFieldValue('avatar', file);
-         formik.setIsFormDirty(true);
-       }
-     };
-
+    const handleAvatarUpload = (event) => {
+      const file = event.currentTarget.files[0];
+      if (file) {
+        formik.setFieldValue('avatar', file);
+        formik.setFormikState((prevState) => ({
+          ...prevState,
+          dirty: true,
+        }));
+      }
+    };
   return (
     <Container>
       <Wrapper>
@@ -137,10 +141,8 @@ const UserForm = () => {
                 name="avatar"
                 accept=".jpg, .jpeg, .png, .gif"
                 style={{ display: 'none' }}
-                onSubmit={handleAvatarUpload}
-                // onChange={fileReader}
+                onChange={handleAvatarUpload}
               />
-
             </Section>
           </>
           <Fields>

@@ -13,18 +13,16 @@ import {
   Input,
 } from './TaskForm.styled';
 import { BiPlus } from 'react-icons/bi';
-import { VscEdit } from 'react-icons/vsc';
 import { validationTaskSchema } from '../../../helpers/validationTaskSchema';
 import { addTask, editTask } from '../../../redux/task/operations';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { parse } from 'date-fns';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import useDeleteOwnReview from '../../../hooks/useDeleteOwnReview';
-import { isOpenSelector } from '../../../redux/modal/selectors';
+
 
 export const TaskForm = ({ openMoalId, task, status, ...props }) => {
+
   const dispatch = useDispatch();
   const { onCloseModal } = useDeleteOwnReview();
 
@@ -36,11 +34,22 @@ export const TaskForm = ({ openMoalId, task, status, ...props }) => {
 
   const editMode = props?.editMode || false;
   const category = status.toLowerCase().replace(' ', '-');
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const day = today.getDate().toString().padStart(2, '0');
+const currentURL = window.location.href;
+  const timestampMatch = currentURL.match(/\/calendar\/day\/(\d+)/);
+
+  
+  const timestamp = timestampMatch[1];
+
+  // Now, format the timestamp as mentioned in the previous answer
+  const dateObj = new Date(parseInt(timestamp, 10));
+  const year = dateObj.getFullYear();
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const day = dateObj.getDate().toString().padStart(2, '0');
   const formattedDate = `${year}-${month}-${day}`;
+
+
+
+
 
   const initialValues = {
     title: enterText,
