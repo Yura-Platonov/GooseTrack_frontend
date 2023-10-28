@@ -34,11 +34,18 @@ export const EditForm = ({ taskId, openMoalId, task, status, ...props }) => {
   const [priorities, setPriorities] = useState('low');
 
   const category = status.toLowerCase().replace(' ', '-');
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const day = today.getDate().toString().padStart(2, '0');
-  const formattedDate = `${year}-${month}-${day}`;
+const currentURL = window.location.href;
+const timestampMatch = currentURL.match(/\/calendar\/day\/(\d+)/);
+
+const timestamp = timestampMatch[1];
+
+// Now, format the timestamp as mentioned in the previous answer
+const dateObj = new Date(parseInt(timestamp, 10));
+const year = dateObj.getFullYear();
+const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+const day = dateObj.getDate().toString().padStart(2, '0');
+const formattedDate = `${year}-${month}-${day}`;
+
 
   const initialValues = {
     title: editText,
@@ -63,67 +70,6 @@ export const EditForm = ({ taskId, openMoalId, task, status, ...props }) => {
       name: 'high',
     },
   ];
-  // useEffect(() => {
-  //   if (editText.length > 255) {
-  //     toast.error('Title cannot be longer than 255 characters');
-  //   }
-  //   setEditText(editText);
-  // }, [editText]);
-
-  // const timeFormValidation = () => {
-  //   let status = 'valid';
-  //   if (Number(start) >= Number(end)) {
-  //     status = 'invalid';
-  //   }
-  //   return status;
-  // };
-
-  // const updateTaskFu = () => {
-  //   if (timeFormValidation() === 'invalid') {
-  //     toast.error('End Time of your task can not be less then Start Time');
-  //     return;
-  //   }
-  //   if (!start && !end && !editText) {
-  //     toast.error('Fields cannot be empty');
-  //     return;
-  //   }
-  //   onCloseModal('modal2');
-  //   const id = task._id;
-  //   const task = {
-  //     id: task._id,
-  //     task: {
-  //       title: editText,
-  //       start,
-  //       end,
-  //       createdAt: task.createdAt,
-  //       priority: priorities.toLowerCase(),
-  //     },
-  //   };
-
-  //   dispatch(editTask(taskForUpdate, id));
-  // };
-
-  // const titleSetter = (event) => {
-  //   const { value } = event.target;
-  //   setEditText((prevState) => (prevState = value));
-  // };
-  // const onChangeStart = (startDate) => {
-  //   let startValue = startDate.toLocaleTimeString('en-UK');
-  //   startValue = startValue.substring(0, startValue.lastIndexOf(':'));
-  //   if (startValue >= end) {
-  //     setEnd(startValue);
-  //   }
-  //   setStart(startValue);
-  // };
-  // const onChangeEnd = (endDate) => {
-  //   let endValue = endDate.toLocaleTimeString('en-UK');
-  //   endValue = endValue.substring(0, endValue.lastIndexOf(':'));
-  //   if (start >= endValue) {
-  //     toast.error('End Time of your task can not be less then Start Time');
-  //     return;
-  //   }
-  //   setEnd(endValue);
-  // };
 
   const handleEdit = (values) => {
     dispatch(editTask({ id: taskId, dataTask:values }));

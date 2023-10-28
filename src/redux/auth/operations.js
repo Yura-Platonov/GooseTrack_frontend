@@ -80,13 +80,26 @@ export const updateUser = createAsyncThunk(
   'auth/update',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await instance.patch('api/auth/update', credentials);
-      Notify.success(`Your profile has been updated`);
+      const formData = new FormData();
+      formData.append('avatar', credentials.avatar); // Append the avatar file
+      formData.append('username', credentials.username);
+      formData.append('email', credentials.email);
+      formData.append('birthday', credentials.birthday);
+      formData.append('phone', credentials.phone);
+      formData.append('skype', credentials.skype);
+
+      const { data } = await instance.patch('api/auth/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+        },
+      });
+
+      Notify.success('Your profile has been updated');
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const toggleTheme = createAsyncThunk(
