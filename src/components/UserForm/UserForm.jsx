@@ -120,11 +120,12 @@ const handleSave = (values) => {
 
     formik.setFieldValue('avatar', file);
     formik.setFieldValue('avatarURL', URL.createObjectURL(file));
+  }
 
     const reader = new FileReader();
     reader.onload = (e) => {
       const dataURL = e.target.result;
-
+    }
 
     const handleAvatarUpload = (event) => {
       const file = event.currentTarget.files[0];
