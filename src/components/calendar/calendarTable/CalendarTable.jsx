@@ -1,4 +1,4 @@
-import { useId } from 'react';
+
 import { useSelector } from 'react-redux';
 import {
   startOfMonth,
@@ -26,6 +26,7 @@ import {
   ItemTask,
 } from './CalendarTable.styled';
 import useGetOwnReview from '../../../hooks/useGetOwnReview';
+import { nanoid } from '@reduxjs/toolkit';
 
 const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
   const tasks = useSelector(selectMonthTasks);
@@ -47,7 +48,7 @@ const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
 
   return (
     <ContainerGrid>
-      {daysInMonth.map((day, id = useId()) => {
+      {daysInMonth.map((day, id = nanoid()) => {
         return (
           <ItemWrapper key={id}>
             <ItemLink
@@ -79,9 +80,7 @@ const CalendarTable = ({ selectedDate, setSelectedDate, setType }) => {
                         key={_id}
                         high={priority === 'high' ? 1 : 0}
                         medium={priority === 'medium' ? 1 : 0}
-                        onClick={() => {
-                          onOpenModal('modal2');
-                        }}
+                       
                       >
                         {title}
                       </ItemTask>
