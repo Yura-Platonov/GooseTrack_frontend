@@ -1,4 +1,4 @@
-import{s as o,N as i,j as e}from"./index-29e1d9a9.js";const a="/GooseTrack_frontend/assets/goose-rocket-404-e9056f24.svg",r=o.div`
+import{s as o,N as i,j as e}from"./index-c811928e.js";const a="/GooseTrack_frontend/assets/goose-rocket-404-e9056f24.svg",r=o.div`
   display: flex;
   align-items: center;
   flex-direction: column;
